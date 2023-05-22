@@ -1,12 +1,13 @@
 package DziałHandlu;
+import Wydawnictwo.Autor;
 
-abstract class Ksiązka {
+public abstract class Ksiązka {
     private String tytul;
-    private String autor;
+    private Autor autor;
     private double cena;
     private int ilośćStron;
 
-    Ksiązka (String tytul, String autor, double cena, int iloscStron) {
+    Ksiązka (String tytul, Autor autor, double cena, int iloscStron) {
         this.tytul = tytul;
         this.autor = autor;
         this.cena = cena;
@@ -17,7 +18,7 @@ abstract class Ksiązka {
         return tytul;
     }
 
-    public String getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
