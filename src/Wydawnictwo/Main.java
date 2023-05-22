@@ -49,7 +49,8 @@ public class Main extends Thread {
         ZD.wypiszStanDruku();
         ZD.wypiszStanDruku();
         ZD.wypiszStanDruku();
-
+    }
+}
 
 
 //=======
@@ -79,4 +80,4 @@ public class Main extends Thread {
 //
 //        dzialHandlowy.pokazKatalog();
 //    }
-//}
+//
