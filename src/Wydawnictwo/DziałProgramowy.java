@@ -6,15 +6,17 @@ import java.util.List;
 public class DziałProgramowy {
 
     List<Autor> zatrudnieniAutorzy = new ArrayList<>();
-    List<Autor> dostępniAutorzy = new ArrayList<>();
 
-    Autorzy au = new Autorzy();
-
-    public void zatrudenie(Autor autor) {
-        zatrudnieniAutorzy.add(autor);
+    public void zatrudnijAutorow(Autorzy autorzy) 
+    {
+        List<Autor> listaWszystkichAutorow = autorzy.getAutorzy();
+        for (Autor autor : listaWszystkichAutorow) {
+            if (autor.getOcena() > 5.0 && autor.getIleChceZarabiać()< 5000) {
+            	zatrudnieniAutorzy.add(autor);
+            }
+        }
     }
-    public void sprawdzenieAutorow() {
-        dostępniAutorzy = au.getAutorzy();
-
+    public List<Autor> getZatrudnieniAutorzy() {
+        return zatrudnieniAutorzy;
     }
 }
