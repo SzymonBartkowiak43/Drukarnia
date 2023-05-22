@@ -6,7 +6,7 @@ public abstract class Czasopismo {
 	private Autor autor;
 	private int numer;
 	private double cena;
-	public Czasopismo (String tytul, Autor autor,int numer,  double cena) {
+	public Czasopismo (String tytul, Autor autor, int numer,  double cena) {
         this.tytul = tytul;
         this.autor = autor;
         this.cena = cena;
