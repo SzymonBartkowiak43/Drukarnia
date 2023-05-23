@@ -1,5 +1,5 @@
 package DziałHandlu;
-import Wydawnictwo.Autor;
+import DziałProgramowy.Autor;
 public class Romanse extends Ksiązka
 {
 	

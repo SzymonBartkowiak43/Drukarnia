@@ -1,4 +1,4 @@
-package Wydawnictwo;
+package DziałProgramowy;
 
 import java.util.ArrayList;
 import java.util.List;

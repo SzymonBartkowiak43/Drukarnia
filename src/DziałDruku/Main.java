@@ -1,4 +1,4 @@
-package DziałDruku;
+/*package DziałDruku;
 
 import java.util.Scanner;
 
@@ -31,7 +31,7 @@ public class Main extends Thread {
             }
         }
 
-
+*/
 
 
 

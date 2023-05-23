@@ -1,5 +1,5 @@
 package DziałHandlu;
-import Wydawnictwo.Autor;
+import DziałProgramowy.Autor;
 
 public abstract class Czasopismo {
 	private String tytul;

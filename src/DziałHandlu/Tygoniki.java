@@ -1,5 +1,5 @@
 package DziałHandlu;
-import Wydawnictwo.Autor;
+import DziałProgramowy.Autor;
 public class Tygoniki extends Czasopismo{
 	public Tygoniki(String tytul, Autor autor, int numer, double cena) 
 	{

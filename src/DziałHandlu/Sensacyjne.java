@@ -1,5 +1,5 @@
 package DziałHandlu;
-import Wydawnictwo.Autor;
+import DziałProgramowy.Autor;
 public class Sensacyjne extends Ksiązka {
 	public Sensacyjne(String tytuł, Autor autor, double cena, int iloscStron) 
 	{

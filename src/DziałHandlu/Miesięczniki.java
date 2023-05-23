@@ -1,5 +1,5 @@
 package DziałHandlu;
-import Wydawnictwo.Autor;
+import DziałProgramowy.Autor;
 public class Miesięczniki extends Czasopismo {
 	public Miesięczniki(String tytul, Autor autor, int numer, double cena) 
 	{

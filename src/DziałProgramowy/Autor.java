@@ -1,4 +1,4 @@
-package Wydawnictwo;
+package DziałProgramowy;
 
 public class Autor {
     private String imie;
