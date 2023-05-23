@@ -3,12 +3,13 @@ package DziałDruku;
 import java.util.HashMap;
 
 abstract public class Drukarnie  {
-    private Produkcja produkcja = new Produkcja();
-    private String coDrukuje;
-    private int ileSztuk;
-    private  boolean czyMonzaRozpacząćProdukcje = true;
-    private HashMap<String, Integer> kolekaDodrukowania = new HashMap<String, Integer>();
-    private HashMap<String, Integer> wydrukowanePozycje = new HashMap<String, Integer>();
+    protected Produkcja produkcja = new Produkcja();
+    protected String coDrukuje;
+    protected int ileSztuk;
+    protected  boolean czyMonzaRozpacząćProdukcje = true;
+    protected  int mocPrzerobowa; //czas w ms ile potrzebuje do wyprodukowania 1 ksiazki
+    protected HashMap<String, Integer> kolekaDodrukowania = new HashMap<String, Integer>();
+    protected HashMap<String, Integer> wydrukowanePozycje = new HashMap<String, Integer>();
 
 
     public void zacznijDrukowaćKsiążke(String nazwa, int ilosc) {
@@ -16,13 +17,13 @@ abstract public class Drukarnie  {
             czyMonzaRozpacząćProdukcje = false;
             coDrukuje = nazwa;
             ileSztuk = ilosc;
+            wyliczCzasProdukcji();
 
             produkcja.setDrukarnia(this);
-            //Produkcja pr = new Produkcja();
             Thread t1 = new Thread(produkcja);
             t1.start();
         } else {
-            System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy ksiażke " + coDrukuje + " Pozostało " + produkcja.getileProcent());
+            System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy " + coDrukuje + " Pozostało " + produkcja.getileProcent());
             kolekaDodrukowania.put(nazwa, ilosc);
         }
     }
@@ -58,6 +59,8 @@ abstract public class Drukarnie  {
             System.out.println("Książka: " + coDrukuje + ", Ilość: " + ileSztuk + " sztuk "  + produkcja.getileProcent()); }
         else
             System.out.println("Maszyna nic nie produkuje");
-
+    }
+    public void wyliczCzasProdukcji () {
+        produkcja.setPredkoscProdukcji(mocPrzerobowa*ileSztuk/100);
     }
 }
