@@ -1,11 +1,14 @@
 package DziałDruku;
 
 public class Produkcja implements Runnable {
-
-    private static int ileProcent;
-
+    private int ileProcent;
+    private Drukarnie drukarnia;
     public Produkcja() {
         ileProcent = 0;
+    }
+
+    public void setDrukarnia(Drukarnie drukarnia) {
+        this.drukarnia = drukarnia;
     }
     @Override
     public void run() {
@@ -14,20 +17,19 @@ public class Produkcja implements Runnable {
             tick();
         }
         ileProcent = 0;
+
+        drukarnia.powiadomOZakończeniuProdukcji();
     }
 
     public void tick () {
         try {
-            Thread.sleep(500);
+            Thread.sleep(400);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
        ileProcent++;
     }
 
-    public void aktualnaProdukcja() {
-        System.out.println("Wyprodukowano: " + ileProcent + "%");
-    }
     public String getileProcent () {
         return   ileProcent + "%";
     }
