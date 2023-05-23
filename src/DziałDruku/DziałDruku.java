@@ -1,22 +1,35 @@
 package DziałDruku;
 
-import java.util.HashMap;
+import java.util.Scanner;
 
 public class DziałDruku  {
 
+
     private Drukarnie pierwszaZwykłaDrukarnia = new ZwykłaDrukarnia();
+    private Drukarnie drugaZwykłaDrukarnia = new ZwykłaDrukarnia();
 
-    public void zlecDrukowanie(String nazwaKsiazki, int iloscSztuk) {
-        pierwszaZwykłaDrukarnia.zacznijDrukować(nazwaKsiazki, iloscSztuk);
+
+    private Drukarnie wybranaDrukarnia = pierwszaZwykłaDrukarnia;
+
+    public void wybierzDrukarnie() {
+        System.out.println("Którą drukarnie chcesz wbrac? 1 - pierwsza Drukarnia, 2 - druga Drukarnia");
+        Scanner scanner = new Scanner(System.in);
+        int wybor = scanner.nextInt();
+        switch (wybor) {
+            case 1 -> wybranaDrukarnia = pierwszaZwykłaDrukarnia;
+            case 2 -> wybranaDrukarnia = drugaZwykłaDrukarnia;
+        }
     }
-
+    public void zlecDrukowanie( String nazwaKsiazki, int iloscSztuk) {
+        wybranaDrukarnia.zacznijDrukowaćKsiążke(nazwaKsiazki, iloscSztuk);
+    }
     public void pokazCoAktualnieSieProdukuje() {
-        pierwszaZwykłaDrukarnia.wypiszCoAktualnieSięProdukuje();
+        wybranaDrukarnia.wypiszCoAktualnieSięProdukuje();
     }
-    public void pokazKsiazkiGotoweDoTransportu() {
-
+    public void pokazWydrukowanePozycje() {
+        wybranaDrukarnia.wypiszWydykowanePozycje();
     }
     public void pokazKolejkeDrukowania() {
-        pierwszaZwykłaDrukarnia.wypiszKolejkeDrukowania();
+        wybranaDrukarnia.wypiszKolejkeDrukowania();
     }
 }

@@ -23,7 +23,7 @@ public class Produkcja implements Runnable {
 
     public void tick () {
         try {
-            Thread.sleep(200);
+            Thread.sleep(400);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
