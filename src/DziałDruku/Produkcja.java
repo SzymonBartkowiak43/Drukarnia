@@ -3,6 +3,7 @@ package DziałDruku;
 public class Produkcja implements Runnable {
     private int ileProcent;
     private Drukarnie drukarnia;
+    private int predkoscProdukcji = 100;
     public Produkcja() {
         ileProcent = 0;
     }
@@ -10,6 +11,11 @@ public class Produkcja implements Runnable {
     public void setDrukarnia(Drukarnie drukarnia) {
         this.drukarnia = drukarnia;
     }
+
+    public void setPredkoscProdukcji(int predkoscProdukcji) {
+        this.predkoscProdukcji = predkoscProdukcji;
+    }
+
     @Override
     public void run() {
         for (int i = 0; i <= 100; ++i)
@@ -23,7 +29,7 @@ public class Produkcja implements Runnable {
 
     public void tick () {
         try {
-            Thread.sleep(400);
+            Thread.sleep(predkoscProdukcji);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
