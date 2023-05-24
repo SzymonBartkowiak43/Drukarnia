@@ -1,4 +1,4 @@
-/*package DziałDruku;
+package DziałDruku;
 
 import java.util.Scanner;
 
@@ -32,25 +32,5 @@ public class Main extends Thread {
                 case 5 -> działDruku.wybierzDrukarnie();
             }
         }
-<<<<<<< HEAD
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 9acaf01e98d79713c2f03cce6b40c8f1d71eec19
     }
 }
