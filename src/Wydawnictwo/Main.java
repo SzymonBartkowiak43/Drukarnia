@@ -1,4 +1,6 @@
-package DziałDruku;
+package Wydawnictwo;
+
+import DziałDruku.DziałDruku;
 
 import java.util.Scanner;
 
