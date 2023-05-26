@@ -1,5 +1,7 @@
 package DziałDruku;
 
+import DziałHandlu.Ksiązka;
+
 import java.util.HashMap;
 
 abstract public class Drukarnie  {
@@ -12,10 +14,10 @@ abstract public class Drukarnie  {
     protected HashMap<String, Integer> wydrukowanePozycje = new HashMap<String, Integer>();
 
 
-    public void zacznijDrukowaćKsiążke(String nazwa, int ilosc) {
+    public void zacznijDrukowaćKsiążke(Ksiązka ksiązka , int ilosc) { // male zmiany
         if(czyMonzaRozpacząćProdukcje) {
             czyMonzaRozpacząćProdukcje = false;
-            coDrukuje = nazwa;
+            coDrukuje = ksiązka.getTytul();
             ileSztuk = ilosc;
             wyliczCzasProdukcji();
 
@@ -24,7 +26,7 @@ abstract public class Drukarnie  {
             t1.start();
         } else {
             System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy " + coDrukuje + " Pozostało " + produkcja.getileProcent());
-            kolekaDodrukowania.put(nazwa, ilosc);
+            kolekaDodrukowania.put(ksiązka.getTytul(), ilosc);
         }
     }
     public  void setCzyMonzaRozpacząćProdukcje (boolean czyMozna) {
