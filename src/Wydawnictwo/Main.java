@@ -1,6 +1,9 @@
 package Wydawnictwo;
 
 import DziałDruku.DziałDruku;
+import DziałHandlu.Ksiązka;
+import DziałHandlu.Romanse;
+import DziałProgramowy.Autor;
 
 import java.util.Scanner;
 
@@ -12,6 +15,10 @@ public class Main extends Thread {
         boolean mozna = true;
         String ksiazka;
         int ileSztuk;
+        Autor autor1= new Autor("Cezary", "Babik", 6.2, 4572);
+        Ksiązka romans = new Romanse("Ania",autor1,19.00,200);
+
+
 
         while (mozna) {
             System.out.println("1 - zlec Drukowanie, 2 - pokaż co aktualnie sie produkuje, 3 - pokazKolejkeDrukowania" +
@@ -26,7 +33,7 @@ public class Main extends Thread {
                     System.out.println("Podaj ile sztuk wydrukować: ");
                     ileSztuk = scanner.nextInt();
 
-                    działDruku.zlecDrukowanie(ksiazka, ileSztuk);
+                    działDruku.zlecDrukowanie(romans, ileSztuk);
                 }
                 case 2 -> działDruku.pokazCoAktualnieSieProdukuje();
                 case 3 -> działDruku.pokazKolejkeDrukowania();

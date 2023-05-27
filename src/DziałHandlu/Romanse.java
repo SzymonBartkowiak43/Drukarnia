@@ -6,4 +6,5 @@ public class Romanse extends Ksiązka
 	{
         super(tytuł, autor, cena, iloscStron);
     }
+
 }

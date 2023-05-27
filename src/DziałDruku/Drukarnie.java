@@ -7,17 +7,19 @@ import java.util.HashMap;
 abstract public class Drukarnie  {
     protected Produkcja produkcja = new Produkcja();
     protected String coDrukuje;
+    protected  Ksiązka drukownaKsiazka;
     protected int ileSztuk;
     protected  boolean czyMonzaRozpacząćProdukcje = true;
     protected  int mocPrzerobowa; //czas w ms ile potrzebuje do wyprodukowania 1 ksiazki
-    protected HashMap<String, Integer> kolekaDodrukowania = new HashMap<String, Integer>();
-    protected HashMap<String, Integer> wydrukowanePozycje = new HashMap<String, Integer>();
+    protected HashMap<Ksiązka, Integer> kolekaDodrukowania = new HashMap<Ksiązka, Integer>();
+    protected HashMap<Ksiązka, Integer> wydrukowanePozycje = new HashMap<Ksiązka, Integer>();
 
 
     public void zacznijDrukowaćKsiążke(Ksiązka ksiązka , int ilosc) { // male zmiany
         if(czyMonzaRozpacząćProdukcje) {
             czyMonzaRozpacząćProdukcje = false;
             coDrukuje = ksiązka.getTytul();
+            drukownaKsiazka = ksiązka;
             ileSztuk = ilosc;
             wyliczCzasProdukcji();
 
@@ -26,21 +28,21 @@ abstract public class Drukarnie  {
             t1.start();
         } else {
             System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy " + coDrukuje + " Pozostało " + produkcja.getileProcent());
-            kolekaDodrukowania.put(ksiązka.getTytul(), ilosc);
+            kolekaDodrukowania.put(ksiązka, ilosc);
         }
     }
     public  void setCzyMonzaRozpacząćProdukcje (boolean czyMozna) {
         czyMonzaRozpacząćProdukcje = czyMozna;
         if(kolekaDodrukowania.size() != 0) {
-            String ksiazka = kolekaDodrukowania.keySet().iterator().next();
-            Integer ilosc = kolekaDodrukowania.remove(ksiazka);
-            zacznijDrukowaćKsiążke(ksiazka,ilosc);
+            Ksiązka ksiązka = kolekaDodrukowania.keySet().iterator().next();
+            Integer ilosc = kolekaDodrukowania.remove(ksiązka);
+            zacznijDrukowaćKsiążke(ksiązka,ilosc);
             System.out.println("Zaczynam drukować " + coDrukuje);
         }
     }
     public void powiadomOZakończeniuProdukcji() {
             System.out.println("Produkcja dziala " +coDrukuje +  " zakończona.");
-            wydrukowanePozycje.put(coDrukuje, ileSztuk);
+            wydrukowanePozycje.put(drukownaKsiazka, ileSztuk);
             setCzyMonzaRozpacząćProdukcje(true);
         }
 

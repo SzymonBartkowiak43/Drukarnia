@@ -14,6 +14,7 @@ public abstract class Ksiązka {
         this.ilośćStron = iloscStron;
     }
 
+
     public String getTytul() {
         return tytul;
     }

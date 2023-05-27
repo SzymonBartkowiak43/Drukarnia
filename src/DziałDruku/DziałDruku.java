@@ -21,8 +21,8 @@ public class DziałDruku  {
             case 3 -> wybranaDrukarnia = lepszaDrukarnia;
         }
     }
-    public void zlecDrukowanie( String nazwaKsiazki, int iloscSztuk) {
-        wybranaDrukarnia.zacznijDrukowaćKsiążke(nazwaKsiazki, iloscSztuk);
+    public void zlecDrukowanie( Ksiązka ks, int iloscSztuk) {
+        wybranaDrukarnia.zacznijDrukowaćKsiążke(ks, iloscSztuk);
     }
     public void pokazCoAktualnieSieProdukuje() {
         wybranaDrukarnia.wypiszCoAktualnieSięProdukuje();
