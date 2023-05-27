@@ -27,7 +27,7 @@ abstract public class Drukarnie  {
             Thread t1 = new Thread(produkcja);
             t1.start();
         } else {
-            System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy " + coDrukuje + " Pozostało " + produkcja.getileProcent());
+            System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy " + coDrukuje + ", Wydrukowano " + produkcja.getileProcent());
             kolekaDodrukowania.put(ksiązka, ilosc);
         }
     }
@@ -41,18 +41,18 @@ abstract public class Drukarnie  {
         }
     }
     public void powiadomOZakończeniuProdukcji() {
-            System.out.println("Produkcja dziala " +coDrukuje +  " zakończona.");
+            System.out.println("Produkcja dziela " +coDrukuje +  " zakończona.");
             wydrukowanePozycje.put(drukownaKsiazka, ileSztuk);
             setCzyMonzaRozpacząćProdukcje(true);
         }
 
     public void wypiszKolejkeDrukowania() {
-        kolekaDodrukowania.forEach((key, value) -> System.out.println("Pozycja: " + key + ", Ilosc: " + value));
+        kolekaDodrukowania.forEach((key, value) -> System.out.println("Pozycja: " + key.getTytul() + ", Ilosc: " + value));
         if(kolekaDodrukowania.isEmpty())
             System.out.println("Kolejka drukowania jest pusta");
     }
     public void wypiszWydykowanePozycje() {
-        wydrukowanePozycje.forEach((key, value) -> System.out.println("Pozycja: " + key + ", Ilosc: " + value));
+        wydrukowanePozycje.forEach((key, value) -> System.out.println("Pozycja: " + key.getTytul() + ", Ilosc: " + value));
         if(wydrukowanePozycje.isEmpty())
             System.out.println("Nie ma zadnych wydrukowanych pozycji");
     }

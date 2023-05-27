@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class ZarządzanieDziałemDruku {
     private DziałDruku działDruku = new DziałDruku();
     private Scanner scanner = new Scanner(System.in);
-
     private String ksiazka;
     private int ileSztuk;
     private Autor autor1 = new Autor("Cezary", "Babik", 6.2, 4572);
