@@ -57,12 +57,14 @@ abstract public class Drukarnie  {
             System.out.println("Nie ma zadnych wydrukowanych pozycji");
     }
 
-    public void wypiszCoAktualnieSięProdukuje() {
+    public String wypiszCoAktualnieSięProdukuje() {
+        String zwracany ="";
         if(!czyMonzaRozpacząćProdukcje) {
-            System.out.print("Akutalnie Produkujemy: ");
-            System.out.println("Książka: " + coDrukuje + ", Ilość: " + ileSztuk + " sztuk "  + produkcja.getileProcent()); }
+            zwracany +="Akutalnie Produkujemy: ";
+            zwracany += "Książka: " + coDrukuje + ", Ilość: " + ileSztuk + " sztuk "  + produkcja.getileProcent(); }
         else
-            System.out.println("Maszyna nic nie produkuje");
+            zwracany += "Maszyna nic nie produkuje";
+        return zwracany;
     }
     public void wyliczCzasProdukcji () {
         produkcja.setPredkoscProdukcji(mocPrzerobowa*ileSztuk/100);

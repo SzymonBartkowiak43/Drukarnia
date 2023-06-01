@@ -7,6 +7,7 @@ import DziałProgramowy.Autor;
 import java.util.Scanner;
 
 public class ZarządzanieDziałemDruku {
+    String coSieProdukuje;
     private DziałDruku działDruku = new DziałDruku();
     private Scanner scanner = new Scanner(System.in);
     private String ksiazka;
@@ -32,7 +33,7 @@ public class ZarządzanieDziałemDruku {
                     ileSztuk = scanner.nextInt();
                     działDruku.zlecDrukowanie(romans, ileSztuk);
                 }
-                case 2 -> działDruku.pokazCoAktualnieSieProdukuje();
+                case 2 -> coSieProdukuje = działDruku.pokazCoAktualnieSieProdukuje();
                 case 3 -> działDruku.pokazKolejkeDrukowania();
                 case 4 -> działDruku.pokazWydrukowanePozycje();
                 case 5 -> działDruku.wybierzDrukarnie();

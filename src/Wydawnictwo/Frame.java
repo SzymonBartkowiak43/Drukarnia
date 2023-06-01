@@ -71,18 +71,22 @@ public class Frame extends JFrame implements ActionListener {
             buttonPokCoDrukuje  = new JButton("Pokaż co sie drukuje");
             buttonPokCoDrukuje.setVisible(true);
             buttonPokCoDrukuje.setBounds(0,150,300,50);
+            buttonPokCoDrukuje.addActionListener(this);
 
             buttonPokKolejke = new JButton("Pokaz kolejke drukowania");
             buttonPokKolejke.setVisible(true);
             buttonPokKolejke.setBounds(0,250,300,50);
+            buttonPokKolejke.addActionListener(this);
 
             buttonPozGotoweDoOdbioru = new JButton("Pokaz pozycje gotowe do odbioru");
             buttonPozGotoweDoOdbioru.setVisible(true);
             buttonPozGotoweDoOdbioru.setBounds(0,350,300,50);
+            buttonPozGotoweDoOdbioru.addActionListener(this);
 
             buttonWybDrukarnie = new JButton("Wybierz Drukarnie");
             buttonWybDrukarnie.setVisible(true);
             buttonWybDrukarnie.setBounds(0,450,300,50);
+            buttonWybDrukarnie.addActionListener(this);
 
             drukIkona = new ImageIcon("Drukarnia.png");
 
@@ -105,6 +109,9 @@ public class Frame extends JFrame implements ActionListener {
         if(e.getSource() == buttonZlecD) {
             System.out.println("Zlecam Drukowanie");
             new odDruku();
+        }
+        if(e.getSource() == buttonPokCoDrukuje) {
+            new WyswietlCoDrukuje();
         }
     }
 }

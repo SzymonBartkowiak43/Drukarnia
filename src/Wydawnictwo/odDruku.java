@@ -48,7 +48,7 @@ public class odDruku implements ChangeListener, ActionListener {
 
 
         button = new JButton("Zatwierdź");
-        button.setBounds(100,100,250,500);
+        //button.setBounds(100,100,250,500);
         button.addActionListener(this);
         button.setFont(new Font("Comic Sans", Font.BOLD,25));
         button.setForeground(Color.WHITE);
@@ -56,6 +56,8 @@ public class odDruku implements ChangeListener, ActionListener {
         button.setBorder(BorderFactory.createEtchedBorder());
 
 
+        label.setBackground(Color.pink);
+        frame.setBackground(Color.pink);
         frame.add(button);
         frame.add(comboBox);
         frame.setLayout(new FlowLayout());
@@ -80,8 +82,7 @@ public class odDruku implements ChangeListener, ActionListener {
         if(e.getSource() == button) {
             System.out.println(slider.getValue());
             System.out.println(comboBox.getSelectedItem());
-            frame.dispose();
-
+            frame.dispose(); // zamyka okno
         }
     }
 }
