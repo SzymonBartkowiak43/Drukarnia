@@ -7,8 +7,8 @@ public class Main extends Thread {
 
         new Frame();
 
-        ZarządzanieDziałemDruku dzialdruku = new ZarządzanieDziałemDruku();
-
-        dzialdruku.zarzadzanie();
+//        ZarządzanieDziałemDruku dzialdruku = new ZarządzanieDziałemDruku();
+//
+//        dzialdruku.zarzadzanie();
     }
 }

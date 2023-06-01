@@ -30,7 +30,6 @@ public class ZarządzanieDziałemDruku {
                     ksiazka = scanner.nextLine();
                     System.out.println("Podaj ile sztuk wydrukować: ");
                     ileSztuk = scanner.nextInt();
-
                     działDruku.zlecDrukowanie(romans, ileSztuk);
                 }
                 case 2 -> działDruku.pokazCoAktualnieSieProdukuje();

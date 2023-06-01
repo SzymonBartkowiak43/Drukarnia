@@ -1,5 +1,7 @@
 package Wydawnictwo;
 
+import DziałHandlu.Ksiązka;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,20 +9,19 @@ import java.awt.event.ActionListener;
 
 public class Frame extends JFrame implements ActionListener {
 
-    ImageIcon miastoIcon;
-    ImageIcon drukIkona;
-    JButton buttonDD;
-    JButton buttonDH;
-    JButton buttonDP;
-    JLabel label;
-
-    JLabel panelTekstowy;
-
-    JButton buttonZlecD;
-    JButton buttonPokCoDrukuje;
-    JButton buttonPokKolejke;
-    JButton buttonPozGotoweDoOdbioru;
-    JButton buttonWybDrukarnie;
+    protected ImageIcon miastoIcon;
+    protected ImageIcon drukIkona;
+    protected JButton buttonDD;
+    protected JButton buttonDH;
+    protected JButton buttonDP;
+    protected JLabel label;
+    protected JButton buttonZlecD;
+    protected JButton buttonPokCoDrukuje;
+    protected JButton buttonPokKolejke;
+    protected JButton buttonPozGotoweDoOdbioru;
+    protected JButton buttonWybDrukarnie;
+    protected  int ileSztuk;
+    protected String ksiazka;
     Frame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setName("Wydawnictwo");
@@ -43,42 +44,29 @@ public class Frame extends JFrame implements ActionListener {
         buttonDP.setBounds(500,100,180,60);
         buttonDP.addActionListener(this);
 
-        panelTekstowy = new JLabel();
-        panelTekstowy.setBackground(Color.black);
-        panelTekstowy.setBounds(400,400,200,200);
-        panelTekstowy.setVisible(false);
-        panelTekstowy.setForeground(Color.GREEN);
-        panelTekstowy.setFont(new Font("MV Boli", Font.PLAIN, 40));
-        panelTekstowy.setText("yoyoyoSSSSSSSSSSSADASASASASASAS");
-
 
         label.add(buttonDP);
         label.add(buttonDH);
         label.add(buttonDD);
 
-
-
         this.add(label);
-
+        this.pack();
         this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == buttonDD) {
-
             System.out.println("*Myk przechodze do działu druku*");
             this.setName("Dział Druku");
             buttonDD.setVisible(false);
             buttonDH.setVisible(false);
             buttonDP.setVisible(false);
 
-            panelTekstowy.setVisible(true);
-
-
             buttonZlecD = new JButton("Zlec drukowanie");
             buttonZlecD.setVisible(true);
             buttonZlecD.setBounds(0,50,300,50);
+            buttonZlecD.addActionListener(this);
 
             buttonPokCoDrukuje  = new JButton("Pokaż co sie drukuje");
             buttonPokCoDrukuje.setVisible(true);
@@ -104,7 +92,6 @@ public class Frame extends JFrame implements ActionListener {
             label.add(buttonPokKolejke);
             label.add(buttonPozGotoweDoOdbioru);
             label.add(buttonWybDrukarnie);
-            label.add(panelTekstowy);
 
             this.setVisible(true);
         }
@@ -113,6 +100,11 @@ public class Frame extends JFrame implements ActionListener {
         }
         if(e.getSource() == buttonDP) {
             System.out.println("*Myk przechodze do działu programowego*");
+        }
+
+        if(e.getSource() == buttonZlecD) {
+            System.out.println("Zlecam Drukowanie");
+            new odDruku();
         }
     }
 }
