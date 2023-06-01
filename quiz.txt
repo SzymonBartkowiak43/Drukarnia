@@ -1,0 +1,132 @@
+Srodowisko MS Visual Studio pozwala na tworzenie programow instalacyjnych tylko dla aplikacji zbudowanych w tym srodowisku. -- F
+Profilery statystyczne wykorzystuja zdarzenia (ang. events), które przekazywane sa jako procedury zwrotne.--F
+Profilowanie aplikacji polega na statycznej analizie oprogramowania.--F
+Parametr Resolution okreslajacy sposob rozwiazania zgloszenia o bledzie w systemie Bugzilla moze przyjmowac wartosci New, Assigned i Closed.--F
+Javadoc posiada bardziej rozbudowane formaty wejsciowe i wyjsciowe niz Doxygen.--F
+Blok kodu, ktory znaczaco wplywa na trudnosci podczas instalacji oprogramowania nazywany jest waskim gardlem aplikacji (ang. bottle neck).--F
+Podczas tworzenia testu manualnego w Microsoft Test Manager mozliwe jest zdefiniowanie zmiennych oraz wartosci jakie powinny przyjmowac.--P
+Aby wprowadzic w systemie Bugzilla nowe zgloszenie o bledzie nie trzeba posiadac konta uzytkownika.--F
+Profilowanie aplikacji wykonywane jest w celu zoptymalizowania aplikacji zarowno pod wzgledem czasowym jak i pamieciowym.--P
+W systemie Bugzilla status bledu informuje o aktualnym etapie obslugi zgloszenia.--P
+NetBeans Profiler oprocz profilowania uzycia procesora oraz pamieci pozwala na sledzenie aktywnosci poszczegolnych watkow aplikacji.--P
+Wymagania funkcjonalne oprogramowania okreslaja ograniczenia systemu wynikajace z potrzeb uzytkownikow oraz z ograniczen budzetowych i strategii firmy etc.--F
+Doxygen nie pozwala na generowanie dokumentacji technicznej dla aplikacji napisanej w jezyku C++.--F
+Bugzilla jest narzedziem, ktore znajduje bledy w aplikacji a nastepnie informuje o nich osoby za nie odpowiedzialne.--F
+Zaleta profilerow statystycznych jest brak narzutu zwiazanego z dodatkowym kodem w profilowanej aplikacji.--P
+Doxygen wymaga uzywania znacznikow HTML do opisu komentarzy.--F
+Program instalacyjny zbudowany w srodowisku MS Visual Studio zawsze tworzy skrot do instalowanego programu na pulpicie.--F
+Slowo kluczowe @see moze byc uzyte jako link do istniejacych funkcji, plikow, klas oraz URLi.--P
+Zgloszenie o bledzie wprowadzone w systemie Bugzilla trafia do osoby odpowiedzialnej (Assigned to) za komponent okreslony w zgloszeniu.--P
+Blad w systemie Bugzilla moze zmieniac swoje statusy tylko zgodnie z cyklem zycia bledu.--P
+Doxygen nie potrafi aktualizowac wygenerowanej dokumentacji interpretujac tylko zmienione pliki.--P
+Doxygen umozliwia tworzenie dokumentacji tylko pojedynczych plikow.--F
+W Microsoft Test Manager nie mozna pisac lub modyfikowac kodu zrodlowego aplikacji.--P
+Bugzilla jest narzedziem sluzacym do profilowania aplikacji.--F
+W NetBeans Profiler w wyniku analizy wydajnosci CPU uzyskujemy informacje o czasie spedzonym przez analizowana aplikacje na wykonywaniu poszczegolnych jej funkcji.--P
+Podczas tworzenia testu manualnego w Microsoft Test Manager mozliwe jest zdefiniowanie zmiennych oraz wartosci jakie powinny przyjmowac.--P
+Profiler IBM Rational Quantify pozwala na graficzne i tekstowe porownywanie wydajnosci kolejnych wersji oprogramowania (czyli jaki wplyw mialy wprowadzone poprawki).--P
+Program instalacyjny zbudowany w srodowisku MS Visual Studio zawsze tworzy skrot do instalowanego programu na pulpicie.--F
+Raporty generowane przez profilery pokazuja miejsca wystapienia bledow z pamiecia (np. brak dealokacji).--F
+Profil plaski profilera GNU GProf nie pozwala obserwowac czasow wykonywania funkcji 'potomkow' i 'rodzicow'.--P
+Microsoft Test Manager nie moze byc wykorzystany do analizy aplikacji w innych jezykach tj. PHP, Java czy Delphi.--F
+Aby program instalacyjny zbudowany w srodowisku MS Visual Studio sprawdzal, czy komputer na ktorym instalowana jest aplikacja posiada odpowiedni rozmiar pamieci RAM, nalezy sformulowac wlasciwy warunek w edytorze Custom Actions.--F
+Aby wykonac profilowanie nalezy najpierw skompilowac program, a nastepnie uruchomiac go wiele razy tak aby pokryta zostala jak najwieksza czesc kodu.--P
+Profilery aplikacji stworzonych w zarzadzanych jezykach programowania nie pozwalaja na profilowanie zuzywanej pamieci.--F
+Plik konfiguracyjny Doxygen mozna wygenerowac tylko poprzez aplikacje Doxywizard.--F
+Wprowadzajac zgloszenie o bledzie w systemie Bugzilla nalezy okreslic miedzy innymi srodowisko (Hardware, OS), w ktorym blad mial miejsce.--P
+Warunek sprawdzajacy przed rozpoczeciem procesu instalacji, czy komputer wyposazony jest w co najmniej 1GB pamieci RAM, w programie instalacyjnym zbudowanym w srodowisku MS Visual Studio powinien byc sformulowany nastepujaco: PhysicalMemory>=1024.--P
+Glownym celem optymalizacja czasowej oprogramowania jest zmniejszenie zapotrzebowania na zasoby pamieciowe.--F
+Debugger modyfikuje kod zrodlowy programu.--F
+Scentralizowane systemy zarzadzania wersjami (np. Subversion) oparte sa na architekturze P2P.--F
+Refactoring powoduje modyfikacje w funkcjonalnosci programu.--F
+W systemie Subversion w wyniku wyslania nowej wersji okreslonego pliku do repozytorium cale repozytorium uzyskuje nowy numer rewizji.--P
+W kodzie wystepuje przynajmniej jeden blad kompilacji int tab = new int[5]; for (int i=0; i<27, i++) delete tab;--P
+Blad wystepujacy w kodzie moze ujawnic sie w trakcie wykonania programu int tab = new int[25]; for (int i=0;i<27;  i++) tab[i] = rand() % 100; delete tab;--P
+Wycieki pamieci powstaja w wyniku alokowania przez program zbyt malej ilosci pamieci - FALSZ - falsz bo wycieki powstaja kiedy nie zwalniamy pamieci.--F
+Nowy programista, ktory dolacza do projektu przechowywanego w repozytorium zarzadzanym przez system Subversion powinien znac adres url repozytorium.--P
+Dostep do repozytorium zarzadzanego przez Subversion nie jest mozliwy z wykorzystaniem protokolu ftp.--P
+Generowanie dokumentacji technicznej projektu za pomoca Javadoc polega na przetworzeniu specjalnych komentarzy umieszczonych w kodzie Java na strony www.--P
+Scentralizowane systemy zarzadzania wersjami (np. Subversion) oparte sa na architekturze klient-server.--P
+TortoiseSVN jest tekstowym klientem systemu Subversion.--F
+Wycieki pamieci sa automatycznie naprawiane przez Valgrind.--F
+Repozytorium kodu zrodlowego zarzadzane przez system Subversion powinno zawierac zgodnie z zaleceniami katalog trunk przechowujacy alternatywne galezie projektu.--F
+Breakpoint w debugger’e oznacza miejsce rozpoczecia wykonywania programu.--F
+Klient Subversion moze byc oferowany przez srodowisko programistyczne IDE.--P
+W systemie Git klonowanie zdalnego repozytorium powoduje powstanie pelnej kopi repozytorium na lokalnej maszynie.--P
+Repozytorium kodu zrodlowego zarzadzane przez system Subversion powinno zawierac zgodnie z zaleceniami katalog BRANCHES przechowujacy glowna linie rozwojowa kodu zrodlowego projektu.--F
+Przykladem refectoringu kodu jest dodanie nowej metody (nowej funkcjonalnosci) do istniejacej klasy.--F
+Sprawdzenie zawartosci repozytorium zarzadzanego przez Subversion jest mozliwe bez koniecznosci tworzenia lokalnej kopi repozytorium.--P
+Blad wystepujacy w kodzie zostanie wykryty przez Dr Memory.--F
+Refaktoring powoduje zmiany w kodzie zrodlowym oprogramowania.--P
+Historia zmian w Subversion dostarcza informacji na temat kto wprowadzal zmiany w danej rewizji.--P
+Sprawdzenie zawartosci repozytorium zarzadzanego przez Subversion nie jest mozliwe bez koniecznosci tworzenia lokalnej kopi repozytorium.--F
+Nowy programista, ktory dolacza do projektu przechowywanego w repozytorium zarzadzanym przez system Subversion moze obejrzec zawartosc repozytorim w przegladarce internetowej jezeli dostep do repozytorium odbywa sie poprzez protokol http.--P
+Przykladem refectoringu kodu jest zastapienie podobnych albo takich samych fragmentow kodu przez procedure.--P
+Wycieki pamieci zostana wykryte podczas kompilacji kodu za pomoca kompilatora, np. g++.--F
+Konflikt w systemie Subversion moze powstac podczas wykonywania komendy checkout.--F
+Dostep do repozytorium zarzadzanego przez Subversion moze odbywac sie przez protokol http.--P
+W systemie Git operacja COMMIT przenosi zmiany z kopi lokalnej do zdalnego repozytorium.--P
+Analiza programu za pomoca Dr Memory nie wymaga wczesniejszej kompilacji kodu.--F
+Valgrind nie zasygnalizuje czytania poza zakresem statycznie alokowanej tablicy.--P
+Jedna z mozliwosci debugger'a GDB jest wyswietlenie aktualnego stosu wywolan funkcji.--P
+Srodowisko wytworcze Eclipse jest srodowiskiem modulowym, rozszerzalnym poprzez plugin'y.--P
+Debugger jest standardowym wyposazeniem wiekszosci srodowisk programistycznych.--P
+Polecenie diff w systemie Subversion pozwala na porownanie kopi lokalnej i kopi znajdujacej sie w repozytorium okreslonego pliku.--P
+TortoiseSVN jest graficznym klientem systemu Git.--F
+Debugger moze zostac uruchomiony mimo istnienia bledow kompilacji.--P
+Operacja commit w systemie Subversion przenosi zmiany z repozytorium zdalnego do lokalnej kopi uzytkownika.--F
+Historia zmian w Subversion dostarcza informacji na temat plikow zmodyfikowanych w poszczegolnych rewizjach.--P
+Historia zmian w Subversion dostarcza informacji na temat uzywanego przez uzytkownika klienta SVN.--F
+Bugzilla moze byc wykorzystywana do zarzadzania bledami w systemie informatycznym, jak rowniez wymaganiami, poprawkami i zmianami.--P
+Celem testow akceptacyjnych jest sprawdzenie czy oprogramowanie jest gotowe i moze byc przekazane uzytkownikowi.--P
+Cykl zycia bledu okresla stan w jakim blad sie aktualnie znajduje oraz jego historie.--P
+Dokumentacja uzytkownika oprogramowania powinna zawierac udokumentowany kod.--F
+Doxygen pozwala na generowanie dokumentacji technicznej tylko dla aplikacji napisanej w jezyku Java.--F
+Graf wywolan funkcji tworzony przez profilery pozwala wykryc funkcje, ktore same w sobie nie zajmuja duzo czasu wykonania natomiast wywolywane z nich funkcje stanowia waskie gardlo aplikacji.--P
+Instrukcja budowy pakietu rpm powinna byc zapisana w pliku spec.--P
+Jedna instancja systemu Bugzilla moze obslugiwac tylko jeden produkt (np. aplikacje).--F
+Komentarz interpretowany przez Doxygen musi wystapic bezposrednio przed deklaracja czy definicja pliku, klasy, itd.--F
+Makro %_topdir w pliku .rpmmacros definiuje sciezke do katalogu z tymczasowymi plikami tworzonymi w trakcie budowy pakietu rpm.--P
+Manualna instrumentacja przeprowadzana w celu profilowania aplikacji polega na recznym podliczaniu charakterystyk czasu wykonania danych fragmentow kodu.--F
+Microsoft Test Manager nie wymaga posiadania kodu zrodlowego.--P
+Parametr Resolution okreslajacy sposob rozwiazania zgloszenia o bledzie w systemie Bugzilla moze przyjmowac miedzy innymi wartosci Fixed, Duplicate, Invalid.--P
+Planowanie testow funkcjonalnych umozliwia Microsoft Test Manager oraz Microsoft Visual Studio.--P
+Podczas tworzenia testu manualnego w Microsoft Test Manager mozliwe jest zdefiniowanie zmiennych oraz wartosci jakie powinny przyjmowac.--P
+Podczas tworzenia testu manualnego w Microsoft Test Manager nie jest mozliwe zdefiniowanie zmiennych oraz wartosci jakie powinny przyjmowac.--F
+Profilowanie aplikacji nie wymaga analizy otrzymanych danych czasowych.--F
+Profilowanie aplikacji nie polega na statycznej analizie oprogramowania.--P
+Profilowanie aplikacji rownoleglych pozwala sledzic proces wymiany komunikatow pomiedzy procesorami/procesami.--P
+Profilowanie na poziomie linii kodu umozliwia dokladne wskazanie bledu kompilacji.--F
+Profiler IBM Rational Quantify pozwala tylko na tekstowe (lista funkcji) porownywanie wydajnosci kolejnych wersji oprogramowania (czyli jaki wplyw mialy wprowadzone poprawki).--F
+Profilery bazujace na instrumentacji zbieraja informacje na temat wydajnosci aplikacji poprzez wstawiane dodatkowych instrukcji do kodu.--F
+Program instalacyjny zbudowany w srodowisku MS Visual Studio zawsze instaluje aplikacje w domyslnej lokacjI.--F
+Slowo kluczowe @param moze byc uzyte jako link do istniejacych funkcji, plikow, klas oraz URLi.--F
+Srodowisko MS Visual Studio pozwala na tworzenie programow instalacyjnych dla aplikacji stworzonych w dowolnej technologii.--P
+Testowanie integracyjne sluzy do sprawdzenia czy komponenty tworzonego oprogramowania wspolpracuja ze soba.--P
+W generatorze Javadoc slowa kluczowe w komentarzu nalezy poprzedzic \ lub @.--F
+W generatorze Javadoc slowa kluczowe w komentarzu nalezy poprzedzic znakiem @.--P
+W systemie Bugzilla blad o statusie Resolved i rozdzielczosci (Resolution) Duplicate oznacza, ze zgloszenie zostalo uznane za niepoprawne.--F
+W systemie Bugzilla status bledu informuje o aktualnym etapie obslugi zgloszenia.--P
+Warunek sprawdzajacy przed rozpoczeciem procesu instalacji, czy komputer wyposazony jest w co najmniej 2GB pamieci RAM, w programie instalacyjnym zbudowanym w srodowisku MS Visual Studio powinien byc sformulowany nastepujaco: RAM>=2g.--F
+Wprowadzajac zgloszenie o bledzie w systemie Bugzilla nalezy okreslic zrodlo pozyskania aplikacji (Shop, Website), w ktorej blad mial miejsce.--F
+Za pomoca polecenia rpmbuild zaleca sie zbudowanie pakietu instalacyjnego rpm wedlug specyfikacji okreslonej w odpowiednim pliku spec.--P
+Zapytania umozliwiajace sprawdzenie wynikow testow uruchamiane sa w zakladce track programu Microsoft Test Manager.--P
+Zgloszenie o bledzie wprowadzone w systemie Bugzilla trafia do administratora systemu.--F
+Znacznik @param w Javadoc sluzy do opisu atrybutow wystepujacych w komentowanej klasie. //(opis parametrow).--F
+Znacznik @return w Javadoc sluzy do opisu wyniku zwracanego przez komentowana metode.--P
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
