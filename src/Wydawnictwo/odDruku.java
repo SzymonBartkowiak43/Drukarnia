@@ -1,13 +1,19 @@
 package Wydawnictwo;
 
+import DziałDruku.DziałDruku;
+import DziałHandlu.Ksiązka;
+import DziałHandlu.TymczasowaListaKsiazek;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
-public class odDruku implements ChangeListener, ActionListener {
+public class odDruku  implements ChangeListener, ActionListener {
     JFrame frame;
     JPanel panel;
     JLabel label;
@@ -15,7 +21,11 @@ public class odDruku implements ChangeListener, ActionListener {
     JComboBox comboBox;
     JButton button;
 
+    private List<Object> katalog = new ArrayList<>();
+
     odDruku() {
+
+
         frame = new JFrame("Drukarnia");
         panel = new JPanel();
         label = new JLabel();
@@ -43,12 +53,19 @@ public class odDruku implements ChangeListener, ActionListener {
         panel.add(label);
 
 
-        String[] Ksiazki = {"Ania z Zielonego wzogrza", "Hary Pota", "Hobbit "};
+        TymczasowaListaKsiazek tym = new TymczasowaListaKsiazek();
+        katalog =  tym.getKatalog();
+        String[] Ksiazki =  new String[katalog.size()];
+
+        for(int i = 0;i < katalog.size();i++) {
+            Ksiązka ksiazka = (Ksiązka) katalog.get(i);
+            String dodawnie = ksiazka.getTytul();
+            Ksiazki[i] = dodawnie;
+        }
         comboBox = new JComboBox(Ksiazki);
 
 
         button = new JButton("Zatwierdź");
-        //button.setBounds(100,100,250,500);
         button.addActionListener(this);
         button.setFont(new Font("Comic Sans", Font.BOLD,25));
         button.setForeground(Color.WHITE);
@@ -56,15 +73,17 @@ public class odDruku implements ChangeListener, ActionListener {
         button.setBorder(BorderFactory.createEtchedBorder());
 
 
+
         label.setBackground(Color.pink);
         frame.setBackground(Color.pink);
         frame.add(button);
         frame.add(comboBox);
         frame.setLayout(new FlowLayout());
+        frame.setSize(500,200);
         frame.setLocationRelativeTo(null);
         frame.add(panel);
-        frame.pack();
-        frame.setSize(500,500);
+
+
         frame.setVisible(true);
 
 
@@ -82,6 +101,10 @@ public class odDruku implements ChangeListener, ActionListener {
         if(e.getSource() == button) {
             System.out.println(slider.getValue());
             System.out.println(comboBox.getSelectedItem());
+
+            int index = comboBox.getSelectedIndex();
+
+            Frame.działDruku.zlecDrukowanie((Ksiązka)katalog.get(index), slider.getValue() );
             frame.dispose(); // zamyka okno
         }
     }

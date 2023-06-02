@@ -5,7 +5,9 @@ public class DziałHandlowy {
 
 	 private List<Object> katalog= new ArrayList<>();
 
-	    public void pokazKatalog() {
+
+
+	public void pokazKatalog() {
 	        for (Object pozycja : katalog) {
 	            if (pozycja instanceof Ksiązka) 
 	            {

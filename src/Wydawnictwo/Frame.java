@@ -1,5 +1,6 @@
 package Wydawnictwo;
 
+import DziałDruku.DziałDruku;
 import DziałHandlu.Ksiązka;
 
 import javax.swing.*;
@@ -20,8 +21,8 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton buttonPokKolejke;
     protected JButton buttonPozGotoweDoOdbioru;
     protected JButton buttonWybDrukarnie;
-    protected  int ileSztuk;
-    protected String ksiazka;
+    public static DziałDruku działDruku = new DziałDruku();
+
     Frame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setName("Wydawnictwo");

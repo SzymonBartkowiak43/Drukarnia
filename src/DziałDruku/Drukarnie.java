@@ -15,7 +15,7 @@ abstract public class Drukarnie  {
     protected HashMap<Ksiązka, Integer> wydrukowanePozycje = new HashMap<Ksiązka, Integer>();
 
 
-    public void zacznijDrukowaćKsiążke(Ksiązka ksiązka , int ilosc) { // male zmiany
+    public void zacznijDrukowaćKsiążke(Ksiązka ksiązka , int ilosc) {
         if(czyMonzaRozpacząćProdukcje) {
             czyMonzaRozpacząćProdukcje = false;
             coDrukuje = ksiązka.getTytul();
