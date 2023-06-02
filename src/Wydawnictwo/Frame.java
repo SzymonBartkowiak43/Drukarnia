@@ -106,13 +106,20 @@ public class Frame extends JFrame implements ActionListener {
         if(e.getSource() == buttonDP) {
             System.out.println("*Myk przechodze do działu programowego*");
         }
-
         if(e.getSource() == buttonZlecD) {
-            System.out.println("Zlecam Drukowanie");
             new odDruku();
         }
         if(e.getSource() == buttonPokCoDrukuje) {
             new WyswietlCoDrukuje();
+        }
+        if(e.getSource() == buttonPokKolejke) {
+            new OdWypisaniaKolejki();
+        }
+        if(e.getSource() == buttonPozGotoweDoOdbioru) {
+            new OdPokazaniaWydrukowanych();
+        }
+        if(e.getSource() == buttonWybDrukarnie) {
+            new OdWybraniaDrukarni();
         }
     }
 }

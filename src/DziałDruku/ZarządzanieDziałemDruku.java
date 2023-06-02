@@ -6,7 +6,7 @@ import DziałProgramowy.Autor;
 
 import java.util.Scanner;
 
-public class ZarządzanieDziałemDruku {
+public class ZarządzanieDziałemDruku { //Nic nie robi do wywalenia
     String coSieProdukuje;
     private DziałDruku działDruku = new DziałDruku();
     private Scanner scanner = new Scanner(System.in);
@@ -36,7 +36,7 @@ public class ZarządzanieDziałemDruku {
                 case 2 -> coSieProdukuje = działDruku.pokazCoAktualnieSieProdukuje();
                 case 3 -> działDruku.pokazKolejkeDrukowania();
                 case 4 -> działDruku.pokazWydrukowanePozycje();
-                case 5 -> działDruku.wybierzDrukarnie();
+                case 5 -> działDruku.wybierzDrukarnie(1);
             }
         }
     }

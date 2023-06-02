@@ -11,10 +11,7 @@ public class DziałDruku  {
     private Drukarnie lepszaDrukarnia = new LepszaDrukarnia(150);
     private Drukarnie wybranaDrukarnia = pierwszaZwykłaDrukarnia;
 
-    public void wybierzDrukarnie() {
-        System.out.println("Którą drukarnie chcesz wbrac? 1 - pierwsza Drukarnia, 2 - druga Drukarnia, 3 - lepsza Drukarnia");
-        Scanner scanner = new Scanner(System.in);
-        int wybor = scanner.nextInt();
+    public void wybierzDrukarnie(int wybor) {
         switch (wybor) {
             case 1 -> wybranaDrukarnia = pierwszaZwykłaDrukarnia;
             case 2 -> wybranaDrukarnia = drugaZwykłaDrukarnia;
@@ -29,10 +26,14 @@ public class DziałDruku  {
         zwracany += wybranaDrukarnia.wypiszCoAktualnieSięProdukuje();
         return zwracany;
     }
-    public void pokazWydrukowanePozycje() {
-        wybranaDrukarnia.wypiszWydykowanePozycje();
+    public String pokazWydrukowanePozycje() {
+        String zwracany = "";
+        zwracany += wybranaDrukarnia.wypiszWydykowanePozycje();
+        return zwracany;
     }
-    public void pokazKolejkeDrukowania() {
-        wybranaDrukarnia.wypiszKolejkeDrukowania();
+    public String pokazKolejkeDrukowania() {
+        String zwracany = "";
+        zwracany += wybranaDrukarnia.wypiszKolejkeDrukowania();
+        return zwracany;
     }
 }

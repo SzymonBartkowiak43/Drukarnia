@@ -101,10 +101,9 @@ public class odDruku  implements ChangeListener, ActionListener {
         if(e.getSource() == button) {
             System.out.println(slider.getValue());
             System.out.println(comboBox.getSelectedItem());
-
             int index = comboBox.getSelectedIndex();
-
             Frame.działDruku.zlecDrukowanie((Ksiązka)katalog.get(index), slider.getValue() );
+
             frame.dispose(); // zamyka okno
         }
     }

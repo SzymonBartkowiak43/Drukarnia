@@ -46,22 +46,45 @@ abstract public class Drukarnie  {
             setCzyMonzaRozpacząćProdukcje(true);
         }
 
-    public void wypiszKolejkeDrukowania() {
-        kolekaDodrukowania.forEach((key, value) -> System.out.println("Pozycja: " + key.getTytul() + ", Ilosc: " + value));
-        if(kolekaDodrukowania.isEmpty())
-            System.out.println("Kolejka drukowania jest pusta");
+    public String wypiszKolejkeDrukowania() {
+
+        StringBuilder zwracany = new StringBuilder();
+
+        for (HashMap.Entry<Ksiązka, Integer> entry : kolekaDodrukowania.entrySet()) {
+            Ksiązka key = entry.getKey();
+            Integer value = entry.getValue();
+
+            zwracany.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
+        }
+
+        if (kolekaDodrukowania.isEmpty()) {
+            zwracany.append("Kolejka drukowania jest pusta");
+        }
+
+        return zwracany.toString();
     }
-    public void wypiszWydykowanePozycje() {
-        wydrukowanePozycje.forEach((key, value) -> System.out.println("Pozycja: " + key.getTytul() + ", Ilosc: " + value));
-        if(wydrukowanePozycje.isEmpty())
-            System.out.println("Nie ma zadnych wydrukowanych pozycji");
+    public String  wypiszWydykowanePozycje() {
+        StringBuilder zwracanyK = new StringBuilder();
+
+        for (HashMap.Entry<Ksiązka, Integer> entry : wydrukowanePozycje.entrySet()) {
+            Ksiązka key = entry.getKey();
+            Integer value = entry.getValue();
+
+            zwracanyK.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
+        }
+
+        if (wydrukowanePozycje.isEmpty()) {
+            zwracanyK.append("Nie ma zadnych wydrukowanych pozycji");
+        }
+
+        return zwracanyK.toString();
     }
 
     public String wypiszCoAktualnieSięProdukuje() {
         String zwracany ="";
         if(!czyMonzaRozpacząćProdukcje) {
             zwracany +="Akutalnie Produkujemy: ";
-            zwracany += "Książka: " + coDrukuje + ", Ilość: " + ileSztuk + " sztuk "  + produkcja.getileProcent(); }
+            zwracany += "Książka: " + coDrukuje + ", Ilość: " + ileSztuk + " Wyprodukowano: "  + produkcja.getileProcent(); }
         else
             zwracany += "Maszyna nic nie produkuje";
         return zwracany;
