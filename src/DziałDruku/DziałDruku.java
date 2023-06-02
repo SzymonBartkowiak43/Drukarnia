@@ -11,11 +11,22 @@ public class DziałDruku  {
     private Drukarnie lepszaDrukarnia = new LepszaDrukarnia(150);
     private Drukarnie wybranaDrukarnia = pierwszaZwykłaDrukarnia;
 
+    public String getAktualnaDrukarnia() {
+        return aktualnaDrukarnia;
+    }
+
+    private String aktualnaDrukarnia = "Pierwsza zwykla drukarnia";
+
     public void wybierzDrukarnie(int wybor) {
         switch (wybor) {
             case 1 -> wybranaDrukarnia = pierwszaZwykłaDrukarnia;
             case 2 -> wybranaDrukarnia = drugaZwykłaDrukarnia;
             case 3 -> wybranaDrukarnia = lepszaDrukarnia;
+        }
+        switch (wybor) {
+            case 1 -> aktualnaDrukarnia = "Pierwsza zwykla drukarnia";
+            case 2 -> aktualnaDrukarnia = "Druga zwykla drukarnia";
+            case 3 -> aktualnaDrukarnia = "Lepsza drukarnia";
         }
     }
     public void zlecDrukowanie( Ksiązka ks, int iloscSztuk) {

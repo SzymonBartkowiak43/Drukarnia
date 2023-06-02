@@ -5,13 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static Wydawnictwo.Frame.działDruku;
+
 public class OdWybraniaDrukarni implements ActionListener {
     private JComboBox comboBox;
     private JButton button;
     private JFrame frame2;
     private JLabel label;
+    private JTextField textField;
 
-    OdWybraniaDrukarni() {
+    OdWybraniaDrukarni(JTextField textField) {
+        this.textField = textField;
         frame2 = new JFrame("Drukarnie");
         frame2.setSize(300,150);
 
@@ -30,12 +34,14 @@ public class OdWybraniaDrukarni implements ActionListener {
         frame2.add(label);
         frame2.setLocationRelativeTo(null);
         frame2.setVisible(true);
+
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == button) {
             int wyb = comboBox.getSelectedIndex() +1;
-            Frame.działDruku.wybierzDrukarnie(wyb);
+            działDruku.wybierzDrukarnie(wyb);
+            textField.setText("Aktualnie wybrana drukarnia: " + działDruku.getAktualnaDrukarnia());
             frame2.dispose();
         }
 

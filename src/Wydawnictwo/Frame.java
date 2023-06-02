@@ -12,18 +12,25 @@ public class Frame extends JFrame implements ActionListener {
 
     protected ImageIcon miastoIcon;
     protected ImageIcon drukIkona;
+    protected ImageIcon programowaniaIkona;
+    protected ImageIcon handlowyIkona;
+    protected Icon iconaCofnięcia;
     protected JButton buttonDD;
     protected JButton buttonDH;
     protected JButton buttonDP;
     protected JLabel label;
+    protected JButton buttoncofanie;
     protected JButton buttonZlecD;
     protected JButton buttonPokCoDrukuje;
     protected JButton buttonPokKolejke;
     protected JButton buttonPozGotoweDoOdbioru;
     protected JButton buttonWybDrukarnie;
+    protected  JTextField akutualnaDrukarnia;
+
     public static DziałDruku działDruku = new DziałDruku();
 
     Frame() {
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setName("Wydawnictwo");
         this.setSize(800,800);
@@ -50,6 +57,15 @@ public class Frame extends JFrame implements ActionListener {
         label.add(buttonDH);
         label.add(buttonDD);
 
+        iconaCofnięcia = new ImageIcon("Cofnięcie.png");
+        buttoncofanie = new JButton(iconaCofnięcia);
+        buttoncofanie.setBounds(740,0,60,60);
+        buttoncofanie.addActionListener(this);
+        buttoncofanie.setVisible(false);
+
+
+        label.add(buttoncofanie);
+
         this.add(label);
         this.pack();
         this.setVisible(true);
@@ -58,7 +74,6 @@ public class Frame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == buttonDD) {
-            System.out.println("*Myk przechodze do działu druku*");
             this.setName("Dział Druku");
             buttonDD.setVisible(false);
             buttonDH.setVisible(false);
@@ -89,6 +104,15 @@ public class Frame extends JFrame implements ActionListener {
             buttonWybDrukarnie.setBounds(0,450,300,50);
             buttonWybDrukarnie.addActionListener(this);
 
+            akutualnaDrukarnia = new JTextField();
+            akutualnaDrukarnia.setFont(new Font("MV BOli", Font.PLAIN,15));
+            akutualnaDrukarnia.setVisible(true);
+            akutualnaDrukarnia.setBounds(0,550,400,40);
+            akutualnaDrukarnia.setBackground(Color.black);
+            akutualnaDrukarnia.setForeground(Color.pink);
+            akutualnaDrukarnia.setText("Aktualnie wybrana drukarnia: " + działDruku.getAktualnaDrukarnia());
+            akutualnaDrukarnia.setEditable(false);
+
             drukIkona = new ImageIcon("Drukarnia.png");
 
             label.setIcon(drukIkona);
@@ -97,14 +121,27 @@ public class Frame extends JFrame implements ActionListener {
             label.add(buttonPokKolejke);
             label.add(buttonPozGotoweDoOdbioru);
             label.add(buttonWybDrukarnie);
+            label.add(akutualnaDrukarnia);
 
+            buttoncofanie.setVisible(true);
             this.setVisible(true);
         }
         if(e.getSource() == buttonDH) {
-            System.out.println("*Myk przechodze do działu hadnlu*");
+            this.setName("Dział Handlowy");
+            handlowyIkona = new ImageIcon("działHandlowyImage.png");
+            BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
+            buttoncofanie.setVisible(true);
+
+            label.setIcon(handlowyIkona);
+
         }
         if(e.getSource() == buttonDP) {
-            System.out.println("*Myk przechodze do działu programowego*");
+            this.setName("Dział Programowy");
+            programowaniaIkona = new ImageIcon("działProgramowyImage.png");
+            BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
+            buttoncofanie.setVisible(true);
+
+            label.setIcon(programowaniaIkona);
         }
         if(e.getSource() == buttonZlecD) {
             new odDruku();
@@ -119,7 +156,11 @@ public class Frame extends JFrame implements ActionListener {
             new OdPokazaniaWydrukowanych();
         }
         if(e.getSource() == buttonWybDrukarnie) {
-            new OdWybraniaDrukarni();
+            new OdWybraniaDrukarni(akutualnaDrukarnia);
+        }
+        if(e.getSource() == buttoncofanie) {
+            BazoweUstawieniaDziałow.ustawieniaStronyStartowel(label,buttonDP,buttonDH,buttonDD);
+            label.setIcon(miastoIcon);
         }
     }
 }

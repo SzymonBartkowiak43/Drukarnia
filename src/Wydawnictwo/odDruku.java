@@ -25,7 +25,6 @@ public class odDruku  implements ChangeListener, ActionListener {
 
     odDruku() {
 
-
         frame = new JFrame("Drukarnia");
         panel = new JPanel();
         label = new JLabel();

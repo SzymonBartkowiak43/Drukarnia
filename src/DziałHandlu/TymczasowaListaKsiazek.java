@@ -9,8 +9,6 @@ import java.util.List;
 public class TymczasowaListaKsiazek { ////DO NAPRAWIENIA I ZROBIENI POZADNIE
     private List<Object> katalog= new ArrayList<>();
 
-
-
     private Autor autor1= new Autor("Cezary", "Babik", 6.2, 4572);
 
     public TymczasowaListaKsiazek () {
