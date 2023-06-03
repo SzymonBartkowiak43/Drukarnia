@@ -1,4 +1,4 @@
-/*package DziałHandlu;
+package DziałHandlu;
 
 import java.util.Scanner;
 
@@ -42,4 +42,4 @@ public class MAIN {
 
 	}
 
-}*/
+}
