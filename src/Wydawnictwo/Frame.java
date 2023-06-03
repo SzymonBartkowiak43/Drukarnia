@@ -25,6 +25,7 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton buttonPokKolejke;
     protected JButton buttonPozGotoweDoOdbioru;
     protected JButton buttonWybDrukarnie;
+    protected JButton buttonSklep;
     protected  JTextField akutualnaDrukarnia;
 
     public static DziałDruku działDruku = new DziałDruku();
@@ -132,6 +133,15 @@ public class Frame extends JFrame implements ActionListener {
             BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
             buttoncofanie.setVisible(true);
 
+            buttonSklep  = new JButton("Sklep");
+            buttonSklep.setVisible(true);
+            buttonSklep.setBounds(300,150,300,50);
+            buttonSklep.setBackground(Color.WHITE);
+            buttonSklep.setForeground(Color.BLUE);
+            buttonSklep.addActionListener(this);
+            buttonSklep.setFont(new Font("MV BOli", Font.PLAIN,15));
+
+            label.add(buttonSklep);
             label.setIcon(handlowyIkona);
 
         }
