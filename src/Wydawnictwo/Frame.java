@@ -152,7 +152,6 @@ public class Frame extends JFrame implements ActionListener {
             romanseBox.setBounds(0,0,200,100);
 
             label.add(romanseBox);
-            this.pack();
             }
 
             if(e.getSource()==romanseBox)
@@ -189,7 +188,6 @@ public class Frame extends JFrame implements ActionListener {
 
 
                 label.add(autorBox);
-                this.pack();
             }
 
             if (e.getSource() == buttonCzasopisma) {
