@@ -1,6 +1,7 @@
 package Wydawnictwo;
 
 import DziałDruku.DziałDruku;
+import DziałHandlu.*;
 import DziałProgramowy.Autor;
 import DziałProgramowy.DziałProgramowy;
 import DziałProgramowy.TytulyKsiazek;
@@ -40,9 +41,11 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton sensacyjne;
     protected TytulyKsiazek tytuly = new TytulyKsiazek();
 
-    protected JComboBox<Object> comboBox;
+    protected JComboBox<Object> romanseBox;
 
     protected JTextField akutualnaDrukarnia;
+
+    protected JComboBox<Object> autorBox;
 
     public static DziałDruku działDruku = new DziałDruku();
 
@@ -213,9 +216,10 @@ public class Frame extends JFrame implements ActionListener {
 
             }
         if (e.getSource() == romanse) {
-                 BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
+            BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
             buttoncofanie.setVisible(true);
             this.setLayout(new FlowLayout());
+
             List<String> Romanse = new ArrayList<>();
 
             for (Ksiazka ksiazka : tytuly.getTytuly()) {
@@ -224,16 +228,18 @@ public class Frame extends JFrame implements ActionListener {
                     Romanse.add(ksiazka.getNazwa());
                 }
             }
-            comboBox= new JComboBox(Romanse.toArray());
-            comboBox.addActionListener(this);
-            comboBox.setVisible(true);
+            romanseBox= new JComboBox(Romanse.toArray());
+            romanseBox.addActionListener(this);
+            romanseBox.setVisible(true);
 
-            this.add(comboBox);
+            this.add(romanseBox);
             this.pack();
             }
 
-            if(e.getSource()==comboBox)
+            if(e.getSource()==romanseBox)
             {
+                String wybor=romanseBox.getSelectedItem().toString();
+
                 BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
                 buttoncofanie.setVisible(true);
 
@@ -241,14 +247,30 @@ public class Frame extends JFrame implements ActionListener {
 
                 DziałProgramowy zatrudnieniautorzy = new DziałProgramowy();
                 zatrudnieniautorzy.zatrudnijTymAutorow(autorzy_pom);
-                //jutro zrobie jeszcze to wirtualnie :D bo jebia mi sie te comboBoxy i te drugie gowna
+                System.out.println(wybor);
+
                 System.out.println("Wybierz autora:");
-                int i=1;
-                for(Autor autor: zatrudnieniautorzy.getZatrudnieniAutorzy())
-                {
-                    System.out.println(i + " " + autor.getImie()+" "+autor.getNazwisko()+", Ocena: "+autor.getOcena());
-                    i++;
+
+                List<String> Autorzy = new ArrayList<>();
+                int i=0;
+                for (Autor autor : zatrudnieniautorzy.getZatrudnieniAutorzy()) {
+                    Autorzy.add(autor.getImie()+" "+autor.getNazwisko()+", Ocena: "+autor.getOcena());
                 }
+
+                autorBox= new JComboBox(Autorzy.toArray());
+                autorBox.addActionListener(this);
+                autorBox.setVisible(true);
+                Ksiązka ksiazka_pom;
+                if(e.getSource()==autorBox) {
+                    ksiazka_pom = new Ksiązka(wybor, zatrudnieniautorzy.getZatrudnieniAutorzy().get(autorBox.getSelectedIndex()), 122.3, 424);
+                    System.out.println(ksiazka_pom.getTytul() + " " + ksiazka_pom.getAutor().getImie() + " " +
+                            ksiazka_pom.getAutor().getNazwisko() + " " + ksiazka_pom.getCena());
+                }
+
+                this.add(autorBox);
+                this.pack();
+
+
 
             }
 
