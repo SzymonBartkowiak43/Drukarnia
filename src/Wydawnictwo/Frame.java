@@ -149,8 +149,9 @@ public class Frame extends JFrame implements ActionListener {
             romanseBox= new JComboBox(Romanse.toArray());
             romanseBox.addActionListener(this);
             romanseBox.setVisible(true);
+            romanseBox.setBounds(0,0,200,100);
 
-            this.add(romanseBox);
+            label.add(romanseBox);
             this.pack();
             }
 
@@ -177,6 +178,7 @@ public class Frame extends JFrame implements ActionListener {
 
                 autorBox= new JComboBox(Autorzy.toArray());
                 autorBox.addActionListener(this);
+                autorBox.setBounds(200,200,200,100);
                 autorBox.setVisible(true);
                 Ksiązka ksiazka_pom;
                 if(e.getSource()==autorBox) {
@@ -185,7 +187,8 @@ public class Frame extends JFrame implements ActionListener {
                             ksiazka_pom.getAutor().getNazwisko() + " " + ksiazka_pom.getCena());
                 }
 
-                this.add(autorBox);
+
+                label.add(autorBox);
                 this.pack();
             }
 
