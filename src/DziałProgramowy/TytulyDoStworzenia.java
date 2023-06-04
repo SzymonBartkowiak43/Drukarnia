@@ -1,15 +1,12 @@
 package DziałProgramowy;
 
-import DziałHandlu.Ksiązka;
-import DziałHandlu.Romanse;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class TytulyKsiazek {
+public class TytulyDoStworzenia {
     private List<Ksiazka> tytuly= new ArrayList<>();
 
-    public TytulyKsiazek ()
+    public TytulyDoStworzenia()
     {
         tytuly.add(new Ksiazka("Lapanie zydow", "Romanse"));
         tytuly.add(new Ksiazka("Getto w moim miescie", "Sensacyjne"));

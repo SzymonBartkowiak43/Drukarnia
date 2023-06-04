@@ -4,7 +4,7 @@ import DziałDruku.DziałDruku;
 import DziałHandlu.*;
 import DziałProgramowy.Autor;
 import DziałProgramowy.DziałProgramowy;
-import DziałProgramowy.TytulyKsiazek;
+import DziałProgramowy.TytulyDoStworzenia;
 import DziałProgramowy.Ksiazka;
 import DziałProgramowy.TymczasowiAutorzy;
 
@@ -39,7 +39,7 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton romanse;
     protected JButton album;
     protected JButton sensacyjne;
-    protected TytulyKsiazek tytuly = new TytulyKsiazek();
+    protected TytulyDoStworzenia tytuly = new TytulyDoStworzenia();
 
     protected JComboBox<Object> romanseBox;
 
@@ -94,95 +94,13 @@ public class Frame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonDD) {
-            this.setName("Dział Druku");
-            buttonDD.setVisible(false);
-            buttonDH.setVisible(false);
-            buttonDP.setVisible(false);
-
-            buttonZlecD = new JButton("Zlec drukowanie");
-            buttonZlecD.setVisible(true);
-            buttonZlecD.setBounds(0, 50, 300, 50);
-            buttonZlecD.addActionListener(this);
-
-            buttonPokCoDrukuje = new JButton("Pokaż co sie drukuje");
-            buttonPokCoDrukuje.setVisible(true);
-            buttonPokCoDrukuje.setBounds(0, 150, 300, 50);
-            buttonPokCoDrukuje.addActionListener(this);
-
-            buttonPokKolejke = new JButton("Pokaz kolejke drukowania");
-            buttonPokKolejke.setVisible(true);
-            buttonPokKolejke.setBounds(0, 250, 300, 50);
-            buttonPokKolejke.addActionListener(this);
-
-            buttonPozGotoweDoOdbioru = new JButton("Pokaz pozycje gotowe do odbioru");
-            buttonPozGotoweDoOdbioru.setVisible(true);
-            buttonPozGotoweDoOdbioru.setBounds(0, 350, 300, 50);
-            buttonPozGotoweDoOdbioru.addActionListener(this);
-
-            buttonWybDrukarnie = new JButton("Wybierz Drukarnie");
-            buttonWybDrukarnie.setVisible(true);
-            buttonWybDrukarnie.setBounds(0, 450, 300, 50);
-            buttonWybDrukarnie.addActionListener(this);
-
-            akutualnaDrukarnia = new JTextField();
-            akutualnaDrukarnia.setFont(new Font("MV BOli", Font.PLAIN, 15));
-            akutualnaDrukarnia.setVisible(true);
-            akutualnaDrukarnia.setBounds(0, 550, 400, 40);
-            akutualnaDrukarnia.setBackground(Color.black);
-            akutualnaDrukarnia.setForeground(Color.pink);
-            akutualnaDrukarnia.setText("Aktualnie wybrana drukarnia: " + działDruku.getAktualnaDrukarnia());
-            akutualnaDrukarnia.setEditable(false);
-
-            drukIkona = new ImageIcon("Drukarnia.png");
-
-            label.setIcon(drukIkona);
-            label.add(buttonZlecD);
-            label.add(buttonPokCoDrukuje);
-            label.add(buttonPokKolejke);
-            label.add(buttonPozGotoweDoOdbioru);
-            label.add(buttonWybDrukarnie);
-            label.add(akutualnaDrukarnia);
-
-            buttoncofanie.setVisible(true);
-            this.setVisible(true);
+            new PrzyciskDziałuDruku();
         }
         if (e.getSource() == buttonDH) {
-            this.setName("Dział Handlowy");
-            handlowyIkona = new ImageIcon("działHandlowyImage.png");
-            BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
-            buttoncofanie.setVisible(true);
-
-            buttonSklep = new JButton("Sklep");
-            buttonSklep.setVisible(true);
-            buttonSklep.setBounds(300, 150, 300, 50);
-            buttonSklep.setBackground(Color.WHITE);
-            buttonSklep.setForeground(Color.BLUE);
-            buttonSklep.addActionListener(this);
-            buttonSklep.setFont(new Font("MV BOli", Font.PLAIN, 15));
-
-            label.add(buttonSklep);
-            label.setIcon(handlowyIkona);
-
+            new PrzyciskDziałuHandlowego();
         }
         if (e.getSource() == buttonDP) {
-            this.setName("Dział Programowy");
-            programowaniaIkona = new ImageIcon("działProgramowyImage.png");
-            BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
-            buttoncofanie.setVisible(true);
-
-            buttonKS = new JButton("Książki");
-            buttonKS.setBounds(400, 100, 180, 60);
-            buttonKS.addActionListener(this);
-            buttonKS.setVisible(true);
-
-            buttonCzasopisma = new JButton("Czasopisma");
-            buttonCzasopisma.setVisible(true);
-            buttonCzasopisma.setBounds(200, 100, 180, 60);
-            buttonCzasopisma.addActionListener(this);
-
-            label.add(buttonCzasopisma);
-            label.add(buttonKS);
-            label.setIcon(programowaniaIkona);
+            new PrzyciskDziałuProgramowego();
         }
         if (e.getSource() == buttonKS) {
             BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
@@ -269,9 +187,6 @@ public class Frame extends JFrame implements ActionListener {
 
                 this.add(autorBox);
                 this.pack();
-
-
-
             }
 
             if (e.getSource() == buttonCzasopisma) {
@@ -279,7 +194,7 @@ public class Frame extends JFrame implements ActionListener {
                 buttoncofanie.setVisible(true);
             }
             if (e.getSource() == buttonZlecD) {
-                new odDruku();
+                new OdDruku();
             }
             if (e.getSource() == buttonPokCoDrukuje) {
                 new WyswietlCoDrukuje();

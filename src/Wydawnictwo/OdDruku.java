@@ -1,8 +1,7 @@
 package Wydawnictwo;
 
-import DziałDruku.DziałDruku;
 import DziałHandlu.Ksiązka;
-import DziałHandlu.TymczasowaListaKsiazek;
+import DziałHandlu.ListaDostepnychKsiazek;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -13,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class odDruku  implements ChangeListener, ActionListener {
+public class OdDruku implements ChangeListener, ActionListener {
     JFrame frame;
     JPanel panel;
     JLabel label;
@@ -21,9 +20,9 @@ public class odDruku  implements ChangeListener, ActionListener {
     JComboBox comboBox;
     JButton button;
 
-    private List<Object> katalog = new ArrayList<>();
+    private List<Object> katalog;
 
-    odDruku() {
+    OdDruku() {
 
         frame = new JFrame("Drukarnia");
         panel = new JPanel();
@@ -52,7 +51,7 @@ public class odDruku  implements ChangeListener, ActionListener {
         panel.add(label);
 
 
-        TymczasowaListaKsiazek tym = new TymczasowaListaKsiazek();
+        ListaDostepnychKsiazek tym = new ListaDostepnychKsiazek();
         katalog =  tym.getKatalog();
         String[] Ksiazki =  new String[katalog.size()];
 
@@ -93,7 +92,6 @@ public class odDruku  implements ChangeListener, ActionListener {
             label.setText("Sztuk =  " + slider.getValue());
         }
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
