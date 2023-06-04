@@ -95,12 +95,15 @@ public class Frame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonDD) {
             new PrzyciskDziałuDruku();
+            dispose();
         }
         if (e.getSource() == buttonDH) {
             new PrzyciskDziałuHandlowego();
+            dispose();
         }
         if (e.getSource() == buttonDP) {
             new PrzyciskDziałuProgramowego();
+            dispose();
         }
         if (e.getSource() == buttonKS) {
             BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
@@ -149,8 +152,8 @@ public class Frame extends JFrame implements ActionListener {
             romanseBox= new JComboBox(Romanse.toArray());
             romanseBox.addActionListener(this);
             romanseBox.setVisible(true);
-            romanseBox.setBounds(0,0,200,100);
 
+            romanseBox.setBounds(0,0,200,100);
             label.add(romanseBox);
             }
 
@@ -212,6 +215,7 @@ public class Frame extends JFrame implements ActionListener {
             if (e.getSource() == buttoncofanie) {
                 BazoweUstawieniaDziałow.ustawieniaStronyStartowel(label, buttonDP, buttonDH, buttonDD);
                 label.setIcon(miastoIcon);
+
             }
         }
     }
