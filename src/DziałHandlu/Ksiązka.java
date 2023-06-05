@@ -6,6 +6,7 @@ public class Ksiązka {
     private Autor autor;
     private double cena;
     private int ilośćStron;
+    protected String gatunek;
 
     public Ksiązka (String tytul, Autor autor, double cena, int iloscStron) {
         this.tytul = tytul;
@@ -14,6 +15,9 @@ public class Ksiązka {
         this.ilośćStron = iloscStron;
     }
 
+    public String getGatunek() {
+        return gatunek;
+    }
 
     public String getTytul() {
         return tytul;

@@ -1,7 +1,7 @@
 package Wydawnictwo;
 
 import DziałHandlu.Ksiązka;
-import DziałHandlu.ListaDostepnychKsiazek;
+import DziałHandlu.ListaDostepnychKsiazekDoDrukowania;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -9,7 +9,6 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OdDruku implements ChangeListener, ActionListener {
@@ -51,7 +50,7 @@ public class OdDruku implements ChangeListener, ActionListener {
         panel.add(label);
 
 
-        ListaDostepnychKsiazek tym = new ListaDostepnychKsiazek();
+        ListaDostepnychKsiazekDoDrukowania tym = new ListaDostepnychKsiazekDoDrukowania();
         katalog =  tym.getKatalog();
         String[] Ksiazki =  new String[katalog.size()];
 

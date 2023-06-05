@@ -215,7 +215,9 @@ public class Frame extends JFrame implements ActionListener {
             if (e.getSource() == buttoncofanie) {
                 BazoweUstawieniaDziałow.ustawieniaStronyStartowel(label, buttonDP, buttonDH, buttonDD);
                 label.setIcon(miastoIcon);
-
+            }
+            if(e.getSource() == buttonSklep) {
+                new OdSkelpu();
             }
         }
     }

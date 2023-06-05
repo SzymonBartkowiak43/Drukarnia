@@ -1,6 +1,8 @@
 package DziałHandlu;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Sklep {
 
@@ -16,6 +18,7 @@ public class Sklep {
     }
 
     public static void dodajPozycje(Ksiązka książka, int ilosc) {
+
         if (WszystkieKsiażki.containsKey(książka)) {
             int aktualnaWartość = WszystkieKsiażki.get(książka);
             int nowaWartość = aktualnaWartość + ilosc;
@@ -48,6 +51,37 @@ public class Sklep {
             int ilosc = entry.getValue();
             System.out.println(ksiazka.getTytul() + " - ilość: " + ilosc);
         }
+    }
+
+    public static List<Ksiązka> zwrocRomanse () {
+        List<Ksiązka> katalog = new ArrayList<>();
+
+        for (HashMap.Entry<Ksiązka, Integer> entry : getWszystkiePozycyje().entrySet()) {
+            Ksiązka ksiazka = entry.getKey();
+
+            String Gatunek = ksiazka.getGatunek();
+            if(Gatunek.equals("Romanse")) {
+                katalog.add(ksiazka);
+                System.out.println(ksiazka.getTytul());
+            }
+        }
+        System.out.println(katalog);
+        return katalog;
+    }
+
+    public static List<Czasopismo> zwrocTygodniki () {
+        List<Czasopismo> katalog = new ArrayList<>();
+
+        for (HashMap.Entry<Czasopismo, Integer> entry : getWszystkieCzasopisma().entrySet()) {
+            Czasopismo czasopismo= entry.getKey();
+
+            String Gatunek = czasopismo.getGatunek();
+            if(Gatunek.equals("Tygodnik")) {
+                katalog.add(czasopismo);
+                System.out.println(czasopismo.getTytul());
+            }
+        }
+        return katalog;
     }
 
 

@@ -3,13 +3,12 @@ package DziałHandlu;
 import DziałProgramowy.Autor;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class ListaDostepnychKsiazek {
+public class ListaDostepnychKsiazekDoDrukowania {
     private static List<Object> katalog= new ArrayList<>();
 
-    public ListaDostepnychKsiazek() {
+    public ListaDostepnychKsiazekDoDrukowania() {
 
     }
     public static List<Object> getKatalog() {
