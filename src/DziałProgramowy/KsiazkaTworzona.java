@@ -1,10 +1,10 @@
 package DziałProgramowy;
 
-public class Ksiazka {
+public class KsiazkaTworzona {
     private String nazwa;
     private String gatunek;
 
-    public Ksiazka(String nazwa, String gatunek)
+    public KsiazkaTworzona(String nazwa, String gatunek)
     {
         this.nazwa=nazwa;
         this.gatunek=gatunek;

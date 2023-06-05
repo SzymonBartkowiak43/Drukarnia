@@ -5,7 +5,7 @@ import DziałHandlu.*;
 import DziałProgramowy.Autor;
 import DziałProgramowy.DziałProgramowy;
 import DziałProgramowy.TytulyDoStworzenia;
-import DziałProgramowy.Ksiazka;
+import DziałProgramowy.KsiazkaTworzona;
 import DziałProgramowy.TymczasowiAutorzy;
 
 
@@ -131,8 +131,8 @@ public class Frame extends JFrame implements ActionListener {
             label.add(sensacyjne);
 
 
-            for (Ksiazka ksiazka : tytuly.getTytuly()) {
-                System.out.println(ksiazka.getGatunek());
+            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+                System.out.println(ksiazkaTworzona.getGatunek());
             }
 
             }
@@ -143,10 +143,10 @@ public class Frame extends JFrame implements ActionListener {
 
             List<String> Romanse = new ArrayList<>();
 
-            for (Ksiazka ksiazka : tytuly.getTytuly()) {
-                if (ksiazka.getGatunek() == "Romanse") {
-                    System.out.println(ksiazka.getNazwa());
-                    Romanse.add(ksiazka.getNazwa());
+            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+                if (ksiazkaTworzona.getGatunek() == "Romanse") {
+                    System.out.println(ksiazkaTworzona.getNazwa());
+                    Romanse.add(ksiazkaTworzona.getNazwa());
                 }
             }
             romanseBox= new JComboBox(Romanse.toArray());

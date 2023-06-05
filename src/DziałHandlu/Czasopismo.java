@@ -1,7 +1,7 @@
 package DziałHandlu;
 import DziałProgramowy.Autor;
 
-public abstract class Czasopismo {
+public  class Czasopismo {
 	private String tytul;
 	private Autor autor;
 	private int numer;
