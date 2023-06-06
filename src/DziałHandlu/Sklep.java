@@ -53,30 +53,30 @@ public class Sklep {
         }
     }
 
-    public static List<Ksiązka> zwrocRomanse () {
+    public static List<Ksiązka> zwrocKsiazki(String gatunek) {
         List<Ksiązka> katalog = new ArrayList<>();
 
         for (HashMap.Entry<Ksiązka, Integer> entry : getWszystkiePozycyje().entrySet()) {
             Ksiązka ksiazka = entry.getKey();
 
             String Gatunek = ksiazka.getGatunek();
-            if(Gatunek.equals("Romanse")) {
+            if(Gatunek.equals(gatunek)) {
                 katalog.add(ksiazka);
                 System.out.println(ksiazka.getTytul());
             }
         }
-        System.out.println(katalog);
         return katalog;
     }
 
-    public static List<Czasopismo> zwrocTygodniki () {
+
+    public static List<Czasopismo> zwrocCzasopisma(String gatunek) {
         List<Czasopismo> katalog = new ArrayList<>();
 
         for (HashMap.Entry<Czasopismo, Integer> entry : getWszystkieCzasopisma().entrySet()) {
             Czasopismo czasopismo= entry.getKey();
 
             String Gatunek = czasopismo.getGatunek();
-            if(Gatunek.equals("Tygodnik")) {
+            if(Gatunek.equals(gatunek)) {
                 katalog.add(czasopismo);
                 System.out.println(czasopismo.getTytul());
             }
