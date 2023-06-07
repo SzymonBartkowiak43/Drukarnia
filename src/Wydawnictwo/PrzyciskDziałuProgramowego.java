@@ -9,18 +9,19 @@ public class PrzyciskDziałuProgramowego extends Frame {
         BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
         buttoncofanie.setVisible(true);
 
-        buttonKS = new JButton("Książki");
-        buttonKS.setBounds(400, 100, 180, 60);
-        buttonKS.addActionListener(this);
-        buttonKS.setVisible(true);
+        buttonZlecNapisanieDzieła = new JButton("Zlec Napisanie Dzieła");
+        buttonZlecNapisanieDzieła.setBounds(400, 100, 180, 60);
+        buttonZlecNapisanieDzieła.addActionListener(this);
+        buttonZlecNapisanieDzieła.setVisible(true);
 
-        buttonCzasopisma = new JButton("Czasopisma");
-        buttonCzasopisma.setVisible(true);
-        buttonCzasopisma.setBounds(200, 100, 180, 60);
-        buttonCzasopisma.addActionListener(this);
+        buttonZatrudnijAutora = new JButton("Zatrudnij Autora");
+        buttonZatrudnijAutora.setBounds(200, 100, 180, 60);
+        buttonZatrudnijAutora.addActionListener(this);
+        buttonZatrudnijAutora.setVisible(true);
 
-        label.add(buttonCzasopisma);
-        label.add(buttonKS);
+
+        label.add(buttonZatrudnijAutora);
+        label.add(buttonZlecNapisanieDzieła);
         label.setIcon(programowaniaIkona);
     }
 }

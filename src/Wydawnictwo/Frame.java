@@ -28,13 +28,14 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton buttonDP;
     protected JButton buttonCzasopisma;
     protected JButton buttonZlecD;
-    protected JButton buttonKS;
+    protected JButton buttonZlecNapisanieDzieła;
     protected JLabel label;
     protected JButton buttoncofanie;
     protected JButton buttonPokCoDrukuje;
     protected JButton buttonPokKolejke;
     protected JButton buttonPozGotoweDoOdbioru;
     protected JButton buttonWybDrukarnie;
+    protected JButton buttonZatrudnijAutora;
     protected JButton buttonSklep;
     protected JButton buttonMagazyn;
     protected JButton romanse;
@@ -73,6 +74,9 @@ public class Frame extends JFrame implements ActionListener {
         buttonDP.setBounds(500, 100, 180, 60);
         buttonDP.addActionListener(this);
 
+        buttonZatrudnijAutora = new JButton("Zatrudnij Autora");
+        buttonZatrudnijAutora.setBounds(20,20, 130,30);
+        buttonZatrudnijAutora.addActionListener(this);
 
         label.add(buttonDP);
         label.add(buttonDH);
@@ -83,7 +87,6 @@ public class Frame extends JFrame implements ActionListener {
         buttoncofanie.setBounds(740, 0, 60, 60);
         buttoncofanie.addActionListener(this);
         buttoncofanie.setVisible(false);
-
 
         label.add(buttoncofanie);
 
@@ -106,98 +109,12 @@ public class Frame extends JFrame implements ActionListener {
             new PrzyciskDziałuProgramowego();
             dispose();
         }
-        if (e.getSource() == buttonKS) {
-            BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
-            buttoncofanie.setVisible(true);
-
-
-            album = new JButton("Album");
-            album.setBounds(100, 100, 180, 60);
-            album.addActionListener(this);
-            album.setVisible(true);
-
-            romanse = new JButton("Romanse");
-            romanse.setBounds(300, 100, 180, 60);
-            romanse.addActionListener(this);
-            romanse.setVisible(true);
-
-            sensacyjne = new JButton("Sensacyjne");
-            sensacyjne.setBounds(500, 100, 180, 60);
-            sensacyjne.addActionListener(this);
-            sensacyjne.setVisible(true);
-
-
-            label.add(album);
-            label.add(romanse);
-            label.add(sensacyjne);
-
-
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
-                System.out.println(ksiazkaTworzona.getGatunek());
+        if (e.getSource() == buttonZlecNapisanieDzieła) {
+            new OdKsiaskiTworzonej();
             }
-
-            }
-        if (e.getSource() == romanse) {
-            BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
-            buttoncofanie.setVisible(true);
-            this.setLayout(new FlowLayout());
-
-            List<String> Romanse = new ArrayList<>();
-
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
-                if (ksiazkaTworzona.getGatunek() == "Romanse") {
-                    System.out.println(ksiazkaTworzona.getNazwa());
-                    Romanse.add(ksiazkaTworzona.getNazwa());
-                }
-            }
-            romanseBox= new JComboBox(Romanse.toArray());
-            romanseBox.addActionListener(this);
-            romanseBox.setVisible(true);
-
-            romanseBox.setBounds(0,0,200,100);
-            label.add(romanseBox);
-            }
-
-            if(e.getSource()==romanseBox)
-            {
-                String wybor=romanseBox.getSelectedItem().toString();
-
-                BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
-                buttoncofanie.setVisible(true);
-
-                TymczasowiAutorzy autorzy_pom=new TymczasowiAutorzy();
-
-                DziałProgramowy zatrudnieniautorzy = new DziałProgramowy();
-                zatrudnieniautorzy.zatrudnijTymAutorow(autorzy_pom);
-                System.out.println(wybor);
-
-                System.out.println("Wybierz autora:");
-
-                List<String> Autorzy = new ArrayList<>();
-                int i=0;
-                for (Autor autor : zatrudnieniautorzy.getZatrudnieniAutorzy()) {
-                    Autorzy.add(autor.getImie()+" "+autor.getNazwisko()+", Ocena: "+autor.getOcena());
-                }
-
-                autorBox= new JComboBox(Autorzy.toArray());
-                autorBox.addActionListener(this);
-                autorBox.setBounds(200,200,200,100);
-                autorBox.setVisible(true);
-                Ksiązka ksiazka_pom;
-                if(e.getSource()==autorBox) {
-                    ksiazka_pom = new Ksiązka(wybor, zatrudnieniautorzy.getZatrudnieniAutorzy().get(autorBox.getSelectedIndex()), 122.3, 424);
-                    System.out.println(ksiazka_pom.getTytul() + " " + ksiazka_pom.getAutor().getImie() + " " +
-                            ksiazka_pom.getAutor().getNazwisko() + " " + ksiazka_pom.getCena());
-                }
-
-
-                label.add(autorBox);
-            }
-
-            if (e.getSource() == buttonCzasopisma) {
-                BazoweUstawieniaDziałow.ukryjWszyskiePrzyciski(label);
-                buttoncofanie.setVisible(true);
-            }
+        if (e.getSource() == buttonZatrudnijAutora) {
+            new OdZatrudniania();
+        }
             if (e.getSource() == buttonZlecD) {
                 new OdDruku();
             }

@@ -25,4 +25,8 @@ public class ListaDostepnychKsiazekDoDrukowania {
         katalog.add(ksiazka2);
         katalog.add(ksiazka3);
     }
+    public static void dodajKsiazke(Ksiązka ksiazka)
+    {
+        katalog.add(ksiazka);
+    }
 }
