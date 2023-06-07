@@ -2,15 +2,17 @@ package Wydawnictwo;
 
 import DziałHandlu.Czasopismo;
 import DziałHandlu.Ksiązka;
-import DziałHandlu.Sklep;
+import DziałHandlu.MagazynSklepu;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class OdSkelpu implements ActionListener {
+public class OdSkelpu implements ActionListener, ChangeListener {
     JFrame frame;
     JPanel panel;
     JPanel panelGatunkow;
@@ -25,7 +27,12 @@ public class OdSkelpu implements ActionListener {
     JRadioButton kwartalnikButton;
     ImageIcon czasopismoIcon;
     ImageIcon ksiazkaIcon;
+    JSlider slider;
+    JLabel label;
+    JButton kupButton;
     private String[] romanse;
+    List<Ksiązka> katalogKs;
+    List<Czasopismo> katalogCz;
 
     public OdSkelpu() {
         frame = new JFrame();
@@ -42,7 +49,9 @@ public class OdSkelpu implements ActionListener {
         ButtonGroup group = new ButtonGroup();
         group.add(czasopismoButton);
         group.add(ksiazkaButton);
+
         ksiazkaButton.addActionListener(this);
+
         czasopismoButton.addActionListener(this);
 
 
@@ -91,7 +100,7 @@ public class OdSkelpu implements ActionListener {
         panel.setBackground(Color.darkGray);
 
 
-        List<Ksiązka> katalog = Sklep.zwrocKsiazki("Romanse");
+        List<Ksiązka> katalog = MagazynSklepu.zwrocKsiazki("Romanse");
         romanse =  new String[katalog.size()];
 
         for(int i = 0;i < katalog.size();i++) {
@@ -99,9 +108,45 @@ public class OdSkelpu implements ActionListener {
             String dodawnie = ksiazka.getTytul();
             romanse[i] = dodawnie;
         }
-
         comboBox = new JComboBox(romanse);
-        comboBox.setVisible(false);
+        comboBox.setVisible(true);
+        romanseButton.setSelected(true);
+
+
+        label = new JLabel();
+        slider = new JSlider(0,100,20);
+
+        slider.setPreferredSize(new Dimension(250,100));
+
+        slider.setPaintTicks(true);
+        slider.setMinorTickSpacing(10);
+
+        slider.setPaintTrack(true);
+        slider.setMajorTickSpacing(25);
+
+        slider.setPaintLabels(true);
+
+        slider.setFont(new Font("MV BOli", Font.PLAIN,15));
+        label.setFont(new Font("MV BOli", Font.PLAIN,20));
+        slider.setOrientation(SwingConstants.HORIZONTAL);
+
+        slider.addChangeListener(this);
+        label.setText("Sztuk =  " + slider.getValue());
+
+
+        label.add(slider);
+        label.setVisible(true);
+        slider.setVisible(true);
+
+
+        kupButton = new JButton("Zatwierdz");
+        kupButton.setFont(new Font("MV BOli", Font.PLAIN,50));
+        kupButton.setSize(350,100);
+        kupButton.setVisible(true);
+        kupButton.addActionListener(this);
+        kupButton.setBackground(Color.WHITE);
+        kupButton.setForeground(Color.BLACK);
+
 
 
 
@@ -109,14 +154,13 @@ public class OdSkelpu implements ActionListener {
         frame.add(panel);
         frame.add(panelGatunkow);
         frame.add(comboBox);
+        frame.add(slider);
+        frame.add(label);
+        frame.add(kupButton);
         frame.setVisible(true);
         frame.setSize(350,600);
         frame.setLocationRelativeTo(null);
         frame.setBackground(Color.BLACK);
-
-
-
-
     }
 
     @Override
@@ -129,6 +173,19 @@ public class OdSkelpu implements ActionListener {
             sensacyjneButton.setVisible(false);
             albumyButton.setVisible(false);
             comboBox.setVisible(false);
+
+            comboBox.setVisible(true);
+            comboBox.removeAllItems();
+            tygodinkiButton.setSelected(true);
+
+
+            List<Czasopismo> katalog = MagazynSklepu.zwrocCzasopisma("Tygodnik");
+
+            for(int i = 0;i < katalog.size();i++) {
+                Czasopismo czasopismo = (Czasopismo) katalog.get(i);
+                String dodawnie = czasopismo.getTytul();
+                comboBox.addItem(dodawnie + " " + czasopismo.getNumer());
+            }
         }
         if (e.getSource() == ksiazkaButton) {
             tygodinkiButton.setVisible(false);
@@ -137,16 +194,30 @@ public class OdSkelpu implements ActionListener {
             romanseButton.setVisible(true);
             sensacyjneButton.setVisible(true);
             albumyButton.setVisible(true);
+
+            comboBox.setVisible(true);
+            comboBox.removeAllItems();
+            romanseButton.setSelected(true);
+
+            List<Ksiązka> katalog = MagazynSklepu.zwrocKsiazki("Romanse");
+
+            for(int i = 0;i < katalog.size();i++) {
+                Ksiązka ksiazka = (Ksiązka) katalog.get(i);
+                String dodawnie = ksiazka.getTytul();
+                comboBox.addItem(dodawnie);
+            }
         }
+
+
         if(e.getSource() == romanseButton) {
             comboBox.setVisible(true);
 
             comboBox.removeAllItems();
 
-            List<Ksiązka> katalog = Sklep.zwrocKsiazki("Romanse");
+            katalogKs = MagazynSklepu.zwrocKsiazki("Romanse");
 
-            for(int i = 0;i < katalog.size();i++) {
-                Ksiązka ksiazka = (Ksiązka) katalog.get(i);
+            for(int i = 0;i < katalogKs.size();i++) {
+                Ksiązka ksiazka = (Ksiązka) katalogKs.get(i);
                 String dodawnie = ksiazka.getTytul();
                 comboBox.addItem(dodawnie);
             }
@@ -156,10 +227,10 @@ public class OdSkelpu implements ActionListener {
             comboBox.removeAllItems();
 
 
-            List<Ksiązka> katalog = Sklep.zwrocKsiazki("Sensacyjne");
+            katalogKs = MagazynSklepu.zwrocKsiazki("Sensacyjne");
 
-            for(int i = 0;i < katalog.size();i++) {
-                Ksiązka ksiazka = (Ksiązka) katalog.get(i);
+            for(int i = 0;i < katalogKs.size();i++) {
+                Ksiązka ksiazka = (Ksiązka) katalogKs.get(i);
                 String dodawnie = ksiazka.getTytul();
                 comboBox.addItem(dodawnie);
             }
@@ -169,26 +240,28 @@ public class OdSkelpu implements ActionListener {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
 
-            List<Ksiązka> katalog = Sklep.zwrocKsiazki("Album");
+            List<Ksiązka> katalogKs = MagazynSklepu.zwrocKsiazki("Album");
 
-            for(int i = 0;i < katalog.size();i++) {
-                Ksiązka ksiazka = (Ksiązka)katalog.get(i);
+            for(int i = 0;i < katalogKs.size();i++) {
+                Ksiązka ksiazka = (Ksiązka)katalogKs.get(i);
                 String dodawnie = ksiazka.getTytul();
                 comboBox.addItem(dodawnie);
             }
         }
+
+
 
         if(e.getSource() == tygodinkiButton) {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
 
 
-            List<Czasopismo> katalog = Sklep.zwrocCzasopisma("Tygodnik");
+            katalogCz = MagazynSklepu.zwrocCzasopisma("Tygodnik");
 
-            for(int i = 0;i < katalog.size();i++) {
-                Czasopismo czasopismo = (Czasopismo) katalog.get(i);
+            for(int i = 0;i < katalogCz.size();i++) {
+                Czasopismo czasopismo = (Czasopismo) katalogCz.get(i);
                 String dodawnie = czasopismo.getTytul();
-                comboBox.addItem(dodawnie + " " + czasopismo.getNumer());
+                comboBox.addItem(dodawnie);
             }
         }
         if(e.getSource() == miesiecznikButton) {
@@ -196,26 +269,91 @@ public class OdSkelpu implements ActionListener {
             comboBox.removeAllItems();
 
 
-            List<Czasopismo> katalog = Sklep.zwrocCzasopisma("Miesiecznik");
+            katalogCz = MagazynSklepu.zwrocCzasopisma("Miesiecznik");
 
-            for(int i = 0;i < katalog.size();i++) {
-                Czasopismo czasopismo = (Czasopismo) katalog.get(i);
+            for(int i = 0;i < katalogCz.size();i++) {
+                Czasopismo czasopismo = (Czasopismo) katalogCz.get(i);
                 String dodawnie = czasopismo.getTytul();
-                comboBox.addItem(dodawnie + " " + czasopismo.getNumer());
+                comboBox.addItem(dodawnie);
             }
         }
         if(e.getSource() == kwartalnikButton) {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
 
-            List<Czasopismo> katalog = Sklep.zwrocCzasopisma("Kwartalnik");
+            katalogCz = MagazynSklepu.zwrocCzasopisma("Kwartalnik");
 
-            for(int i = 0;i < katalog.size();i++) {
-                Czasopismo czasopismo = (Czasopismo) katalog.get(i);
+            for(int i = 0;i < katalogCz.size();i++) {
+                Czasopismo czasopismo = (Czasopismo) katalogCz.get(i);
                 String dodawnie = czasopismo.getTytul();
-                comboBox.addItem(dodawnie + " " + czasopismo.getNumer());
+                comboBox.addItem(dodawnie);
             }
         }
+        if(e.getSource() == kupButton) {
 
+           int answer = JOptionPane.showOptionDialog(null,
+                    "Napewno chcesz dokonać zakupu " + slider.getValue() + " sztuk?",
+                    "Zatwierdz",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    null,
+                    0 );
+
+            boolean czyWystarczy = false;
+            Ksiązka wybranaKs = null;
+            Czasopismo wybraneCz = null;
+            int ilosc = slider.getValue();
+
+           if(answer == 0) {
+               String tytul = (String)comboBox.getSelectedItem();
+
+               if(ksiazkaButton.isSelected()) {
+                   for (Ksiązka książka : katalogKs) {
+                       if (książka.getTytul().equals(tytul)) {
+                           wybranaKs = książka;
+                           czyWystarczy = MagazynSklepu.sprawdzCzyjestTyleSztuk(książka, ilosc);
+                       }
+                   }
+               } else {
+                   for (Czasopismo czasopismo : katalogCz) {
+                       if (czasopismo.getTytul().equals(tytul)) {
+                           wybraneCz = czasopismo;
+                           czyWystarczy = MagazynSklepu.sprawdzCzyjestTyleSztuk(czasopismo, ilosc);
+                       }
+                   }
+               }
+
+           }
+
+           if(czyWystarczy) {
+               JOptionPane.showMessageDialog(null,"Gratulacje, wszystko przebiegło pomyslnie", "JEJ", JOptionPane.INFORMATION_MESSAGE);
+
+               if(ksiazkaButton.isSelected()) {
+                   MagazynSklepu.kup(wybranaKs, ilosc);
+               } else
+                   MagazynSklepu.kup(wybraneCz,ilosc);
+               frame.dispose();
+
+           } else {
+               if(ksiazkaButton.isSelected()) {
+                   JOptionPane.showMessageDialog(null, "Przepraszamy w magazynie mam tylko " + MagazynSklepu.ileDostepnychSztuk(wybranaKs) + " sztuk", "O nie", JOptionPane.ERROR_MESSAGE);
+               } else {
+                   JOptionPane.showMessageDialog(null, "Przepraszamy w magazynie mam tylko " + MagazynSklepu.ileDostepnychSztuk(wybraneCz) + " sztuk", "O nie", JOptionPane.ERROR_MESSAGE);
+               }
+               }
+
+        }
+
+
+
+
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if(e.getSource() == slider) {
+            label.setText("Sztuk =  " + slider.getValue());
+        }
     }
 }

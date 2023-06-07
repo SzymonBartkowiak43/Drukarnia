@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Sklep {
+public class MagazynSklepu {
 
     private static HashMap<Ksiązka, Integer> WszystkieKsiażki = new HashMap<Ksiązka, Integer>();
     private static HashMap<Czasopismo, Integer> WszystkieCzasopisma = new HashMap<Czasopismo, Integer>();
@@ -31,26 +31,28 @@ public class Sklep {
         if (WszystkieCzasopisma.containsKey(czasopismo)) {
             int aktualnaWartość = WszystkieCzasopisma.get(czasopismo);
             int nowaWartość = aktualnaWartość + ilosc;
-            WszystkieCzasopisma.put(czasopismo, nowaWartość);
+            WszystkieCzasopisma.put(czasopismo , nowaWartość);
         } else {
             WszystkieCzasopisma.put(czasopismo, ilosc);
         }
     }
 
-    public static void wyswietlZawartoscSklepu() {
-        System.out.println("Dostępne Czasopisma:");
+    public static String wyswietlZawartoscSklepu() {
+        String zwracany = "Dostępne Czasopisma:\n";
         for (HashMap.Entry<Czasopismo, Integer> entry : getWszystkieCzasopisma().entrySet()) {
             Czasopismo czasopismo = entry.getKey();
             int ilosc = entry.getValue();
-            System.out.println(czasopismo.getTytul() + " - ilość: " + ilosc);
+            zwracany += czasopismo.getTytul() + " " + czasopismo.getNumer() + " - ilość: " + ilosc + "\n";
+
         }
 
-        System.out.println("Dostępne Ksiazki:");
+        zwracany += "\n\nDostępne Ksiazki: \n";
         for (HashMap.Entry<Ksiązka, Integer> entry : getWszystkiePozycyje().entrySet()) {
             Ksiązka ksiazka = entry.getKey();
             int ilosc = entry.getValue();
-            System.out.println(ksiazka.getTytul() + " - ilość: " + ilosc);
+            zwracany +=ksiazka.getTytul() + " - ilość: " + ilosc + "\n";
         }
+        return zwracany;
     }
 
     public static List<Ksiązka> zwrocKsiazki(String gatunek) {
@@ -82,6 +84,64 @@ public class Sklep {
             }
         }
         return katalog;
+    }
+
+    public static boolean sprawdzCzyjestTyleSztuk(Ksiązka książka, int ilosc) {
+
+        int aktualnaWartość = WszystkieKsiażki.get(książka);
+        int nowaWartość = aktualnaWartość - ilosc;
+
+
+        if(nowaWartość >= 0 ) {
+            return true;
+        }
+        else
+            return false;
+    }
+    public static boolean sprawdzCzyjestTyleSztuk(Czasopismo czasopismo, int ilosc) {
+
+        int aktualnaWartość = WszystkieCzasopisma.get(czasopismo);
+        int nowaWartość = aktualnaWartość - ilosc;
+
+
+        if(nowaWartość >= 0 ) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+
+    public static  void kup(Ksiązka książka, int ilosc) {
+
+        int aktualnaWartość = WszystkieKsiażki.get(książka);
+        int nowaWartość = aktualnaWartość - ilosc;
+
+        if(nowaWartość == 0) {
+            WszystkieKsiażki.remove(książka);
+        } else {
+            WszystkieKsiażki.put(książka, nowaWartość);
+        }
+    }
+
+    public static  void kup(Czasopismo czasopismo, int ilosc) {
+
+        int aktualnaWartość =  WszystkieCzasopisma.get(czasopismo);
+        int nowaWartość = aktualnaWartość - ilosc;
+
+        if(nowaWartość == 0) {
+            WszystkieCzasopisma.remove(czasopismo);
+        } else {
+            WszystkieCzasopisma.put(czasopismo, nowaWartość);
+        }
+    }
+    public static  int ileDostepnychSztuk(Ksiązka książka) {
+        int aktualnaWartość = WszystkieKsiażki.get(książka);
+        return aktualnaWartość;
+    }
+    public static  int ileDostepnychSztuk(Czasopismo czasopismo) {
+        int aktualnaWartość = WszystkieCzasopisma.get(czasopismo);
+        return aktualnaWartość;
     }
 
 

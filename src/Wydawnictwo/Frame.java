@@ -36,6 +36,7 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton buttonPozGotoweDoOdbioru;
     protected JButton buttonWybDrukarnie;
     protected JButton buttonSklep;
+    protected JButton buttonMagazyn;
     protected JButton romanse;
     protected JButton album;
     protected JButton sensacyjne;
@@ -218,6 +219,9 @@ public class Frame extends JFrame implements ActionListener {
             }
             if(e.getSource() == buttonSklep) {
                 new OdSkelpu();
+            }
+            if(e.getSource() == buttonMagazyn) {
+                new OdMagazynu();
             }
         }
     }

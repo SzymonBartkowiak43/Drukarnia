@@ -17,30 +17,30 @@ public class Main extends Thread {
 
         Ksiązka ksiazka5 = new Album("Album rodziny Adamsow", autor1,100.2,13);
 
-        Czasopismo czasopismo1 = new Tygodnik("Chwila dla cb", autor1, 1,10.00);
-        Czasopismo czasopismo2 = new Tygodnik("Chwila dla cb", autor1, 2,10.00);
-        Czasopismo czasopismo3 = new Tygodnik("Chwila dla cb", autor1, 3,10.00);
+        Czasopismo czasopismo1 = new Tygodnik("Chwila dla cb 1", autor1, 1,10.00);
+        Czasopismo czasopismo2 = new Tygodnik("Chwila dla cb 2", autor1, 2,10.00);
+        Czasopismo czasopismo3 = new Tygodnik("Chwila dla cb 3", autor1, 3,10.00);
 
-        Czasopismo czasopismo4 = new Miesięczniki("CDAction", autor1, 1,10.00);
-        Czasopismo czasopismo5 = new Kwartalnik("Mazurki i nie tylko", autor1, 1,10.00);
-
-
-        Sklep.dodajPozycje(ksiazka1,200);
-        Sklep.dodajPozycje(ksiazka1,200);
-        Sklep.dodajPozycje(ksiazka2,100);
-        Sklep.dodajPozycje(ksiazka3,300);
-        Sklep.dodajPozycje(ksiazka4,10);
-        Sklep.dodajPozycje(ksiazka5,12);
+        Czasopismo czasopismo4 = new Miesięczniki("CDAction 1 ", autor1, 1,10.00);
+        Czasopismo czasopismo5 = new Kwartalnik("Mazurki i nie tylko 1", autor1, 1,10.00);
 
 
-        Sklep.dodajPozycje(czasopismo1,100);
-        Sklep.dodajPozycje(czasopismo1,300);
-        Sklep.dodajPozycje(czasopismo2,30);
-        Sklep.dodajPozycje(czasopismo3,100);
-        Sklep.dodajPozycje(czasopismo4,20);
-        Sklep.dodajPozycje(czasopismo5,40);
+        MagazynSklepu.dodajPozycje(ksiazka1,200);
+        MagazynSklepu.dodajPozycje(ksiazka1,200);
+        MagazynSklepu.dodajPozycje(ksiazka2,100);
+        MagazynSklepu.dodajPozycje(ksiazka3,300);
+        MagazynSklepu.dodajPozycje(ksiazka4,10);
+        MagazynSklepu.dodajPozycje(ksiazka5,12);
 
-        Sklep.wyswietlZawartoscSklepu();
+
+        MagazynSklepu.dodajPozycje(czasopismo1,100);
+        MagazynSklepu.dodajPozycje(czasopismo1,300);
+        MagazynSklepu.dodajPozycje(czasopismo2,30);
+        MagazynSklepu.dodajPozycje(czasopismo3,100);
+        MagazynSklepu.dodajPozycje(czasopismo4,20);
+        MagazynSklepu.dodajPozycje(czasopismo5,40);
+
+        MagazynSklepu.wyswietlZawartoscSklepu();
 
         new Frame();
     }
