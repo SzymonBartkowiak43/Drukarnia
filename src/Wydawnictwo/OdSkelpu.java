@@ -100,17 +100,21 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         panel.setBackground(Color.darkGray);
 
 
-        List<Ksiązka> katalog = MagazynSklepu.zwrocKsiazki("Romanse");
-        romanse =  new String[katalog.size()];
 
-        for(int i = 0;i < katalog.size();i++) {
-            Ksiązka ksiazka = (Ksiązka) katalog.get(i);
-            String dodawnie = ksiazka.getTytul();
-            romanse[i] = dodawnie;
-        }
-        comboBox = new JComboBox(romanse);
+        comboBox = new JComboBox();
         comboBox.setVisible(true);
         romanseButton.setSelected(true);
+        comboBox.setVisible(true);
+
+        comboBox.removeAllItems();
+
+        katalogKs = MagazynSklepu.zwrocKsiazki("Romanse");
+
+        for(int i = 0;i < katalogKs.size();i++) {
+            Ksiązka ksiazka = (Ksiązka) katalogKs.get(i);
+            String dodawnie = ksiazka.getTytul();
+            comboBox.addItem(dodawnie);
+        }
 
 
         label = new JLabel();
@@ -149,6 +153,7 @@ public class OdSkelpu implements ActionListener, ChangeListener {
 
 
 
+        ksiazkaButton.setSelected(true);
 
 
         frame.add(panel);
@@ -178,13 +183,15 @@ public class OdSkelpu implements ActionListener, ChangeListener {
             comboBox.removeAllItems();
             tygodinkiButton.setSelected(true);
 
+            comboBox.removeAllItems();
 
-            List<Czasopismo> katalog = MagazynSklepu.zwrocCzasopisma("Tygodnik");
 
-            for(int i = 0;i < katalog.size();i++) {
-                Czasopismo czasopismo = (Czasopismo) katalog.get(i);
+            katalogCz = MagazynSklepu.zwrocCzasopisma("Tygodnik");
+
+            for(int i = 0;i < katalogCz.size();i++) {
+                Czasopismo czasopismo = (Czasopismo) katalogCz.get(i);
                 String dodawnie = czasopismo.getTytul();
-                comboBox.addItem(dodawnie + " " + czasopismo.getNumer());
+                comboBox.addItem(dodawnie);
             }
         }
         if (e.getSource() == ksiazkaButton) {
@@ -199,10 +206,12 @@ public class OdSkelpu implements ActionListener, ChangeListener {
             comboBox.removeAllItems();
             romanseButton.setSelected(true);
 
-            List<Ksiązka> katalog = MagazynSklepu.zwrocKsiazki("Romanse");
+            comboBox.removeAllItems();
 
-            for(int i = 0;i < katalog.size();i++) {
-                Ksiązka ksiazka = (Ksiązka) katalog.get(i);
+            katalogKs = MagazynSklepu.zwrocKsiazki("Romanse");
+
+            for(int i = 0;i < katalogKs.size();i++) {
+                Ksiązka ksiazka = (Ksiązka) katalogKs.get(i);
                 String dodawnie = ksiazka.getTytul();
                 comboBox.addItem(dodawnie);
             }
