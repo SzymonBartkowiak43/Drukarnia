@@ -20,10 +20,14 @@ public class ListaDostepnychKsiazekDoDrukowania {
         Ksiązka ksiazka1 = new Romanse("Dis nie mile widziany", autor1 , 23.4, 123);
         Ksiązka ksiazka2 = new Romanse("Ania zielone gory", autor1 , 23.4, 123);
         Ksiązka ksiazka3 = new Romanse("Szalone koty ida do roboty", autor1 , 23.4, 123);
+        Ksiązka ksiazka4 = new Romanse("Magda Gelser ", autor1 , 23.4, 123);
+
+
 
         katalog.add(ksiazka1);
         katalog.add(ksiazka2);
         katalog.add(ksiazka3);
+        katalog.add(ksiazka4);
     }
     public static void dodajKsiazke(Ksiązka ksiazka)
     {
