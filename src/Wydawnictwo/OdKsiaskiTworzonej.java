@@ -28,8 +28,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
     protected JPanel panelGatunki;
     protected JComboBox Tytulyy;
     protected JComboBox autorComboBox;
-    protected DziałProgramowy zatrudnieniautorzy = new DziałProgramowy();
-
     protected TytulyDoStworzenia tytuly = new TytulyDoStworzenia();
 
     OdKsiaskiTworzonej()
@@ -99,13 +97,11 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
 
 
-        TymczasowiAutorzy autorzy_pom=new TymczasowiAutorzy();
 
-        zatrudnieniautorzy.zatrudnijTymAutorow(autorzy_pom);
 
         List<String> Autorzy = new ArrayList<>();
         int i=0;
-        for (Autor autor : zatrudnieniautorzy.getZatrudnieniAutorzy()) {
+        for (Autor autor : ZatrudnieniAutorzy.getTymczasowiAutorzy()) {
             Autorzy.add(autor.getImie()+" "+autor.getNazwisko()+", Ocena: "+autor.getOcena());
         }
 
@@ -161,9 +157,10 @@ public class OdKsiaskiTworzonej implements ActionListener{
             int iloscStron= random.nextInt(423)+45;
 
             Ksiązka ksiazka_pom = new Ksiązka(Tytulyy.getSelectedItem().toString(),
-                    zatrudnieniautorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
+                    ZatrudnieniAutorzy.getTymczasowiAutorzy().get(autorComboBox.getSelectedIndex()),
                     cena, iloscStron);
             ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka_pom);
+            
 
             frame.dispose();
         }
