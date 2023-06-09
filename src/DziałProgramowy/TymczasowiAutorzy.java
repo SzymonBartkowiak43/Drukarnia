@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TymczasowiAutorzy {
-    private List<Autor> tymczasAutorzy= new ArrayList<>();
+    private static List<Autor> tymczasAutorzy= new ArrayList<>();
 
     public TymczasowiAutorzy()
     {
@@ -13,9 +13,12 @@ public class TymczasowiAutorzy {
         tymczasAutorzy.add(new Autor("Cezary", "Bambik", 8.4, 1200));
     }
 
-    public List<Autor> getTymczasowiAutorzy()
+
+    public static List<Autor> getTymczasowiAutorzy()
     {
         return tymczasAutorzy;
     }
+
+
 
 }

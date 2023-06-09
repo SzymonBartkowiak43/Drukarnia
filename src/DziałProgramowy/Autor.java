@@ -3,6 +3,9 @@ package DziałProgramowy;
 public class Autor {
     private String imie;
     private String nazwisko;
+    private double ocena;
+    private int ileChceZarabiać;
+
 
     public String getImie() {
         return imie;
@@ -20,14 +23,11 @@ public class Autor {
         return ileChceZarabiać;
     }
 
-    private double ocena;
-    private int ileChceZarabiać;
-
-
     public Autor(String imie, String nazwisko, double ocena, int ileChceZarabiać) {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.ocena = ocena;
         this.ileChceZarabiać = ileChceZarabiać;
     }
+
 }

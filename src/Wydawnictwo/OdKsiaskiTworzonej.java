@@ -2,6 +2,7 @@ package Wydawnictwo;
 
 import DziałHandlu.Ksiązka;
 import DziałHandlu.ListaDostepnychKsiazekDoDrukowania;
+import DziałHandlu.MagazynSklepu;
 import DziałProgramowy.*;
 
 
@@ -11,8 +12,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.HashSet;
 
 public class OdKsiaskiTworzonej implements ActionListener{
     protected JFrame frame;
@@ -28,11 +32,12 @@ public class OdKsiaskiTworzonej implements ActionListener{
     protected JPanel panelGatunki;
     protected JComboBox Tytulyy;
     protected JComboBox autorComboBox;
+    protected Set<String> Autorzy;
     protected DziałProgramowy zatrudnieniautorzy = new DziałProgramowy();
+    private TytulyDoStworzenia Tytuly = new TytulyDoStworzenia();;
 
-    protected TytulyDoStworzenia tytuly = new TytulyDoStworzenia();
 
-    OdKsiaskiTworzonej()
+    public OdKsiaskiTworzonej()
     {
         frame=new JFrame();
         panel=new JPanel();
@@ -85,17 +90,10 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         tygodinkiButton.setVisible(true);
 
-        List<String> Romanse = new ArrayList<>();
 
-        for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
-            if (ksiazkaTworzona.getGatunek() == "Romanse") {
-                System.out.println(ksiazkaTworzona.getNazwa());
-                Romanse.add(ksiazkaTworzona.getNazwa());
-            }
-        }
 
-        Tytulyy = new JComboBox<>(Romanse.toArray());
-
+        Tytulyy = new JComboBox<>();
+        Tytulyy.setVisible(true);
 
 
 
@@ -103,16 +101,14 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         zatrudnieniautorzy.zatrudnijTymAutorow(autorzy_pom);
 
-        List<String> Autorzy = new ArrayList<>();
-        int i=0;
+        Autorzy = new HashSet<>();
+
         for (Autor autor : zatrudnieniautorzy.getZatrudnieniAutorzy()) {
             Autorzy.add(autor.getImie()+" "+autor.getNazwisko()+", Ocena: "+autor.getOcena());
         }
 
         autorComboBox= new JComboBox(Autorzy.toArray());
         autorComboBox.addActionListener(this);
-
-
 
         button = new JButton("Zatwierdź");
         button.addActionListener(this);
@@ -154,8 +150,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         if(e.getSource()==button)
         {
-            System.out.println(autorComboBox.getSelectedItem());
-            System.out.println(Tytulyy.getSelectedItem());
             Random random = new Random();
             int cena=random.nextInt(100)+20;
             int iloscStron= random.nextInt(423)+45;
@@ -164,35 +158,40 @@ public class OdKsiaskiTworzonej implements ActionListener{
                     zatrudnieniautorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
                     cena, iloscStron);
             ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka_pom);
+            System.out.println("tutaj"+Tytulyy.getSelectedIndex());
+
+            Tytuly.getTytuly().remove(Tytulyy.getSelectedIndex());
+
 
             frame.dispose();
         }
 
         if(e.getSource()==romanseButton)
         {
-
-
+            Tytulyy.setVisible(true);
             Tytulyy.removeAllItems();
-            List<String> Romanse = new ArrayList<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+
+
+            for (KsiazkaTworzona ksiazkaTworzona : Tytuly.getTytuly())
+            {
                 if (ksiazkaTworzona.getGatunek() == "Romanse") {
                     System.out.println(ksiazkaTworzona.getNazwa());
-                    Romanse.add(ksiazkaTworzona.getNazwa());
+
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }
             }
-
         }
 
         if(e.getSource()==sensacyjneButton)
         {
 
-
+            Tytulyy.setVisible(true);
             Tytulyy.removeAllItems();
-            List<String> Sensacyjne = new ArrayList<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            Set<String> Sensacyjne = new HashSet<>();
+
+            for (KsiazkaTworzona ksiazkaTworzona : Tytuly.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Sensacyjne") {
                     System.out.println(ksiazkaTworzona.getNazwa());
                     Sensacyjne.add(ksiazkaTworzona.getNazwa());
@@ -200,15 +199,16 @@ public class OdKsiaskiTworzonej implements ActionListener{
                 }
             }
 
+
+
         }
 
         if(e.getSource()==albumyButton)
         {
-
+            Tytulyy.setVisible(true);
             Tytulyy.removeAllItems();
-            List<String> Albumy = new ArrayList<>();
-
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            Set<String> Albumy = new HashSet<>();
+            for (KsiazkaTworzona ksiazkaTworzona : Tytuly.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Album") {
                     System.out.println(ksiazkaTworzona.getNazwa());
                     Albumy.add(ksiazkaTworzona.getNazwa());
@@ -219,10 +219,11 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         if(e.getSource()==miesiecznikButton)
         {
+            Tytulyy.setVisible(true);
             Tytulyy.removeAllItems();
-            List<String> miesięczniki = new ArrayList<>();
+            Set<String> miesięczniki = new HashSet<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            for (KsiazkaTworzona ksiazkaTworzona : Tytuly.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Miesięcznik") {
                     System.out.println(ksiazkaTworzona.getNazwa());
                     miesięczniki.add(ksiazkaTworzona.getNazwa());
@@ -232,10 +233,11 @@ public class OdKsiaskiTworzonej implements ActionListener{
         }
         if(e.getSource()==tygodinkiButton)
         {
+            Tytulyy.setVisible(true);
             Tytulyy.removeAllItems();
-            List<String> tygodinkiButton = new ArrayList<>();
+           Set<String> tygodinkiButton = new HashSet<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            for (KsiazkaTworzona ksiazkaTworzona : Tytuly.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Tygodnik") {
                     System.out.println(ksiazkaTworzona.getNazwa());
                     tygodinkiButton.add(ksiazkaTworzona.getNazwa());
