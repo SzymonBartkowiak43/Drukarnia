@@ -3,6 +3,7 @@ package DziałProgramowy;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TytulyDoStworzenia {
     private List<KsiazkaTworzona> tytuly= new ArrayList<>();
 
@@ -15,6 +16,8 @@ public class TytulyDoStworzenia {
     public List<KsiazkaTworzona> getTytuly() {
         return tytuly;
     }
+
+
     public int getRozmiar()
     {
         return tytuly.size();
