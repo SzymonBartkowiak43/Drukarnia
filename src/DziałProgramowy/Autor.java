@@ -20,6 +20,8 @@ public class Autor {
         return ileChceZarabiać;
     }
 
+    private Umowy umowa;
+
     private double ocena;
     private int ileChceZarabiać;
 
@@ -29,5 +31,10 @@ public class Autor {
         this.nazwisko = nazwisko;
         this.ocena = ocena;
         this.ileChceZarabiać = ileChceZarabiać;
+    }
+
+    public void wybierzUmowę(Umowy umowa)
+    {
+        this.umowa=umowa;
     }
 }

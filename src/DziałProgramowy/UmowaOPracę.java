@@ -2,26 +2,20 @@ package DziałProgramowy;
 
 public class UmowaOPracę extends Umowy{
 	private double pensja;
-	private String czasUmowy;
-	private String typEtatu;
+	private String okresZatrudnienia;
 	
-	public UmowaOPracę(double pensja, String czasUmowy, String typEtatu)
+	public UmowaOPracę(double pensja, String czasUmowy)
 	{
 		this.pensja=pensja;
-		this.czasUmowy=czasUmowy;
-		this.typEtatu=typEtatu;
+		this.okresZatrudnienia=okresZatrudnienia;
 	}
 	public double getPensja()
 	{
 		return pensja;
 	}
-	public String getCzasUmowy()
+	public String getokresZatrudnienia()
 	{
-		return czasUmowy;
-	}
-	public String getTypEtatu()
-	{
-		return typEtatu;
+		return okresZatrudnienia;
 	}
 
 }

@@ -26,7 +26,6 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton buttonDD;
     protected JButton buttonDH;
     protected JButton buttonDP;
-    protected JButton buttonCzasopisma;
     protected JButton buttonZlecD;
     protected JButton buttonZlecNapisanieDzieła;
     protected JLabel label;
@@ -38,18 +37,10 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton buttonZatrudnijAutora;
     protected JButton buttonSklep;
     protected JButton buttonMagazyn;
-    protected JButton romanse;
-    protected JButton album;
-    protected JButton sensacyjne;
-    protected TytulyDoStworzenia tytuly = new TytulyDoStworzenia();
-
-    protected JComboBox<Object> romanseBox;
-
     protected JTextField akutualnaDrukarnia;
-
-    protected JComboBox<Object> autorBox;
-
     public static DziałDruku działDruku = new DziałDruku();
+
+
 
     Frame() {
 

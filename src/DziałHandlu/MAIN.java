@@ -3,9 +3,9 @@ package DziałHandlu;
 import java.util.Scanner;
 
 import DziałProgramowy.Autor;
-import DziałProgramowy.Autorzy;
+import DziałProgramowy.ZatrudnieniAutorzy;
 import DziałProgramowy.DziałProgramowy;
-import java.util.List;
+
 public class MAIN {
 
 	public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class MAIN {
 		Autor autor2= new Autor("Andrzej", "Duda", 1.2, 200);
 		Autor autor3= new Autor("Sebastian", "Chec", 7.2, 4572);
 
-		Autorzy lista_wszystkich= new Autorzy();
+		ZatrudnieniAutorzy lista_wszystkich= new ZatrudnieniAutorzy();
 		lista_wszystkich.dodajAutora(autor1);
 		lista_wszystkich.dodajAutora(autor2);
 		lista_wszystkich.dodajAutora(autor3);
