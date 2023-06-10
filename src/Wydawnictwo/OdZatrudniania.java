@@ -3,6 +3,7 @@ package Wydawnictwo;
 import DziałProgramowy.TymczasowiAutorzy;
 import DziałProgramowy.Autor;
 import DziałProgramowy.UmowaOPracę;
+import DziałProgramowy.ZatrudnieniAutorzy;
 
 import javax.lang.model.type.TypeMirror;
 import javax.swing.*;
@@ -24,6 +25,8 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
     protected JLabel umowaLabel;
     protected JRadioButton umowaOPracę;
     protected JRadioButton umowaODzieło;
+
+    protected JComboBox umowapom1;
 
     protected JSlider slider;
     protected JLabel slider_wartosc;
@@ -78,13 +81,19 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
         panel.add(slider_wartosc);
 
         okresZatrudnienia_label=new JLabel("Okres zatrudnienia: ");
+        okresZatrudnienia_label.setVisible(false);
 
         okresZatrudnienia=new JComboBox();
         okresZatrudnienia.setEditable(true);
         okresZatrudnienia.setVisible(false);
         okresZatrudnienia.addActionListener(this);
 
+
         button= new JButton("Zatwierdz");
+
+        String[] umowapom1text={"UmowaOPracę", "UmowaODzieło"};
+        umowapom1 = new JComboBox(umowapom1text);
+
 
 
         button.addActionListener(this);
@@ -111,16 +120,21 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
         {
             Autor autorpom = TymczasowiAutorzy.getTymczasowiAutorzy().get(autorzy.getSelectedIndex());
             TymczasowiAutorzy.getTymczasowiAutorzy().remove(autorzy.getSelectedIndex());
-            if ()
+            if(umowapom1.getSelectedItem().toString()=="UmowaODzieło")
             {
-                autorpom.wybierzUmowę(new UmowaOPracę(slider.getValue(), okresZatrudnienia.getSelectedItem().toString()));
+
+
+                System.out.println("umowa o dzielo ");
 
             }
-            else
+            else if(umowapom1.getSelectedItem().toString()=="UmowaOPracę")
             {
+                autorpom.wybierzUmowę(new UmowaOPracę(slider.getValue(), okresZatrudnienia.getSelectedItem().toString()));
+                System.out.println("umowa o prace");
 
             }
             TymczasowiAutorzy.getTymczasowiAutorzy().remove(autorzy.getSelectedIndex());
+            ZatrudnieniAutorzy.dodajAutora(autorpom);
             frame.dispose();
         }
 
@@ -128,8 +142,7 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
         {
             slider.setVisible(true);
             slider_wartosc.setVisible(true);
-
-
+            umowapom1.setSelectedItem("UmowaODzieło");
         }
 
         if(e.getSource()==umowaOPracę)
@@ -137,6 +150,7 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
             slider.setVisible(true);
             slider_wartosc.setVisible(true);
             okresZatrudnienia.setVisible(true);
+            umowapom1.setSelectedItem("UmowaOPracę");
 
         }
 

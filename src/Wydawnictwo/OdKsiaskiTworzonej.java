@@ -115,11 +115,11 @@ public class OdKsiaskiTworzonej implements ActionListener{
         button.setForeground(Color.BLACK);
         button.setBackground(Color.GREEN);
 
+        frame.add(panel);
+        frame.add(panelGatunki);
         frame.add(autorComboBox);
         frame.add(Tytulyy);
         frame.add(button);
-        frame.add(panel);
-        frame.add(panelGatunki);
         frame.setIconImage(icon.getImage());
         frame.setBackground(Color.GRAY);
         frame.setVisible(true);
@@ -160,7 +160,8 @@ public class OdKsiaskiTworzonej implements ActionListener{
                     ZatrudnieniAutorzy.getTymczasowiAutorzy().get(autorComboBox.getSelectedIndex()),
                     cena, iloscStron);
             ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka_pom);
-            
+
+            tytuly.getTytuly().remove(Tytulyy.getSelectedIndex());
 
             frame.dispose();
         }
