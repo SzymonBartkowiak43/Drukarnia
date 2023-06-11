@@ -35,9 +35,11 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton buttonPozGotoweDoOdbioru;
     protected JButton buttonWybDrukarnie;
     protected JButton buttonZatrudnijAutora;
+    protected JButton buttonZwolnijAutora;
     protected JButton buttonSklep;
     protected JButton buttonMagazyn;
     protected JTextField akutualnaDrukarnia;
+
     public static DziałDruku działDruku = new DziałDruku();
 
 
@@ -64,10 +66,6 @@ public class Frame extends JFrame implements ActionListener {
         buttonDP = new JButton("Dział Programowy");
         buttonDP.setBounds(500, 100, 180, 60);
         buttonDP.addActionListener(this);
-
-        buttonZatrudnijAutora = new JButton("Zatrudnij Autora");
-        buttonZatrudnijAutora.setBounds(20,20, 130,30);
-        buttonZatrudnijAutora.addActionListener(this);
 
         label.add(buttonDP);
         label.add(buttonDH);
@@ -105,6 +103,9 @@ public class Frame extends JFrame implements ActionListener {
             }
         if (e.getSource() == buttonZatrudnijAutora) {
             new OdZatrudniania();
+        }
+        if (e.getSource() == buttonZwolnijAutora) {
+            new OdZwalniania();
         }
             if (e.getSource() == buttonZlecD) {
                 new OdDruku();

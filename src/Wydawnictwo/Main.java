@@ -3,6 +3,7 @@ package Wydawnictwo;
 import DziałHandlu.*;
 import DziałProgramowy.Autor;
 import DziałProgramowy.TymczasowiAutorzy;
+import DziałProgramowy.TytulyDoStworzenia;
 import DziałProgramowy.ZatrudnieniAutorzy;
 
 public class Main extends Thread {
@@ -11,6 +12,8 @@ public class Main extends Thread {
         ListaDostepnychKsiazekDoDrukowania.StartoweKsiazki();
         TymczasowiAutorzy.Autorzy();
         ZatrudnieniAutorzy.Zatrudnieni();
+        TytulyDoStworzenia.TworzoneTytyly();
+
         Autor autor1= new Autor("Cezary", "Babik", 6.2, 4572);
 
         Ksiązka ksiazka1 = new Romanse("Dis nie mile widziany", autor1 , 23.4, 123);

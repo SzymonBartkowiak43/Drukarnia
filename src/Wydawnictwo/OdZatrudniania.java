@@ -32,10 +32,15 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
     protected JLabel slider_wartosc;
     protected JComboBox okresZatrudnienia;
     protected JLabel okresZatrudnienia_label;
+    protected JLabel tlo;
 
     OdZatrudniania() {
         frame = new JFrame();
         napis = new JLabel();
+        tlo = new JLabel();
+        ImageIcon icon = new ImageIcon("sunset.png");
+        tlo.setIcon(icon);
+
         napis.setText("Lista autorów do zatrudnienia:");
 
 
@@ -83,7 +88,9 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
         okresZatrudnienia_label=new JLabel("Okres zatrudnienia: ");
         okresZatrudnienia_label.setVisible(false);
 
-        okresZatrudnienia=new JComboBox();
+        String[] data={"(DD.MM.RRRR - DD.MM.RRRR)"};
+
+        okresZatrudnienia=new JComboBox(data);
         okresZatrudnienia.setEditable(true);
         okresZatrudnienia.setVisible(false);
         okresZatrudnienia.addActionListener(this);
@@ -122,8 +129,6 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
             TymczasowiAutorzy.getTymczasowiAutorzy().remove(autorzy.getSelectedIndex());
             if(umowapom1.getSelectedItem().toString()=="UmowaODzieło")
             {
-
-
                 System.out.println("umowa o dzielo ");
 
             }
@@ -142,6 +147,8 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
         {
             slider.setVisible(true);
             slider_wartosc.setVisible(true);
+            okresZatrudnienia.setVisible(false);
+            okresZatrudnienia_label.setVisible(false);
             umowapom1.setSelectedItem("UmowaODzieło");
         }
 
@@ -150,6 +157,7 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
             slider.setVisible(true);
             slider_wartosc.setVisible(true);
             okresZatrudnienia.setVisible(true);
+            okresZatrudnienia_label.setVisible(true);
             umowapom1.setSelectedItem("UmowaOPracę");
 
         }

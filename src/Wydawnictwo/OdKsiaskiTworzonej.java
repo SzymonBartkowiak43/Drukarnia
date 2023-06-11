@@ -28,8 +28,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
     protected JPanel panelGatunki;
     protected JComboBox Tytulyy;
     protected JComboBox autorComboBox;
-    protected TytulyDoStworzenia tytuly = new TytulyDoStworzenia();
-
     OdKsiaskiTworzonej()
     {
         frame=new JFrame();
@@ -85,7 +83,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         List<String> Romanse = new ArrayList<>();
 
-        for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+        for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
             if (ksiazkaTworzona.getGatunek() == "Romanse") {
                 System.out.println(ksiazkaTworzona.getNazwa());
                 Romanse.add(ksiazkaTworzona.getNazwa());
@@ -95,13 +93,9 @@ public class OdKsiaskiTworzonej implements ActionListener{
         Tytulyy = new JComboBox<>(Romanse.toArray());
 
 
-
-
-
-
         List<String> Autorzy = new ArrayList<>();
         int i=0;
-        for (Autor autor : ZatrudnieniAutorzy.getTymczasowiAutorzy()) {
+        for (Autor autor : ZatrudnieniAutorzy.getZatrudnieniAutorzy()) {
             Autorzy.add(autor.getImie()+" "+autor.getNazwisko()+", Ocena: "+autor.getOcena());
         }
 
@@ -128,7 +122,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
 
     }
-
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==ksiazka)
         {
@@ -150,18 +143,16 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         if(e.getSource()==button)
         {
-            System.out.println(autorComboBox.getSelectedItem());
-            System.out.println(Tytulyy.getSelectedItem());
             Random random = new Random();
             int cena=random.nextInt(100)+20;
             int iloscStron= random.nextInt(423)+45;
 
             Ksiązka ksiazka_pom = new Ksiązka(Tytulyy.getSelectedItem().toString(),
-                    ZatrudnieniAutorzy.getTymczasowiAutorzy().get(autorComboBox.getSelectedIndex()),
+                    ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
                     cena, iloscStron);
             ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka_pom);
 
-            tytuly.getTytuly().remove(Tytulyy.getSelectedIndex());
+            TytulyDoStworzenia.getTytuly().remove(Tytulyy.getSelectedIndex());
 
             frame.dispose();
         }
@@ -173,9 +164,8 @@ public class OdKsiaskiTworzonej implements ActionListener{
             Tytulyy.removeAllItems();
             List<String> Romanse = new ArrayList<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Romanse") {
-                    System.out.println(ksiazkaTworzona.getNazwa());
                     Romanse.add(ksiazkaTworzona.getNazwa());
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }
@@ -185,14 +175,11 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         if(e.getSource()==sensacyjneButton)
         {
-
-
             Tytulyy.removeAllItems();
             List<String> Sensacyjne = new ArrayList<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Sensacyjne") {
-                    System.out.println(ksiazkaTworzona.getNazwa());
                     Sensacyjne.add(ksiazkaTworzona.getNazwa());
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }
@@ -202,13 +189,11 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         if(e.getSource()==albumyButton)
         {
-
             Tytulyy.removeAllItems();
             List<String> Albumy = new ArrayList<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Album") {
-                    System.out.println(ksiazkaTworzona.getNazwa());
                     Albumy.add(ksiazkaTworzona.getNazwa());
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }
@@ -220,9 +205,8 @@ public class OdKsiaskiTworzonej implements ActionListener{
             Tytulyy.removeAllItems();
             List<String> miesięczniki = new ArrayList<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Miesięcznik") {
-                    System.out.println(ksiazkaTworzona.getNazwa());
                     miesięczniki.add(ksiazkaTworzona.getNazwa());
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }
@@ -233,9 +217,8 @@ public class OdKsiaskiTworzonej implements ActionListener{
             Tytulyy.removeAllItems();
             List<String> tygodinkiButton = new ArrayList<>();
 
-            for (KsiazkaTworzona ksiazkaTworzona : tytuly.getTytuly()) {
+            for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Tygodnik") {
-                    System.out.println(ksiazkaTworzona.getNazwa());
                     tygodinkiButton.add(ksiazkaTworzona.getNazwa());
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }

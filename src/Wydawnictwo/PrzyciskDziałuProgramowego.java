@@ -15,11 +15,16 @@ public class PrzyciskDziałuProgramowego extends Frame {
         buttonZlecNapisanieDzieła.setVisible(true);
 
         buttonZatrudnijAutora = new JButton("Zatrudnij Autora");
-        buttonZatrudnijAutora.setBounds(200, 100, 180, 60);
+        buttonZatrudnijAutora.setBounds(100, 100, 180, 60);
         buttonZatrudnijAutora.addActionListener(this);
         buttonZatrudnijAutora.setVisible(true);
 
+        buttonZwolnijAutora = new JButton("Zwolnij Autora");
+        buttonZwolnijAutora.setBounds(100, 180, 180, 60);
+        buttonZwolnijAutora.addActionListener(this);
+        buttonZwolnijAutora.setVisible(true);
 
+        label.add(buttonZwolnijAutora);
         label.add(buttonZatrudnijAutora);
         label.add(buttonZlecNapisanieDzieła);
         label.setIcon(programowaniaIkona);

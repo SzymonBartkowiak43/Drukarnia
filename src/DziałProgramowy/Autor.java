@@ -22,6 +22,11 @@ public class Autor {
 
     private Umowy umowa;
 
+    public Umowy getUmowa()
+    {
+        return umowa;
+    }
+
     private double ocena;
     private int ileChceZarabiać;
 

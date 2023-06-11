@@ -12,7 +12,9 @@ public class ZatrudnieniAutorzy {
     }
     public static void Zatrudnieni()
     {
-        zatrudnieniAutorzy.add(new Autor("Katarzyna", "Michalak", 9.9, 3314));
+        Autor autor = new Autor("Katarzyna", "Michalak", 9.9, 3314);
+        autor.wybierzUmowę(new UmowaOPracę(4212, "10.06.2023-10.06.2025"));
+        zatrudnieniAutorzy.add(autor);
     }
 
     public static void dodajAutora(Autor autor)
@@ -25,7 +27,7 @@ public class ZatrudnieniAutorzy {
         zatrudnieniAutorzy.remove(i);
     }
 
-    public static List<Autor> getTymczasowiAutorzy()
+    public static List<Autor> getZatrudnieniAutorzy()
     {
         return zatrudnieniAutorzy;
     }

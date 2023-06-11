@@ -5,20 +5,24 @@ import java.util.List;
 
 
 public class TytulyDoStworzenia {
-    private List<KsiazkaTworzona> tytuly= new ArrayList<>();
+    private static List<KsiazkaTworzona> tytuly= new ArrayList<>();
 
     public TytulyDoStworzenia()
+    {
+    }
+
+    public static void TworzoneTytyly()
     {
         tytuly.add(new KsiazkaTworzona("Lapanie zydow", "Romanse"));
         tytuly.add(new KsiazkaTworzona("Getto w moim miescie", "Sensacyjne"));
         tytuly.add(new KsiazkaTworzona("Lolipop", "Romanse"));
     }
-    public List<KsiazkaTworzona> getTytuly() {
+    public static List<KsiazkaTworzona> getTytuly() {
         return tytuly;
     }
 
 
-    public int getRozmiar()
+    public static int getRozmiar()
     {
         return tytuly.size();
     }
