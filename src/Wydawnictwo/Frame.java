@@ -1,20 +1,11 @@
 package Wydawnictwo;
 
 import DziałDruku.DziałDruku;
-import DziałHandlu.*;
-import DziałProgramowy.Autor;
-import DziałProgramowy.DziałProgramowy;
-import DziałProgramowy.TytulyDoStworzenia;
-import DziałProgramowy.KsiazkaTworzona;
-import DziałProgramowy.TymczasowiAutorzy;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Frame extends JFrame implements ActionListener {
 

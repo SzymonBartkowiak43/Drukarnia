@@ -103,8 +103,8 @@ public class OdSkelpu implements ActionListener, ChangeListener {
 
         comboBox = new JComboBox();
         comboBox.setVisible(true);
+
         romanseButton.setSelected(true);
-        comboBox.setVisible(true);
 
         comboBox.removeAllItems();
 
@@ -180,7 +180,7 @@ public class OdSkelpu implements ActionListener, ChangeListener {
             comboBox.setVisible(false);
 
             comboBox.setVisible(true);
-            comboBox.removeAllItems();
+
             tygodinkiButton.setSelected(true);
 
             comboBox.removeAllItems();

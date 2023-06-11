@@ -5,7 +5,6 @@ import DziałHandlu.ListaDostepnychKsiazekDoDrukowania;
 import DziałProgramowy.*;
 
 
-import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,5 +1,7 @@
 package Wydawnictwo;
 
+import Wydawnictwo.Frame;
+
 import javax.swing.*;
 
 public class OdPokazaniaWydrukowanych {

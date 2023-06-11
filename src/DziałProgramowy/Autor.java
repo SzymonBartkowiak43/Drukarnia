@@ -3,6 +3,9 @@ package DziałProgramowy;
 public class Autor {
     private String imie;
     private String nazwisko;
+    private double ocena;
+    private int ileChceZarabiać;
+    private Umowy umowa;
 
     public String getImie() {
         return imie;
@@ -20,16 +23,10 @@ public class Autor {
         return ileChceZarabiać;
     }
 
-    private Umowy umowa;
-
     public Umowy getUmowa()
     {
         return umowa;
     }
-
-    private double ocena;
-    private int ileChceZarabiać;
-
 
     public Autor(String imie, String nazwisko, double ocena, int ileChceZarabiać) {
         this.imie = imie;
@@ -37,7 +34,6 @@ public class Autor {
         this.ocena = ocena;
         this.ileChceZarabiać = ileChceZarabiać;
     }
-
     public void wybierzUmowę(Umowy umowa)
     {
         this.umowa=umowa;

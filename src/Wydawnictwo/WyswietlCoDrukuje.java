@@ -1,6 +1,7 @@
 package Wydawnictwo;
 
 import DziałDruku.DziałDruku;
+import Wydawnictwo.Frame;
 
 import javax.swing.*;
 

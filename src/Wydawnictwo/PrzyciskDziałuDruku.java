@@ -1,5 +1,7 @@
 package Wydawnictwo;
 
+import Wydawnictwo.Frame;
+
 import javax.swing.*;
 import java.awt.*;
 

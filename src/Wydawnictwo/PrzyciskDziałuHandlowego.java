@@ -1,5 +1,8 @@
 package Wydawnictwo;
 
+import Wydawnictwo.BazoweUstawieniaDziałow;
+import Wydawnictwo.Frame;
+
 import javax.swing.*;
 import java.awt.*;
 
