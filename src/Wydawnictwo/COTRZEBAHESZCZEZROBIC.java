@@ -12,5 +12,6 @@ public class COTRZEBAHESZCZEZROBIC {
     // -- Wieceij tytulow ksiazek(Normalnych xD)
     // -- Mozesz jakos sklep ulepszyc :?
     // -- idk co jeszcze
+    // -- robimy to zapisywanie?g
 
 }
