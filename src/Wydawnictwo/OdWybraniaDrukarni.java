@@ -21,7 +21,7 @@ public class OdWybraniaDrukarni implements ActionListener {
 
         button = new JButton("Zatwierdź");
 
-        String[] drukarnie = {"pierwsza Drukarnia","druga Drukarnia","lepsza Drukarnia"};
+        String[] drukarnie = {"Zwykła Drukarnia 1","Zwykła Drukarnia 2","Drukarnia Wszystkiego"};
         comboBox = new JComboBox(drukarnie);
         button.addActionListener(this);
         button.setBounds(10,10,100,40);

@@ -1,8 +1,7 @@
 package DziałDruku;
 
+import DziałHandlu.Czasopismo;
 import DziałHandlu.Ksiązka;
-
-import java.util.Scanner;
 
 public class DziałDruku  {
 
@@ -15,7 +14,7 @@ public class DziałDruku  {
         return aktualnaDrukarnia;
     }
 
-    private String aktualnaDrukarnia = "Pierwsza zwykla drukarnia";
+    private String aktualnaDrukarnia = "Zwykła Drukarnia 1";
 
     public void wybierzDrukarnie(int wybor) {
         switch (wybor) {
@@ -24,13 +23,16 @@ public class DziałDruku  {
             case 3 -> wybranaDrukarnia = lepszaDrukarnia;
         }
         switch (wybor) {
-            case 1 -> aktualnaDrukarnia = "Pierwsza zwykla drukarnia";
-            case 2 -> aktualnaDrukarnia = "Druga zwykla drukarnia";
-            case 3 -> aktualnaDrukarnia = "Lepsza drukarnia";
+            case 1 -> aktualnaDrukarnia = "Zwykła Drukarnia 1";
+            case 2 -> aktualnaDrukarnia = "Zwykła Drukarnia 2";
+            case 3 -> aktualnaDrukarnia = "Drukarnia Wszystkiego";
         }
     }
     public void zlecDrukowanie( Ksiązka ks, int iloscSztuk) {
-        wybranaDrukarnia.zacznijDrukowaćKsiążke(ks, iloscSztuk);
+        wybranaDrukarnia.zacznijDrukować(ks, iloscSztuk);
+    }
+    public void zlecDrukowanie(Czasopismo cz, int iloscSztuk) {
+        wybranaDrukarnia.zacznijDrukować(cz, iloscSztuk);
     }
     public String pokazCoAktualnieSieProdukuje() {
         String zwracany = "";

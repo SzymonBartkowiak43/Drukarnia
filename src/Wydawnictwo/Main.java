@@ -10,6 +10,7 @@ public class Main extends Thread {
     public static void main(String[] args) {
 
         ListaDostepnychKsiazekDoDrukowania.StartoweKsiazki();
+        ListaDostepnychCzasopismDoDrukowania.StartoweCzasopisma();
         TymczasowiAutorzy.Autorzy();
         ZatrudnieniAutorzy.Zatrudnieni();
         TytulyDoStworzenia.TworzoneTytyly();

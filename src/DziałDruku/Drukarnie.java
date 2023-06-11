@@ -1,23 +1,29 @@
 package DziałDruku;
 
+import DziałHandlu.Czasopismo;
 import DziałHandlu.Ksiązka;
 
 import java.util.HashMap;
 
 abstract public class Drukarnie  {
     protected Produkcja produkcja = new Produkcja();
+    protected int ksiazkaCzyCzasopismo; // ksiazka = 0 czasopismo = 1
     protected String coDrukuje;
     protected  Ksiązka drukownaKsiazka;
+    protected  Czasopismo drukowneCzasopismo;
     protected int ileSztuk;
     protected  boolean czyMonzaRozpacząćProdukcje = true;
     protected  int mocPrzerobowa; //czas w ms ile potrzebuje do wyprodukowania 1 ksiazki
-    protected HashMap<Ksiązka, Integer> kolekaDodrukowania = new HashMap<Ksiązka, Integer>();
-    protected HashMap<Ksiązka, Integer> wydrukowanePozycje = new HashMap<Ksiązka, Integer>();
+    protected HashMap<Ksiązka, Integer> kolekaDodrukowaniaKsiazek = new HashMap<Ksiązka, Integer>();
+    protected HashMap<Czasopismo, Integer> kolekaDodrukowaniaCzasopsim = new HashMap<Czasopismo, Integer>();
+    protected HashMap<Ksiązka, Integer> wydrukowaneKsiazki = new HashMap<Ksiązka, Integer>();
+    protected HashMap<Czasopismo, Integer> wydrukowaneCzasopsima = new HashMap<Czasopismo, Integer>();
 
 
-    public void zacznijDrukowaćKsiążke(Ksiązka ksiązka , int ilosc) {
+    public void zacznijDrukować(Ksiązka ksiązka , int ilosc) {
         if(czyMonzaRozpacząćProdukcje) {
             czyMonzaRozpacząćProdukcje = false;
+            ksiazkaCzyCzasopismo = 0;
             coDrukuje = ksiązka.getTytul();
             drukownaKsiazka = ksiązka;
             ileSztuk = ilosc;
@@ -28,21 +34,50 @@ abstract public class Drukarnie  {
             t1.start();
         } else {
             System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy " + coDrukuje + ", Wydrukowano " + produkcja.getileProcent());
-            kolekaDodrukowania.put(ksiązka, ilosc);
+            kolekaDodrukowaniaKsiazek.put(ksiązka, ilosc);
         }
     }
+
+    public void zacznijDrukować(Czasopismo czasopismo , int ilosc) {
+        if(czyMonzaRozpacząćProdukcje) {
+            czyMonzaRozpacząćProdukcje = false;
+            ksiazkaCzyCzasopismo = 1;
+            coDrukuje = czasopismo.getTytul();
+            drukowneCzasopismo = czasopismo;
+            ileSztuk = ilosc;
+            wyliczCzasProdukcji();
+
+            produkcja.setDrukarnia(this);
+            Thread t1 = new Thread(produkcja);
+            t1.start();
+        } else {
+            System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy " + coDrukuje + ", Wydrukowano " + produkcja.getileProcent());
+            kolekaDodrukowaniaCzasopsim.put(czasopismo, ilosc);
+        }
+    }
+
     public  void setCzyMonzaRozpacząćProdukcje (boolean czyMozna) {
         czyMonzaRozpacząćProdukcje = czyMozna;
-        if(kolekaDodrukowania.size() != 0) {
-            Ksiązka ksiązka = kolekaDodrukowania.keySet().iterator().next();
-            Integer ilosc = kolekaDodrukowania.remove(ksiązka);
-            zacznijDrukowaćKsiążke(ksiązka,ilosc);
+        if(kolekaDodrukowaniaKsiazek.size() != 0) {
+            Ksiązka ksiązka = kolekaDodrukowaniaKsiazek.keySet().iterator().next();
+            Integer ilosc = kolekaDodrukowaniaKsiazek.remove(ksiązka);
+            zacznijDrukować(ksiązka,ilosc);
+            System.out.println("Zaczynam drukować " + coDrukuje);
+        } else if (kolekaDodrukowaniaCzasopsim.size() != 0) {
+            Czasopismo czasopismo = kolekaDodrukowaniaCzasopsim.keySet().iterator().next();
+            Integer ilosc = kolekaDodrukowaniaCzasopsim.remove(czasopismo);
+            zacznijDrukować(czasopismo,ilosc);
             System.out.println("Zaczynam drukować " + coDrukuje);
         }
     }
     public void powiadomOZakończeniuProdukcji() {
-            System.out.println("Produkcja dziela " +coDrukuje +  " zakończona.");
-            wydrukowanePozycje.put(drukownaKsiazka, ileSztuk);
+            System.out.println("Produkcja dziela " + coDrukuje +  " zakończona.");
+            if(ksiazkaCzyCzasopismo == 0) {
+                wydrukowaneKsiazki.put(drukownaKsiazka, ileSztuk);
+            } else {
+                wydrukowaneCzasopsima.put(drukowneCzasopismo,ileSztuk);
+            }
+
             setCzyMonzaRozpacząćProdukcje(true);
         }
 
@@ -50,14 +85,25 @@ abstract public class Drukarnie  {
 
         StringBuilder zwracany = new StringBuilder();
 
-        for (HashMap.Entry<Ksiązka, Integer> entry : kolekaDodrukowania.entrySet()) {
-            Ksiązka key = entry.getKey();
-            Integer value = entry.getValue();
+        if(!kolekaDodrukowaniaKsiazek.isEmpty()) {
+            for (HashMap.Entry<Ksiązka, Integer> entry : kolekaDodrukowaniaKsiazek.entrySet()) {
+                Ksiązka key = entry.getKey();
+                Integer value = entry.getValue();
 
-            zwracany.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
+                zwracany.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
+            }
         }
 
-        if (kolekaDodrukowania.isEmpty()) {
+        if(!kolekaDodrukowaniaCzasopsim.isEmpty()) {
+            for (HashMap.Entry<Czasopismo, Integer> entry : kolekaDodrukowaniaCzasopsim.entrySet()) {
+                Czasopismo key = entry.getKey();
+                Integer value = entry.getValue();
+
+                zwracany.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
+            }
+        }
+
+        if (kolekaDodrukowaniaKsiazek.isEmpty() && kolekaDodrukowaniaCzasopsim.isEmpty()) {
             zwracany.append("Kolejka drukowania jest pusta");
         }
 
@@ -66,14 +112,26 @@ abstract public class Drukarnie  {
     public String  wypiszWydykowanePozycje() {
         StringBuilder zwracanyK = new StringBuilder();
 
-        for (HashMap.Entry<Ksiązka, Integer> entry : wydrukowanePozycje.entrySet()) {
+        if(!wydrukowaneKsiazki.isEmpty()) {
+            zwracanyK.append("Ksiazki :").append("\n");
+        for (HashMap.Entry<Ksiązka, Integer> entry : wydrukowaneKsiazki.entrySet()) {
             Ksiązka key = entry.getKey();
             Integer value = entry.getValue();
 
             zwracanyK.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
         }
+        }
 
-        if (wydrukowanePozycje.isEmpty()) {
+        if(!wydrukowaneCzasopsima.isEmpty()) {
+            zwracanyK.append("Czasopsima :").append("\n");
+            for (HashMap.Entry<Czasopismo, Integer> entry : wydrukowaneCzasopsima.entrySet()) {
+                Czasopismo key = entry.getKey();
+                Integer value = entry.getValue();
+
+                zwracanyK.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
+            }
+        }
+        if (wydrukowaneKsiazki.isEmpty() && wydrukowaneCzasopsima.isEmpty()) {
             zwracanyK.append("Nie ma zadnych wydrukowanych pozycji");
         }
 
@@ -84,7 +142,7 @@ abstract public class Drukarnie  {
         String zwracany ="";
         if(!czyMonzaRozpacząćProdukcje) {
             zwracany +="Akutalnie Produkujemy: ";
-            zwracany += "Książka: " + coDrukuje + ", Ilość: " + ileSztuk + " Wyprodukowano: "  + produkcja.getileProcent(); }
+            zwracany +=  coDrukuje + ", Ilość: " + ileSztuk + " Wyprodukowano: "  + produkcja.getileProcent(); }
         else
             zwracany += "Maszyna nic nie produkuje";
         return zwracany;

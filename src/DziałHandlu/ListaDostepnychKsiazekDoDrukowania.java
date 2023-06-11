@@ -11,9 +11,7 @@ public class ListaDostepnychKsiazekDoDrukowania {
     public ListaDostepnychKsiazekDoDrukowania() {
 
     }
-    public static List<Object> getKatalog() {
-        return katalog;
-    }
+
     public static void StartoweKsiazki() {
         Autor autor1= new Autor("Cezary", "Babik", 6.2, 4572);
 
@@ -29,6 +27,11 @@ public class ListaDostepnychKsiazekDoDrukowania {
         katalog.add(ksiazka3);
         katalog.add(ksiazka4);
     }
+
+    public static List<Object> getKatalog() {
+        return katalog;
+    }
+
     public static void dodajKsiazke(Ksiązka ksiazka)
     {
         katalog.add(ksiazka);

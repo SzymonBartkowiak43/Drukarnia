@@ -16,7 +16,7 @@ public class LepszaDrukarnia extends Drukarnie{
             t1.start();
         } else {
             System.out.println("Nie mozna rozpacząć produkcji, aktualnie drukujemy ksiażke " + coDrukuje + " Pozostało " + produkcja.getileProcent());
-            kolekaDodrukowania.put(drukownaKsiazka, ilosc);
+            kolekaDodrukowaniaKsiazek.put(drukownaKsiazka, ilosc);
         }
     }
 }

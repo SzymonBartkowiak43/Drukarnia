@@ -1,6 +1,8 @@
 package Wydawnictwo;
 
+import DziałHandlu.Czasopismo;
 import DziałHandlu.Ksiązka;
+import DziałHandlu.ListaDostepnychCzasopismDoDrukowania;
 import DziałHandlu.ListaDostepnychKsiazekDoDrukowania;
 
 import javax.swing.*;
@@ -14,10 +16,15 @@ import java.util.List;
 public class OdDruku implements ChangeListener, ActionListener {
     JFrame frame;
     JPanel panel;
+    JPanel panel2;
     JLabel label;
     JSlider slider;
     JComboBox comboBox;
     JButton button;
+    ImageIcon czasopismoIcon;
+    ImageIcon ksiazkaIcon;
+    JRadioButton czasopismoButton;
+    JRadioButton ksiazkaButton;
 
     private List<Object> katalog;
 
@@ -25,7 +32,27 @@ public class OdDruku implements ChangeListener, ActionListener {
 
         frame = new JFrame("Drukarnia");
         panel = new JPanel();
+        panel2 = new JPanel();
         label = new JLabel();
+
+        czasopismoIcon = new ImageIcon("Czasopismo.png");
+        ksiazkaIcon = new ImageIcon("Ksiazka.png");
+        czasopismoButton = new JRadioButton("Czasopismo");
+        ksiazkaButton = new JRadioButton("Ksiazka");
+        czasopismoButton.setIcon(czasopismoIcon);
+        ksiazkaButton.setIcon(ksiazkaIcon);
+        ButtonGroup group = new ButtonGroup();
+        group.add(czasopismoButton);
+        group.add(ksiazkaButton);
+
+        ksiazkaButton.addActionListener(this);
+        czasopismoButton.addActionListener(this);
+
+        panel2.add(ksiazkaButton);
+        panel2.add(czasopismoButton);
+
+        ksiazkaButton.setSelected(true);
+
         slider = new JSlider(0,1000,200);
 
         slider.setPreferredSize(new Dimension(200,100));
@@ -50,16 +77,16 @@ public class OdDruku implements ChangeListener, ActionListener {
         panel.add(label);
 
 
-        ListaDostepnychKsiazekDoDrukowania tym = new ListaDostepnychKsiazekDoDrukowania();
-        katalog =  tym.getKatalog();
-        String[] Ksiazki =  new String[katalog.size()];
+        ListaDostepnychKsiazekDoDrukowania tymKsiazki = new ListaDostepnychKsiazekDoDrukowania();
+        katalog =  tymKsiazki.getKatalog();
+        comboBox = new JComboBox();
 
         for(int i = 0;i < katalog.size();i++) {
             Ksiązka ksiazka = (Ksiązka) katalog.get(i);
             String dodawnie = ksiazka.getTytul();
-            Ksiazki[i] = dodawnie;
+            comboBox.addItem(dodawnie);
         }
-        comboBox = new JComboBox(Ksiazki);
+
 
 
         button = new JButton("Zatwierdź");
@@ -76,8 +103,9 @@ public class OdDruku implements ChangeListener, ActionListener {
         frame.add(button);
         frame.add(comboBox);
         frame.setLayout(new FlowLayout());
-        frame.setSize(500,200);
+        frame.setSize(500,300);
         frame.setLocationRelativeTo(null);
+        frame.add(panel2);
         frame.add(panel);
 
 
@@ -98,9 +126,39 @@ public class OdDruku implements ChangeListener, ActionListener {
             System.out.println(slider.getValue());
             System.out.println(comboBox.getSelectedItem());
             int index = comboBox.getSelectedIndex();
-            Frame.działDruku.zlecDrukowanie((Ksiązka)katalog.get(index), slider.getValue() );
 
+            if(ksiazkaButton.isSelected()) {
+                Frame.działDruku.zlecDrukowanie((Ksiązka) katalog.get(index), slider.getValue());
+            } else {
+                Frame.działDruku.zlecDrukowanie((Czasopismo) katalog.get(index), slider.getValue());
+            }
             frame.dispose(); // zamyka okno
+        }
+
+        if(e.getSource() == czasopismoButton) {
+            comboBox.removeAllItems();
+
+            ListaDostepnychCzasopismDoDrukowania tymCzasopisma = new ListaDostepnychCzasopismDoDrukowania();
+            katalog =  tymCzasopisma.getKatalogCzasopism();
+
+            for(int i = 0;i < katalog.size();i++) {
+                Czasopismo czasopismo = (Czasopismo) katalog.get(i);
+                String dodawnie = czasopismo.getTytul();
+                comboBox.addItem(dodawnie);
+            }
+        }
+
+        if(e.getSource() == ksiazkaButton) {
+            comboBox.removeAllItems();
+
+            ListaDostepnychKsiazekDoDrukowania tymKsiazki = new ListaDostepnychKsiazekDoDrukowania();
+            katalog =  tymKsiazki.getKatalog();
+
+            for(int i = 0;i < katalog.size();i++) {
+                Ksiązka ksiazka = (Ksiązka) katalog.get(i);
+                String dodawnie = ksiazka.getTytul();
+                comboBox.addItem(dodawnie);
+            }
         }
     }
 }
