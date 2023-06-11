@@ -24,7 +24,7 @@ public class OdZwalniania implements ActionListener {
 
         for(Autor autor : ZatrudnieniAutorzy.getZatrudnieniAutorzy())
         {
-            autorzyLista.add(autor.getImie()+" "+autor.getNazwisko()+" Ocena: "+autor.getOcena()+" Umowa: "+autor.getUmowa().toString());
+            autorzyLista.add(autor.getImie()+" "+autor.getNazwisko()+" Ocena: "+autor.getOcena()+" Umowa: ");
         }
 
         autorzyComboBox=new JComboBox(autorzyLista.toArray());
@@ -50,8 +50,15 @@ public class OdZwalniania implements ActionListener {
     {
         if(e.getSource()==button)
         {
-            ZatrudnieniAutorzy.getZatrudnieniAutorzy().remove(autorzyComboBox.getSelectedIndex());
-            frame.dispose();
+            if(ZatrudnieniAutorzy.getZatrudnieniAutorzy().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Nikt tu nie pracuje",
+                        "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                ZatrudnieniAutorzy.getZatrudnieniAutorzy().remove(autorzyComboBox.getSelectedIndex());
+                frame.dispose();
+            }
         }
 
     }

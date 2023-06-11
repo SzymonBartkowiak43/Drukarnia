@@ -2,6 +2,7 @@ package Wydawnictwo;
 
 import DziałHandlu.Ksiązka;
 import DziałHandlu.ListaDostepnychKsiazekDoDrukowania;
+import DziałHandlu.Romanse;
 import DziałProgramowy.*;
 
 
@@ -28,6 +29,9 @@ public class OdKsiaskiTworzonej implements ActionListener{
     protected JPanel panelGatunki;
     protected JComboBox Tytulyy;
     protected JComboBox autorComboBox;
+
+    protected JComboBox gatunkiPom;
+    protected List<String> Romanse;
     OdKsiaskiTworzonej()
     {
         frame=new JFrame();
@@ -80,8 +84,11 @@ public class OdKsiaskiTworzonej implements ActionListener{
         miesiecznikButton.addActionListener(this);
 
         tygodinkiButton.setVisible(true);
+        String[] gatunkiPomtabela={"Romanse","Sensacyjne", "Albumy", "Miesięczniki", "Tygodniki"};
+        gatunkiPom = new JComboBox(gatunkiPomtabela);
+        gatunkiPom.setVisible(false);
 
-        List<String> Romanse = new ArrayList<>();
+        Romanse = new ArrayList<>();
 
         for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
             if (ksiazkaTworzona.getGatunek() == "Romanse") {
@@ -114,6 +121,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
         frame.add(autorComboBox);
         frame.add(Tytulyy);
         frame.add(button);
+        frame.add(gatunkiPom);
         frame.setIconImage(icon.getImage());
         frame.setBackground(Color.GRAY);
         frame.setVisible(true);
@@ -143,18 +151,30 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         if(e.getSource()==button)
         {
-            Random random = new Random();
-            int cena=random.nextInt(100)+20;
-            int iloscStron= random.nextInt(423)+45;
+            if(ZatrudnieniAutorzy.getZatrudnieniAutorzy().isEmpty() && Romanse.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Aktualnie nie mamy dostępnych autorów, lub książek",
+                        "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                Random random = new Random();
+                int cena = random.nextInt(100) + 20;
+                int iloscStron = random.nextInt(423) + 45;
 
-            Ksiązka ksiazka_pom = new Ksiązka(Tytulyy.getSelectedItem().toString(),
-                    ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
-                    cena, iloscStron);
-            ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka_pom);
+                Ksiązka ksiazka_pom = new Ksiązka(Tytulyy.getSelectedItem().toString(),
+                        ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
+                        cena, iloscStron);
+                ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka_pom);
 
-            TytulyDoStworzenia.getTytuly().remove(Tytulyy.getSelectedIndex());
+                KsiazkaTworzona ksiązkaUsuwana = new KsiazkaTworzona(Tytulyy.getSelectedItem().toString(),
+                        gatunkiPom.getSelectedItem().toString());
 
-            frame.dispose();
+                System.out.println(ksiązkaUsuwana.getNazwa()+" "+ksiązkaUsuwana.getGatunek());
+
+                TytulyDoStworzenia.getTytuly().remove(ksiązkaUsuwana);
+                frame.dispose();
+            }
+
         }
 
         if(e.getSource()==romanseButton)
@@ -163,6 +183,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
             Tytulyy.removeAllItems();
             List<String> Romanse = new ArrayList<>();
+            gatunkiPom.setSelectedItem("Romanse");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Romanse") {
@@ -177,6 +198,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
         {
             Tytulyy.removeAllItems();
             List<String> Sensacyjne = new ArrayList<>();
+            gatunkiPom.setSelectedItem("Sensacyjne");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Sensacyjne") {
@@ -191,6 +213,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
         {
             Tytulyy.removeAllItems();
             List<String> Albumy = new ArrayList<>();
+            gatunkiPom.setSelectedItem("Albumy");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Album") {
@@ -204,6 +227,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
         {
             Tytulyy.removeAllItems();
             List<String> miesięczniki = new ArrayList<>();
+            gatunkiPom.setSelectedItem("Miesięczniki");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Miesięcznik") {
@@ -216,6 +240,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
         {
             Tytulyy.removeAllItems();
             List<String> tygodinkiButton = new ArrayList<>();
+            gatunkiPom.setSelectedItem("Tygodniki");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Tygodnik") {
