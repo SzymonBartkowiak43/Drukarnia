@@ -51,6 +51,7 @@ public class OdDruku implements ChangeListener, ActionListener {
         panel2.add(ksiazkaButton);
         panel2.add(czasopismoButton);
 
+        ksiazkaButton.setSelected(true);
 
         slider = new JSlider(0,1000,200);
 
