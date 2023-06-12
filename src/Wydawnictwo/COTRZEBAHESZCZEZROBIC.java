@@ -7,9 +7,8 @@ public class COTRZEBAHESZCZEZROBIC {
 
     ///////////Bartekkk
     // -- Stworznie tych autorow i zatrudniania ich
-    // -- Wieceij tytulow ksiazek(Normalnych xD)
-    // -- Mozesz jakos sklep ulepszyc :?
-    // -- idk co jeszcze
+    // -- Zwalnianie Autorów
+    // -- Naprawienie dodanowania ksiazek,czasopismy albumow
 
 
 }
