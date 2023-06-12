@@ -16,8 +16,8 @@ abstract public class Drukarnie  {
     protected  int mocPrzerobowa; //czas w ms ile potrzebuje do wyprodukowania 1 ksiazki
     protected HashMap<Ksiązka, Integer> kolekaDodrukowaniaKsiazek = new HashMap<Ksiązka, Integer>();
     protected HashMap<Czasopismo, Integer> kolekaDodrukowaniaCzasopsim = new HashMap<Czasopismo, Integer>();
-    protected HashMap<Ksiązka, Integer> wydrukowaneKsiazki = new HashMap<Ksiązka, Integer>();
-    protected HashMap<Czasopismo, Integer> wydrukowaneCzasopsima = new HashMap<Czasopismo, Integer>();
+    protected static HashMap<Ksiązka, Integer> wydrukowaneKsiazki = new HashMap<Ksiązka, Integer>();
+    protected static HashMap<Czasopismo, Integer> wydrukowaneCzasopsima = new HashMap<Czasopismo, Integer>();
 
 
     public void zacznijDrukować(Ksiązka ksiązka , int ilosc) {
@@ -73,9 +73,22 @@ abstract public class Drukarnie  {
     public void powiadomOZakończeniuProdukcji() {
             System.out.println("Produkcja dziela " + coDrukuje +  " zakończona.");
             if(ksiazkaCzyCzasopismo == 0) {
-                wydrukowaneKsiazki.put(drukownaKsiazka, ileSztuk);
+                if (wydrukowaneKsiazki.containsKey(drukownaKsiazka)) {
+                    int aktualnaWartość = wydrukowaneKsiazki.get(drukownaKsiazka);
+                    int nowaWartość = aktualnaWartość + ileSztuk;
+                    wydrukowaneKsiazki.put(drukownaKsiazka, nowaWartość);
+                } else {
+                    wydrukowaneKsiazki.put(drukownaKsiazka, ileSztuk);
+                }
+
             } else {
-                wydrukowaneCzasopsima.put(drukowneCzasopismo,ileSztuk);
+                if (wydrukowaneCzasopsima.containsKey(drukowneCzasopismo)) {
+                    int aktualnaWartość = wydrukowaneCzasopsima.get(drukowneCzasopismo);
+                    int nowaWartość = aktualnaWartość + ileSztuk;
+                    wydrukowaneCzasopsima.put(drukowneCzasopismo , nowaWartość);
+                } else {
+                    wydrukowaneCzasopsima.put(drukowneCzasopismo, ileSztuk);
+                }
             }
 
             setCzyMonzaRozpacząćProdukcje(true);
@@ -149,5 +162,17 @@ abstract public class Drukarnie  {
     }
     public void wyliczCzasProdukcji () {
         produkcja.setPredkoscProdukcji(mocPrzerobowa*ileSztuk/100);
+    }
+    public static HashMap<Ksiązka, Integer> getWydrukowaneKsiazki() {
+        HashMap<Ksiązka, Integer> tym = new HashMap<>();
+        tym.putAll(wydrukowaneKsiazki);
+        wydrukowaneKsiazki.clear();
+        return tym;
+    }
+    public static HashMap<Czasopismo, Integer> getWydrukowaneCzasopsima() {
+        HashMap<Czasopismo, Integer> tym = new HashMap<>();
+        tym.putAll(wydrukowaneCzasopsima);
+        wydrukowaneCzasopsima.clear();
+        return tym;
     }
 }

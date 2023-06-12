@@ -30,7 +30,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
     JSlider slider;
     JLabel label;
     JButton kupButton;
-    private String[] romanse;
     List<Ksiązka> katalogKs;
     List<Czasopismo> katalogCz;
 
@@ -249,7 +248,7 @@ public class OdSkelpu implements ActionListener, ChangeListener {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
 
-            List<Ksiązka> katalogKs = MagazynSklepu.zwrocKsiazki("Album");
+            katalogKs = MagazynSklepu.zwrocKsiazki("Albumy");
 
             for(int i = 0;i < katalogKs.size();i++) {
                 Ksiązka ksiazka = (Ksiązka)katalogKs.get(i);
@@ -333,7 +332,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
                    }
                }
 
-           }
 
            if(czyWystarczy) {
                JOptionPane.showMessageDialog(null,"Gratulacje, wszystko przebiegło pomyslnie", "JEJ", JOptionPane.INFORMATION_MESSAGE);
@@ -351,6 +349,7 @@ public class OdSkelpu implements ActionListener, ChangeListener {
                    JOptionPane.showMessageDialog(null, "Przepraszamy w magazynie mam tylko " + MagazynSklepu.ileDostepnychSztuk(wybraneCz) + " sztuk", "O nie", JOptionPane.ERROR_MESSAGE);
                }
                }
+           }
 
         }
 

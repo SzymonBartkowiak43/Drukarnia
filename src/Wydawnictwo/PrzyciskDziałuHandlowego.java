@@ -19,7 +19,7 @@ public class PrzyciskDziałuHandlowego extends Frame {
         buttonSklep.setBackground(Color.WHITE);
         buttonSklep.setForeground(Color.BLUE);
         buttonSklep.addActionListener(this);
-        buttonSklep.setFont(new Font("MV BOli", Font.PLAIN, 15));
+        buttonSklep.setFont(new Font("MV BOli", Font.PLAIN, 20));
 
         buttonMagazyn = new JButton("Magazyn");
         buttonMagazyn.setVisible(true);
@@ -27,12 +27,20 @@ public class PrzyciskDziałuHandlowego extends Frame {
         buttonMagazyn.setBackground(Color.WHITE);
         buttonMagazyn.setForeground(Color.BLUE);
         buttonMagazyn.addActionListener(this);
-        buttonMagazyn.setFont(new Font("MV BOli", Font.PLAIN, 15));
+        buttonMagazyn.setFont(new Font("MV BOli", Font.PLAIN, 20));
 
+        buttonOdbierzZDrukarni = new JButton("Odbierz z drukarni");
+        buttonOdbierzZDrukarni.setVisible(true);
+        buttonOdbierzZDrukarni.setBounds(250, 350, 300, 50);
+        buttonOdbierzZDrukarni.setBackground(Color.WHITE);
+        buttonOdbierzZDrukarni.setForeground(Color.BLUE);
+        buttonOdbierzZDrukarni.addActionListener(this);
+        buttonOdbierzZDrukarni.setFont(new Font("MV BOli", Font.PLAIN, 20));
 
 
         label.add(buttonSklep);
         label.add(buttonMagazyn);
+        label.add(buttonOdbierzZDrukarni);
         label.setIcon(handlowyIkona);
     }
 }

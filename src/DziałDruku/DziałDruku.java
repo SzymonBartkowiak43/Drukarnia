@@ -3,6 +3,8 @@ package DziałDruku;
 import DziałHandlu.Czasopismo;
 import DziałHandlu.Ksiązka;
 
+import java.util.HashMap;
+
 public class DziałDruku  {
 
     private Drukarnie pierwszaZwykłaDrukarnia = new ZwykłaDrukarnia(100);
@@ -57,4 +59,5 @@ public class DziałDruku  {
         zwracany += wybranaDrukarnia.wypiszKolejkeDrukowania();
         return zwracany;
     }
+
 }

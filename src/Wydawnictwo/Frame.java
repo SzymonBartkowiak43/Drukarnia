@@ -1,11 +1,13 @@
 package Wydawnictwo;
 
 import DziałDruku.DziałDruku;
+import DziałHandlu.Ksiązka;
 
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class Frame extends JFrame implements ActionListener {
 
@@ -29,6 +31,7 @@ public class Frame extends JFrame implements ActionListener {
     protected JButton buttonZwolnijAutora;
     protected JButton buttonSklep;
     protected JButton buttonMagazyn;
+    protected JButton buttonOdbierzZDrukarni;
     protected JTextField akutualnaDrukarnia;
 
     public static DziałDruku działDruku = new DziałDruku();
@@ -122,6 +125,9 @@ public class Frame extends JFrame implements ActionListener {
             }
             if(e.getSource() == buttonMagazyn) {
                 new OdMagazynu();
+            }
+            if(e.getSource() == buttonOdbierzZDrukarni) {
+                new OdOdbierania();
             }
         }
     }
