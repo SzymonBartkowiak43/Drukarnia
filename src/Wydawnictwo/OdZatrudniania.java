@@ -1,9 +1,10 @@
 package Wydawnictwo;
 
-import DziałProgramowy.TymczasowiAutorzy;
-import DziałProgramowy.Autor;
-import DziałProgramowy.UmowaOPracę;
-import DziałProgramowy.ZatrudnieniAutorzy;
+import DziałHandlu.Czasopismo;
+import DziałHandlu.Ksiązka;
+import DziałHandlu.ListaDostepnychCzasopismDoDrukowania;
+import DziałHandlu.ListaDostepnychKsiazekDoDrukowania;
+import DziałProgramowy.*;
 
 import javax.lang.model.type.TypeMirror;
 import javax.swing.*;
@@ -15,6 +16,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class OdZatrudniania implements ChangeListener, ActionListener{
     protected JComboBox autorzy;
@@ -25,13 +27,15 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
     protected JLabel umowaLabel;
     protected JRadioButton umowaOPracę;
     protected JRadioButton umowaODzieło;
-
+    protected JLabel okresNapisania_label;
     protected JComboBox umowapom1;
 
     protected JSlider slider;
     protected JLabel slider_wartosc;
     protected JComboBox okresZatrudnienia;
     protected JLabel okresZatrudnienia_label;
+    protected JComboBox tytułDzieła;
+    protected JComboBox gatunekDzieła;
     protected JLabel tlo;
 
     OdZatrudniania() {
@@ -88,20 +92,32 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
         okresZatrudnienia_label=new JLabel("Okres zatrudnienia: ");
         okresZatrudnienia_label.setVisible(false);
 
-        String[] data={"(DD.MM.RRRR - DD.MM.RRRR)"};
+        String[] data={"Ile dni?"};
 
         okresZatrudnienia=new JComboBox(data);
         okresZatrudnienia.setEditable(true);
         okresZatrudnienia.setVisible(false);
         okresZatrudnienia.addActionListener(this);
 
+        okresNapisania_label=new JLabel("Okres na napisanie: ");
+        okresNapisania_label.setVisible(false);
+
+        String[] tytuł={"Podaj tytuł dzieła"};
+        tytułDzieła=new JComboBox(tytuł);
+        tytułDzieła.setEditable(true);
+        tytułDzieła.setVisible(false);
+        tytułDzieła.addActionListener(this);
+
+        String[] gatunek={"Romanse","Sensacyjne","Albumy", "Miesięczniki", "Tygodniki"};
+        gatunekDzieła=new JComboBox(gatunek);
+        gatunekDzieła.setVisible(false);
+        gatunekDzieła.addActionListener(this);
+
 
         button= new JButton("Zatwierdz");
 
         String[] umowapom1text={"UmowaOPracę", "UmowaODzieło"};
         umowapom1 = new JComboBox(umowapom1text);
-
-
 
         button.addActionListener(this);
 
@@ -113,7 +129,10 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
         frame.add(umowaOPracę);
         frame.add(panel);
         frame.add(okresZatrudnienia_label);
+        frame.add(okresNapisania_label);
         frame.add(okresZatrudnienia);
+        frame.add(tytułDzieła);
+        frame.add(gatunekDzieła);
         frame.setLayout(new FlowLayout());
         frame.setSize(600, 700);
         frame.setVisible(true);
@@ -129,7 +148,58 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
             TymczasowiAutorzy.getTymczasowiAutorzy().remove(autorzy.getSelectedIndex());
             if(umowapom1.getSelectedItem().toString()=="UmowaODzieło")
             {
-                System.out.println("umowa o dzielo ");
+                Random random=new Random();
+                double cena=random.nextDouble(200)+40;
+                int iloscStron=random.nextInt(300)+40;
+                int numer=random.nextInt(8)+1;
+
+                if(gatunekDzieła.getSelectedItem().equals("Albumy"))
+                {
+                    Ksiązka albumTworzony = new Ksiązka(tytułDzieła.getSelectedItem().toString(), autorpom, cena, iloscStron);
+
+                    UmowaODzieło umowa= new UmowaODzieło(slider.getValue(), okresZatrudnienia.getSelectedItem().toString());
+
+                    albumTworzony.ustawGatunek("Album");
+
+                    umowa.setKsiążka(albumTworzony);
+                    autorpom.wybierzUmowę(umowa);
+                    ListaDostepnychKsiazekDoDrukowania.dodajAlbum(albumTworzony);
+                    System.out.println("Album ");
+                }
+                else if(gatunekDzieła.getSelectedItem().equals("Romanse")||gatunekDzieła.getSelectedItem().equals("Sensacyjne"))
+                {
+
+                    Ksiązka ksiazkaTworzona = new Ksiązka(tytułDzieła.getSelectedItem().toString(), autorpom, cena, iloscStron);
+
+                    if(gatunekDzieła.getSelectedItem().equals("Romanse"))
+                        ksiazkaTworzona.ustawGatunek("Romans");
+                    else if(gatunekDzieła.getSelectedItem().equals("Sensacyjne"))
+                        ksiazkaTworzona.ustawGatunek("Sensacyjne");
+
+                    UmowaODzieło umowa= new UmowaODzieło(slider.getValue(), okresZatrudnienia.getSelectedItem().toString());
+                    umowa.setKsiążka(ksiazkaTworzona);
+
+                    autorpom.wybierzUmowę(umowa);
+                    ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazkaTworzona);
+                    System.out.println("Ksiązka ");
+                }
+                else if(gatunekDzieła.getSelectedItem().equals("Miesięczniki")||gatunekDzieła.getSelectedItem().equals("Tygodniki"))
+                {
+                    Czasopismo czasopismoTworzone = new Czasopismo(tytułDzieła.getSelectedItem().toString(), autorpom, numer, cena);
+
+                    if(gatunekDzieła.getSelectedItem().equals("Miesięczniki"))
+                        czasopismoTworzone.ustawGatunek("Miesięcznik");
+                    else if(gatunekDzieła.getSelectedItem().equals("Tygodniki"))
+                        czasopismoTworzone.ustawGatunek("Tygodnik");
+
+                    UmowaODzieło umowa= new UmowaODzieło(slider.getValue(), okresZatrudnienia.getSelectedItem().toString());
+                    umowa.setCzasopismo(czasopismoTworzone);
+
+                    autorpom.wybierzUmowę(umowa);
+                    ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismoTworzone);
+                    System.out.println("Czasopismo ");
+                }
+
 
             }
             else if(umowapom1.getSelectedItem().toString()=="UmowaOPracę")
@@ -147,8 +217,12 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
         {
             slider.setVisible(true);
             slider_wartosc.setVisible(true);
-            okresZatrudnienia.setVisible(false);
+            okresZatrudnienia.setVisible(true);
             okresZatrudnienia_label.setVisible(false);
+            okresNapisania_label.setVisible(true);
+            tytułDzieła.setVisible(true);
+            gatunekDzieła.setVisible(true);
+
             umowapom1.setSelectedItem("UmowaODzieło");
         }
 
@@ -158,6 +232,10 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
             slider_wartosc.setVisible(true);
             okresZatrudnienia.setVisible(true);
             okresZatrudnienia_label.setVisible(true);
+            okresNapisania_label.setVisible(false);
+            tytułDzieła.setVisible(false);
+            gatunekDzieła.setVisible(false);
+
             umowapom1.setSelectedItem("UmowaOPracę");
 
         }

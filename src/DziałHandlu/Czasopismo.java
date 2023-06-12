@@ -18,6 +18,10 @@ public class Czasopismo {
         this.cena = cena;
         this.numer = numer;
     }
+    public void ustawGatunek(String gatunek)
+        {
+            this.gatunek=gatunek;
+        }
 	
 	public String getTytul() {
         return tytul;
