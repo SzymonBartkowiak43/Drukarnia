@@ -10,6 +10,8 @@ public class DziałDruku  {
     private Drukarnie lepszaDrukarnia = new LepszaDrukarnia(150);
     private Drukarnie wybranaDrukarnia = pierwszaZwykłaDrukarnia;
 
+    public static boolean czyJestWybranaNajlepszaDrukarnia;
+
     public String getAktualnaDrukarnia() {
         return aktualnaDrukarnia;
     }
@@ -17,6 +19,12 @@ public class DziałDruku  {
     private String aktualnaDrukarnia = "Zwykła Drukarnia 1";
 
     public void wybierzDrukarnie(int wybor) {
+        if(wybor == 3) {
+            czyJestWybranaNajlepszaDrukarnia = true;
+        } else {
+            czyJestWybranaNajlepszaDrukarnia = false;
+        }
+
         switch (wybor) {
             case 1 -> wybranaDrukarnia = pierwszaZwykłaDrukarnia;
             case 2 -> wybranaDrukarnia = drugaZwykłaDrukarnia;

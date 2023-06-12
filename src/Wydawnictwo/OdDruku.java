@@ -1,5 +1,6 @@
 package Wydawnictwo;
 
+import DziałDruku.DziałDruku;
 import DziałHandlu.Czasopismo;
 import DziałHandlu.Ksiązka;
 import DziałHandlu.ListaDostepnychCzasopismDoDrukowania;
@@ -87,8 +88,6 @@ public class OdDruku implements ChangeListener, ActionListener {
             comboBox.addItem(dodawnie);
         }
 
-
-
         button = new JButton("Zatwierdź");
         button.addActionListener(this);
         button.setFont(new Font("Comic Sans", Font.BOLD,25));
@@ -159,6 +158,7 @@ public class OdDruku implements ChangeListener, ActionListener {
                 String dodawnie = ksiazka.getTytul();
                 comboBox.addItem(dodawnie);
             }
+
         }
     }
 }

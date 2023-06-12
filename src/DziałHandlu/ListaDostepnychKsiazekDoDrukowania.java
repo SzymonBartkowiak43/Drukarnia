@@ -1,5 +1,6 @@
 package DziałHandlu;
 
+import DziałDruku.DziałDruku;
 import DziałProgramowy.Autor;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 public class ListaDostepnychKsiazekDoDrukowania {
     private static List<Object> katalog= new ArrayList<>();
-    private static List<Ksiązka> albumy = new ArrayList<>();
+    private static List<Object> albumy = new ArrayList<>();
 
     public ListaDostepnychKsiazekDoDrukowania() {
     }
@@ -33,9 +34,14 @@ public class ListaDostepnychKsiazekDoDrukowania {
     }
 
     public static List<Object> getKatalog() {
+        if(DziałDruku.czyJestWybranaNajlepszaDrukarnia) {
+            List<Object> polaczonaLista = new ArrayList<>();
+            polaczonaLista.addAll(katalog);
+            polaczonaLista.addAll(albumy);
+            return polaczonaLista;
+        }
         return katalog;
     }
-    public static List<Ksiązka> getAlbumy() { return albumy; }
 
     public static void dodajKsiazke(Ksiązka ksiazka)
     {

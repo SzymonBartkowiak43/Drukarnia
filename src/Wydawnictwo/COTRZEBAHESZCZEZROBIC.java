@@ -2,7 +2,6 @@ package Wydawnictwo;
 
 public class COTRZEBAHESZCZEZROBIC {
 
-    // -- lepsza drukarnia powinna miec mozliwosc drukoawania albumow
     // -- przycisk w sklepie "Odbierz Pozycje z Drukarni"
 
 
