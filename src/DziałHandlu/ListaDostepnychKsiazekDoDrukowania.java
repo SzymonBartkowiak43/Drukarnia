@@ -7,9 +7,9 @@ import java.util.List;
 
 public class ListaDostepnychKsiazekDoDrukowania {
     private static List<Object> katalog= new ArrayList<>();
+    private static List<Ksiązka> albumy = new ArrayList<>();
 
     public ListaDostepnychKsiazekDoDrukowania() {
-
     }
 
     public static void StartoweKsiazki() {
@@ -20,20 +20,28 @@ public class ListaDostepnychKsiazekDoDrukowania {
         Ksiązka ksiazka3 = new Romanse("Szalone koty ida do roboty", autor1 , 23.4, 123);
         Ksiązka ksiazka4 = new Romanse("Magda Gelser ", autor1 , 23.4, 123);
 
+        Ksiązka ksiazka5 = new Album("Album xx ", autor1 , 23.4, 123);
+        Ksiązka ksiazka6 = new Album("Album xxx ", autor1 , 23.4, 123);
 
 
         katalog.add(ksiazka1);
         katalog.add(ksiazka2);
         katalog.add(ksiazka3);
         katalog.add(ksiazka4);
+        albumy.add(ksiazka5);
+        albumy.add(ksiazka6);
     }
 
     public static List<Object> getKatalog() {
         return katalog;
     }
+    public static List<Ksiązka> getAlbumy() { return albumy; }
 
     public static void dodajKsiazke(Ksiązka ksiazka)
     {
         katalog.add(ksiazka);
+    }
+    public static void dodajAlbum(Ksiązka album) {
+        albumy.add(album);
     }
 }
