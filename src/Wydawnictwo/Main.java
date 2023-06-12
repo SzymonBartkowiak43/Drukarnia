@@ -34,23 +34,23 @@ public class Main extends Thread {
         Czasopismo czasopismo5 = new Kwartalnik("Mazurki i nie tylko 1", autor1, 1,10.00);
 
 
-//        MagazynSklepu.dodajPozycje(ksiazka1,200);
-//        MagazynSklepu.dodajPozycje(ksiazka1,200);
-//        MagazynSklepu.dodajPozycje(ksiazka2,100);
-//        MagazynSklepu.dodajPozycje(ksiazka3,300);
-//        MagazynSklepu.dodajPozycje(ksiazka4,10);
-//        MagazynSklepu.dodajPozycje(ksiazka5,12);
-//        MagazynSklepu.dodajPozycje(ksiazka6,90);
-//
-//
-//        MagazynSklepu.dodajPozycje(czasopismo1,100);
-//        MagazynSklepu.dodajPozycje(czasopismo1,300);
-//        MagazynSklepu.dodajPozycje(czasopismo2,30);
-//        MagazynSklepu.dodajPozycje(czasopismo3,100);
-//        MagazynSklepu.dodajPozycje(czasopismo4,20);
-//        MagazynSklepu.dodajPozycje(czasopismo5,40);
-//
-//        MagazynSklepu.wyswietlZawartoscSklepu();
+       MagazynSklepu.dodajPozycje(ksiazka1,200);
+        MagazynSklepu.dodajPozycje(ksiazka1,200);
+        MagazynSklepu.dodajPozycje(ksiazka2,100);
+        MagazynSklepu.dodajPozycje(ksiazka3,300);
+        MagazynSklepu.dodajPozycje(ksiazka4,10);
+        MagazynSklepu.dodajPozycje(ksiazka5,12);
+       MagazynSklepu.dodajPozycje(ksiazka6,90);
+
+
+        MagazynSklepu.dodajPozycje(czasopismo1,100);
+        MagazynSklepu.dodajPozycje(czasopismo1,300);
+       MagazynSklepu.dodajPozycje(czasopismo2,30);
+        MagazynSklepu.dodajPozycje(czasopismo3,100);
+        MagazynSklepu.dodajPozycje(czasopismo4,20);
+        MagazynSklepu.dodajPozycje(czasopismo5,40);
+
+       MagazynSklepu.wyswietlZawartoscSklepu();
 
         new Frame();
     }

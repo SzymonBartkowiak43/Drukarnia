@@ -8,7 +8,6 @@ public class TymczasowiAutorzy {
 
     public TymczasowiAutorzy()
     {
-
     }
     public static void Autorzy()
     {

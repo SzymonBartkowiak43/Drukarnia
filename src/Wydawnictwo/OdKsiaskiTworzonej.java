@@ -170,6 +170,10 @@ public class OdKsiaskiTworzonej implements ActionListener{
                     Ksiązka dziełoKsiążka = new Ksiązka(Tytulyy.getSelectedItem().toString(),
                             ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
                             cena, iloscStron);
+                    if(gatunkiPom.getSelectedItem().equals("Romanse"))
+                        dziełoKsiążka.ustawGatunek("Romans");
+                    else if(gatunkiPom.getSelectedItem().equals("Sensacyjne"))
+                        dziełoKsiążka.ustawGatunek("Sensacyjne");
                     ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(dziełoKsiążka);
                 }
                 else if(typTekstu.getSelectedItem().equals("Album"))
@@ -179,6 +183,9 @@ public class OdKsiaskiTworzonej implements ActionListener{
                     Ksiązka dziełoAlbum = new Ksiązka(Tytulyy.getSelectedItem().toString(),
                             ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
                             cena, iloscStron);
+                    if(gatunkiPom.getSelectedItem().equals("Albumy"))
+                        dziełoAlbum.ustawGatunek("Album");
+
                     ListaDostepnychKsiazekDoDrukowania.dodajAlbum(dziełoAlbum);
                 }
                 else if(typTekstu.getSelectedItem().equals("Czasopismo"))
