@@ -1,8 +1,6 @@
 package Wydawnictwo;
 
-import DziałHandlu.Ksiązka;
-import DziałHandlu.ListaDostepnychKsiazekDoDrukowania;
-import DziałHandlu.Romanse;
+import DziałHandlu.*;
 import DziałProgramowy.*;
 
 
@@ -30,6 +28,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
     protected JComboBox autorComboBox;
 
     protected JComboBox gatunkiPom;
+    protected JComboBox typTekstu;
     protected List<String> Romanse;
     OdKsiaskiTworzonej()
     {
@@ -41,6 +40,8 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         czasopismo = new JRadioButton("Czasopismo");
         ksiazka = new JRadioButton("Ksiazka");
+        ksiazka.setSelected(true);
+
 
         panel.add(czasopismo);
         panel.add(ksiazka);
@@ -56,6 +57,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
         romanseButton = new JRadioButton("Romanse");
         sensacyjneButton = new JRadioButton("Sensacyjne");
         albumyButton = new JRadioButton("Albumy");
+
 
         tygodinkiButton = new JRadioButton("Tygodniki");
         miesiecznikButton = new JRadioButton("Miesieczniki");
@@ -85,7 +87,10 @@ public class OdKsiaskiTworzonej implements ActionListener{
         tygodinkiButton.setVisible(true);
         String[] gatunkiPomtabela={"Romanse","Sensacyjne", "Albumy", "Miesięczniki", "Tygodniki"};
         gatunkiPom = new JComboBox(gatunkiPomtabela);
-        gatunkiPom.setVisible(false);
+
+        String[] typTekstuTabela={"Książka", "Album", "Czasopismo"};
+        typTekstu = new JComboBox<>(typTekstuTabela);
+
 
         Romanse = new ArrayList<>();
 
@@ -120,7 +125,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
         frame.add(autorComboBox);
         frame.add(Tytulyy);
         frame.add(button);
-        frame.add(gatunkiPom);
         frame.setIconImage(icon.getImage());
         frame.setBackground(Color.GRAY);
         frame.setVisible(true);
@@ -137,6 +141,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
             romanseButton.setVisible(true);
             sensacyjneButton.setVisible(true);
             albumyButton.setVisible(true);
+
         }
 
         if(e.getSource()==czasopismo)
@@ -150,27 +155,59 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         if(e.getSource()==button)
         {
-            if(ZatrudnieniAutorzy.getZatrudnieniAutorzy().isEmpty() && Romanse.isEmpty())
+            if(ZatrudnieniAutorzy.getZatrudnieniAutorzy().isEmpty())
             {
                 JOptionPane.showMessageDialog(null, "Aktualnie nie mamy dostępnych autorów, lub książek",
                         "ERROR", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
                 Random random = new Random();
-                int cena = random.nextInt(100) + 20;
-                int iloscStron = random.nextInt(423) + 45;
 
-                Ksiązka ksiazka_pom = new Ksiązka(Tytulyy.getSelectedItem().toString(),
-                        ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
-                        cena, iloscStron);
-                ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka_pom);
+                if(typTekstu.getSelectedItem().equals("Książka"))
+                {
+                    int cena = random.nextInt(100) + 20;
+                    int iloscStron = random.nextInt(423) + 45;
+                    Ksiązka dziełoKsiążka = new Ksiązka(Tytulyy.getSelectedItem().toString(),
+                            ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
+                            cena, iloscStron);
+                    ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(dziełoKsiążka);
+                }
+                else if(typTekstu.getSelectedItem().equals("Album"))
+                {
+                    int cena = random.nextInt(100) + 20;
+                    int iloscStron = random.nextInt(423) + 45;
+                    Ksiązka dziełoAlbum = new Ksiązka(Tytulyy.getSelectedItem().toString(),
+                            ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
+                            cena, iloscStron);
+                    ListaDostepnychKsiazekDoDrukowania.dodajAlbum(dziełoAlbum);
+                }
+                else if(typTekstu.getSelectedItem().equals("Czasopismo"))
+                {
+                    double cena = random.nextDouble(10) + 20;
+                    int numer = random.nextInt(8) + 1;
+                    Czasopismo dziełoCzasopismo = new Czasopismo(Tytulyy.getSelectedItem().toString(),
+                            ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()), numer, cena);
+                    ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(dziełoCzasopismo);
+                }
 
-                KsiazkaTworzona ksiązkaUsuwana = new KsiazkaTworzona(Tytulyy.getSelectedItem().toString(),
-                        gatunkiPom.getSelectedItem().toString());
 
-                System.out.println(ksiązkaUsuwana.getNazwa()+" "+ksiązkaUsuwana.getGatunek());
 
-                TytulyDoStworzenia.getTytuly().remove(ksiązkaUsuwana);
+                List<String>  Wszystkie_ksiazki = new ArrayList<>();
+
+                for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
+                    Wszystkie_ksiazki.add(ksiazkaTworzona.getNazwa()+" "+ksiazkaTworzona.getGatunek());
+                }
+
+                for(int i=0; i<Wszystkie_ksiazki.size(); i++)
+                {
+                    if(Wszystkie_ksiazki.get(i).equals(Tytulyy.getSelectedItem().toString()+" "+
+                            gatunkiPom.getSelectedItem().toString()))
+                    {
+                        TytulyDoStworzenia.getTytuly().remove(i);
+                    }
+
+                }
+
                 frame.dispose();
             }
 
@@ -183,6 +220,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
             Tytulyy.removeAllItems();
             List<String> Romanse = new ArrayList<>();
             gatunkiPom.setSelectedItem("Romanse");
+            typTekstu.setSelectedItem("Książka");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Romanse") {
@@ -198,6 +236,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
             Tytulyy.removeAllItems();
             List<String> Sensacyjne = new ArrayList<>();
             gatunkiPom.setSelectedItem("Sensacyjne");
+            typTekstu.setSelectedItem("Książka");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Sensacyjne") {
@@ -213,6 +252,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
             Tytulyy.removeAllItems();
             List<String> Albumy = new ArrayList<>();
             gatunkiPom.setSelectedItem("Albumy");
+            typTekstu.setSelectedItem("Album");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Album") {
@@ -227,6 +267,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
             Tytulyy.removeAllItems();
             List<String> miesięczniki = new ArrayList<>();
             gatunkiPom.setSelectedItem("Miesięczniki");
+            typTekstu.setSelectedItem("Czasopismo");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Miesięcznik") {
@@ -240,6 +281,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
             Tytulyy.removeAllItems();
             List<String> tygodinkiButton = new ArrayList<>();
             gatunkiPom.setSelectedItem("Tygodniki");
+            typTekstu.setSelectedItem("Czasopismo");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Tygodnik") {
