@@ -1,4 +1,4 @@
-package Wydawnictwo;
+package DziałProgramowy;
 
 import DziałHandlu.*;
 import DziałProgramowy.*;
@@ -30,7 +30,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
     protected JComboBox gatunkiPom;
     protected JComboBox typTekstu;
     protected List<String> Romanse;
-    OdKsiaskiTworzonej()
+    public OdKsiaskiTworzonej()
     {
         frame=new JFrame();
         panel=new JPanel();
