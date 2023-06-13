@@ -13,13 +13,13 @@ public class CzasZatrudnienia extends Thread {
     public void run()
     {
         for(int i=0 ; i<ileDni; i++) {
-            System.out.println(i + "Tutaj!");
+            try{
+                Thread.sleep(1000);
+            } catch  (InterruptedException e) {
+            }
         }
 
-        try{
-            Thread.sleep(1000);
-        } catch  (InterruptedException e) {
-        }
+
 
     }
 

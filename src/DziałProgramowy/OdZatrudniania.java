@@ -1,9 +1,6 @@
 package DziałProgramowy;
 
-import DziałHandlu.Czasopismo;
-import DziałHandlu.Ksiązka;
-import DziałHandlu.ListaDostepnychCzasopismDoDrukowania;
-import DziałHandlu.ListaDostepnychKsiazekDoDrukowania;
+import DziałHandlu.*;
 import DziałProgramowy.*;
 
 import javax.lang.model.type.TypeMirror;
@@ -144,6 +141,12 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
 
         if(e.getSource()==button)
         {
+            int czas = Integer.parseInt(okresZatrudnienia.getSelectedItem().toString());
+
+            CzasZatrudnienia t = new CzasZatrudnienia(czas);
+            t.start();
+
+
             if(TymczasowiAutorzy.getTymczasowiAutorzy().isEmpty())
             {
                 JOptionPane.showMessageDialog(null, "Nikt nie złożył CV",
@@ -157,8 +160,8 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
                     double cena = random.nextDouble(200) + 40;
                     int iloscStron = random.nextInt(300) + 40;
                     int numer = random.nextInt(8) + 1;
-                    CzasZatrudnienia t = new CzasZatrudnienia(okresZatrudnienia.getSelectedIndex());
-                    t.start();
+
+
 
                     if (gatunekDzieła.getSelectedItem().equals("Albumy")) {
                         Ksiązka albumTworzony = new Ksiązka(tytułDzieła.getSelectedItem().toString(), autorpom, cena, iloscStron);
@@ -173,32 +176,46 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
                         System.out.println("Album ");
                     } else if (gatunekDzieła.getSelectedItem().equals("Romanse") || gatunekDzieła.getSelectedItem().equals("Sensacyjne")) {
 
-                        Ksiązka ksiazkaTworzona = new Ksiązka(tytułDzieła.getSelectedItem().toString(), autorpom, cena, iloscStron);
+                        Ksiązka ksiazkaTworzona;
+                        UmowaODzieło umowa = new UmowaODzieło(slider.getValue(), okresZatrudnienia.getSelectedItem().toString());
 
-                        if (gatunekDzieła.getSelectedItem().equals("Romanse"))
+                        if (gatunekDzieła.getSelectedItem().equals("Romanse")) {
+                            ksiazkaTworzona = new Romanse(tytułDzieła.getSelectedItem().toString(), autorpom, cena, iloscStron);
                             ksiazkaTworzona.ustawGatunek("Romans");
-                        else if (gatunekDzieła.getSelectedItem().equals("Sensacyjne"))
+                            ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazkaTworzona);
+                            umowa.setKsiążka(ksiazkaTworzona);
+                        }
+                        else if (gatunekDzieła.getSelectedItem().equals("Sensacyjne")) {
+                            ksiazkaTworzona = new Sensacyjne(tytułDzieła.getSelectedItem().toString(), autorpom, cena, iloscStron);
                             ksiazkaTworzona.ustawGatunek("Sensacyjne");
+                            ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazkaTworzona);
+                            umowa.setKsiążka(ksiazkaTworzona);
+                        }
 
-                        UmowaODzieło umowa = new UmowaODzieło(slider.getValue(), okresZatrudnienia.getSelectedItem().toString());
-                        umowa.setKsiążka(ksiazkaTworzona);
+
 
                         autorpom.wybierzUmowę(umowa);
-                        ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazkaTworzona);
+
                         System.out.println("Ksiązka ");
-                    } else if (gatunekDzieła.getSelectedItem().equals("Miesięczniki") || gatunekDzieła.getSelectedItem().equals("Tygodniki")) {
-                        Czasopismo czasopismoTworzone = new Czasopismo(tytułDzieła.getSelectedItem().toString(), autorpom, numer, cena);
-
-                        if (gatunekDzieła.getSelectedItem().equals("Miesięczniki"))
-                            czasopismoTworzone.ustawGatunek("Miesięcznik");
-                        else if (gatunekDzieła.getSelectedItem().equals("Tygodniki"))
-                            czasopismoTworzone.ustawGatunek("Tygodnik");
-
+                    }
+                    else if (gatunekDzieła.getSelectedItem().equals("Miesięczniki") || gatunekDzieła.getSelectedItem().equals("Tygodniki")) {
+                        Czasopismo czasopismoTworzone;
                         UmowaODzieło umowa = new UmowaODzieło(slider.getValue(), okresZatrudnienia.getSelectedItem().toString());
-                        umowa.setCzasopismo(czasopismoTworzone);
+
+                        if (gatunekDzieła.getSelectedItem().equals("Miesięczniki")) {
+                            czasopismoTworzone = new Miesięczniki(tytułDzieła.getSelectedItem().toString(), autorpom, numer, cena);
+                            czasopismoTworzone.ustawGatunek("Miesięcznik");
+                            umowa.setCzasopismo(czasopismoTworzone);
+                            ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismoTworzone);
+                        }
+                        else if (gatunekDzieła.getSelectedItem().equals("Tygodniki")) {
+                            czasopismoTworzone = new Tygodnik(tytułDzieła.getSelectedItem().toString(), autorpom, numer, cena);
+                            czasopismoTworzone.ustawGatunek("Tygodnik");
+                            umowa.setCzasopismo(czasopismoTworzone);
+                            ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismoTworzone);
+                        }
 
                         autorpom.wybierzUmowę(umowa);
-                        ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismoTworzone);
                         System.out.println("Czasopismo ");
 
                     }
