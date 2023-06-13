@@ -157,6 +157,8 @@ public class OdZatrudniania implements ChangeListener, ActionListener{
                     double cena = random.nextDouble(200) + 40;
                     int iloscStron = random.nextInt(300) + 40;
                     int numer = random.nextInt(8) + 1;
+                    CzasZatrudnienia t = new CzasZatrudnienia(okresZatrudnienia.getSelectedIndex());
+                    t.start();
 
                     if (gatunekDzieła.getSelectedItem().equals("Albumy")) {
                         Ksiązka albumTworzony = new Ksiązka(tytułDzieła.getSelectedItem().toString(), autorpom, cena, iloscStron);
