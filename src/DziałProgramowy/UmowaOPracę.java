@@ -1,13 +1,13 @@
 package DziałProgramowy;
 
 public class UmowaOPracę extends Umowy{
-	private String nazwa;
 	private double pensja;
 	private String okresZatrudnienia;
-	
+
+	private String nazwa;
 	public UmowaOPracę(double pensja, String czasUmowy)
 	{
-		nazwa="Umowa o pracę";
+		this.nazwa="Umowa o pracę";
 		this.pensja=pensja;
 		this.okresZatrudnienia=okresZatrudnienia;
 	}

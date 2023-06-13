@@ -5,6 +5,7 @@ public class Autor {
     private String nazwisko;
     private double ocena;
     private int ileChceZarabiać;
+    private double saldo;
     private Umowy umowa;
 
     public String getImie() {
@@ -33,9 +34,20 @@ public class Autor {
         this.nazwisko = nazwisko;
         this.ocena = ocena;
         this.ileChceZarabiać = ileChceZarabiać;
+        this.saldo=0;
     }
     public void wybierzUmowę(Umowy umowa)
     {
         this.umowa=umowa;
+    }
+
+    public void dodajSaldo(double pensja)
+    {
+        this.saldo+=pensja;
+    }
+
+    public double getSaldo()
+    {
+        return saldo;
     }
 }
