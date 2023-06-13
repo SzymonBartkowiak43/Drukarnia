@@ -1,13 +1,14 @@
 package Wydawnictwo;
 
 import DziałDruku.DziałDruku;
-import DziałHandlu.Ksiązka;
+import DziałProgramowy.OdKsiaskiTworzonej;
+import DziałProgramowy.OdZatrudniania;
+import DziałProgramowy.OdZwalniania;
 
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 public class Frame extends JFrame implements ActionListener {
 

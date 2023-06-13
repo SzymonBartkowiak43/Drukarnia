@@ -31,6 +31,11 @@ public class Ksiązka {
         return cena;
     }
 
+    public void ustawGatunek(String gatunek)
+    {
+        this.gatunek=gatunek;
+    }
+
     public int getIlośćStron() {
         return ilośćStron;
     }

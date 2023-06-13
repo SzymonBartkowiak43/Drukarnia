@@ -1,4 +1,4 @@
-package Wydawnictwo;
+package DziałProgramowy;
 
 import DziałProgramowy.Autor;
 import DziałProgramowy.ZatrudnieniAutorzy;
