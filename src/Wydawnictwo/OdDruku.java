@@ -30,7 +30,6 @@ public class OdDruku implements ChangeListener, ActionListener {
     private List<Object> katalog;
 
     OdDruku() {
-
         frame = new JFrame("Drukarnia");
         panel = new JPanel();
         panel2 = new JPanel();
@@ -47,36 +46,28 @@ public class OdDruku implements ChangeListener, ActionListener {
         group.add(ksiazkaButton);
 
         ksiazkaButton.addActionListener(this);
+        ksiazkaButton.setSelected(true);
         czasopismoButton.addActionListener(this);
 
         panel2.add(ksiazkaButton);
         panel2.add(czasopismoButton);
 
-        ksiazkaButton.setSelected(true);
 
         slider = new JSlider(0,1000,200);
-
         slider.setPreferredSize(new Dimension(200,100));
-
         slider.setPaintTicks(true);
         slider.setMinorTickSpacing(100);
-
         slider.setPaintTrack(true);
         slider.setMajorTickSpacing(250);
-
         slider.setPaintLabels(true);
-
         slider.setFont(new Font("MV BOli", Font.PLAIN,15));
         label.setFont(new Font("MV BOli", Font.PLAIN,25));
         slider.setOrientation(SwingConstants.HORIZONTAL);
-
         slider.addChangeListener(this);
         label.setText("Sztuk =  " + slider.getValue());;
 
-
         panel.add(slider);
         panel.add(label);
-
 
         ListaDostepnychKsiazekDoDrukowania tymKsiazki = new ListaDostepnychKsiazekDoDrukowania();
         katalog =  tymKsiazki.getKatalog();
@@ -106,10 +97,7 @@ public class OdDruku implements ChangeListener, ActionListener {
         frame.setLocationRelativeTo(null);
         frame.add(panel2);
         frame.add(panel);
-
-
         frame.setVisible(true);
-
 
     }
     @Override
@@ -122,8 +110,6 @@ public class OdDruku implements ChangeListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == button) {
-            System.out.println(slider.getValue());
-            System.out.println(comboBox.getSelectedItem());
             int index = comboBox.getSelectedIndex();
 
             if(ksiazkaButton.isSelected()) {
@@ -136,7 +122,6 @@ public class OdDruku implements ChangeListener, ActionListener {
 
         if(e.getSource() == czasopismoButton) {
             comboBox.removeAllItems();
-
             ListaDostepnychCzasopismDoDrukowania tymCzasopisma = new ListaDostepnychCzasopismDoDrukowania();
             katalog =  tymCzasopisma.getKatalogCzasopism();
 
@@ -149,7 +134,6 @@ public class OdDruku implements ChangeListener, ActionListener {
 
         if(e.getSource() == ksiazkaButton) {
             comboBox.removeAllItems();
-
             ListaDostepnychKsiazekDoDrukowania tymKsiazki = new ListaDostepnychKsiazekDoDrukowania();
             katalog =  tymKsiazki.getKatalog();
 
@@ -158,7 +142,6 @@ public class OdDruku implements ChangeListener, ActionListener {
                 String dodawnie = ksiazka.getTytul();
                 comboBox.addItem(dodawnie);
             }
-
         }
     }
 }

@@ -1,11 +1,9 @@
 package Wydawnictwo;
 
 import DziałHandlu.MagazynSklepu;
-
 import javax.swing.*;
 
 public class OdMagazynu {
-
     public OdMagazynu() {
         String wyswietlany = MagazynSklepu.wyswietlZawartoscSklepu();
 

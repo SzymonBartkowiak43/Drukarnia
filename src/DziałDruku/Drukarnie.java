@@ -126,13 +126,12 @@ abstract public class Drukarnie  {
         StringBuilder zwracanyK = new StringBuilder();
 
         if(!wydrukowaneKsiazki.isEmpty()) {
-            zwracanyK.append("Ksiazki :").append("\n");
-        for (HashMap.Entry<Ksiązka, Integer> entry : wydrukowaneKsiazki.entrySet()) {
-            Ksiązka key = entry.getKey();
-            Integer value = entry.getValue();
-
-            zwracanyK.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
-        }
+                zwracanyK.append("Ksiazki :").append("\n");
+            for (HashMap.Entry<Ksiązka, Integer> entry : wydrukowaneKsiazki.entrySet()) {
+                Ksiązka key = entry.getKey();
+                Integer value = entry.getValue();
+                 zwracanyK.append("Pozycja: ").append(key.getTytul()).append(", Ilosc: ").append(value).append("\n");
+            }
         }
 
         if(!wydrukowaneCzasopsima.isEmpty()) {
@@ -147,7 +146,6 @@ abstract public class Drukarnie  {
         if (wydrukowaneKsiazki.isEmpty() && wydrukowaneCzasopsima.isEmpty()) {
             zwracanyK.append("Nie ma zadnych wydrukowanych pozycji");
         }
-
         return zwracanyK.toString();
     }
 

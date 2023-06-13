@@ -33,8 +33,6 @@ public class OdOdbierania {
             wyswietlany += klucz.getTytul() + "\n";
         }
 
-
-
         JOptionPane.showMessageDialog(null,
                 wyswietlany, "Odebrane Pozycje " ,JOptionPane.INFORMATION_MESSAGE);
     }

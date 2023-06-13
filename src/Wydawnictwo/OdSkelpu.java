@@ -38,7 +38,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         panel = new JPanel();
         frame.setLayout(new FlowLayout());
 
-
         czasopismoIcon = new ImageIcon("Czasopismo.png");
         ksiazkaIcon = new ImageIcon("Ksiazka.png");
         czasopismoButton = new JRadioButton("Czasopismo");
@@ -48,11 +47,8 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         ButtonGroup group = new ButtonGroup();
         group.add(czasopismoButton);
         group.add(ksiazkaButton);
-
         ksiazkaButton.addActionListener(this);
-
         czasopismoButton.addActionListener(this);
-
 
         romanseButton = new JRadioButton("Romanse");
         sensacyjneButton = new JRadioButton("Sensacyjne");
@@ -90,23 +86,13 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         tygodinkiButton.setVisible(false);
         miesiecznikButton.setVisible(false);
         kwartalnikButton.setVisible(false);
-
-
-
-
         panel.add(ksiazkaButton);
         panel.add(czasopismoButton);
         panel.setBackground(Color.darkGray);
-
-
-
         comboBox = new JComboBox();
         comboBox.setVisible(true);
-
         romanseButton.setSelected(true);
-
         comboBox.removeAllItems();
-
         katalogKs = MagazynSklepu.zwrocKsiazki("Romanse");
 
         for(int i = 0;i < katalogKs.size();i++) {
@@ -118,29 +104,20 @@ public class OdSkelpu implements ActionListener, ChangeListener {
 
         label = new JLabel();
         slider = new JSlider(0,100,20);
-
         slider.setPreferredSize(new Dimension(250,100));
-
         slider.setPaintTicks(true);
         slider.setMinorTickSpacing(10);
-
         slider.setPaintTrack(true);
         slider.setMajorTickSpacing(25);
-
         slider.setPaintLabels(true);
-
         slider.setFont(new Font("MV BOli", Font.PLAIN,15));
         label.setFont(new Font("MV BOli", Font.PLAIN,20));
         slider.setOrientation(SwingConstants.HORIZONTAL);
-
         slider.addChangeListener(this);
         label.setText("Sztuk =  " + slider.getValue());
-
-
         label.add(slider);
         label.setVisible(true);
         slider.setVisible(true);
-
 
         kupButton = new JButton("Zatwierdz");
         kupButton.setFont(new Font("MV BOli", Font.PLAIN,50));
@@ -149,11 +126,7 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         kupButton.addActionListener(this);
         kupButton.setBackground(Color.WHITE);
         kupButton.setForeground(Color.BLACK);
-
-
-
         ksiazkaButton.setSelected(true);
-
 
         frame.add(panel);
         frame.add(panelGatunkow);
@@ -179,12 +152,8 @@ public class OdSkelpu implements ActionListener, ChangeListener {
             comboBox.setVisible(false);
 
             comboBox.setVisible(true);
-
             tygodinkiButton.setSelected(true);
-
             comboBox.removeAllItems();
-
-
             katalogCz = MagazynSklepu.zwrocCzasopisma("Tygodnik");
 
             for(int i = 0;i < katalogCz.size();i++) {
@@ -200,13 +169,10 @@ public class OdSkelpu implements ActionListener, ChangeListener {
             romanseButton.setVisible(true);
             sensacyjneButton.setVisible(true);
             albumyButton.setVisible(true);
-
             comboBox.setVisible(true);
             comboBox.removeAllItems();
             romanseButton.setSelected(true);
-
             comboBox.removeAllItems();
-
             katalogKs = MagazynSklepu.zwrocKsiazki("Romanse");
 
             for(int i = 0;i < katalogKs.size();i++) {
@@ -216,12 +182,9 @@ public class OdSkelpu implements ActionListener, ChangeListener {
             }
         }
 
-
         if(e.getSource() == romanseButton) {
             comboBox.setVisible(true);
-
             comboBox.removeAllItems();
-
             katalogKs = MagazynSklepu.zwrocKsiazki("Romanse");
 
             for(int i = 0;i < katalogKs.size();i++) {
@@ -233,8 +196,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         if(e.getSource() == sensacyjneButton) {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
-
-
             katalogKs = MagazynSklepu.zwrocKsiazki("Sensacyjne");
 
             for(int i = 0;i < katalogKs.size();i++) {
@@ -247,7 +208,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         if(e.getSource() == albumyButton) {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
-
             katalogKs = MagazynSklepu.zwrocKsiazki("Albumy");
 
             for(int i = 0;i < katalogKs.size();i++) {
@@ -262,8 +222,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         if(e.getSource() == tygodinkiButton) {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
-
-
             katalogCz = MagazynSklepu.zwrocCzasopisma("Tygodnik");
 
             for(int i = 0;i < katalogCz.size();i++) {
@@ -275,8 +233,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         if(e.getSource() == miesiecznikButton) {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
-
-
             katalogCz = MagazynSklepu.zwrocCzasopisma("Miesiecznik");
 
             for(int i = 0;i < katalogCz.size();i++) {
@@ -288,7 +244,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
         if(e.getSource() == kwartalnikButton) {
             comboBox.setVisible(true);
             comboBox.removeAllItems();
-
             katalogCz = MagazynSklepu.zwrocCzasopisma("Kwartalnik");
 
             for(int i = 0;i < katalogCz.size();i++) {
@@ -352,7 +307,6 @@ public class OdSkelpu implements ActionListener, ChangeListener {
            }
         }
     }
-
     @Override
     public void stateChanged(ChangeEvent e) {
         if(e.getSource() == slider) {

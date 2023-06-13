@@ -4,8 +4,6 @@ import DziałDruku.DziałDruku;
 import DziałProgramowy.OdKsiaskiTworzonej;
 import DziałProgramowy.OdZatrudniania;
 import DziałProgramowy.OdZwalniania;
-
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,8 +34,6 @@ public class Frame extends JFrame implements ActionListener {
     protected JTextField akutualnaDrukarnia;
 
     public static DziałDruku działDruku = new DziałDruku();
-
-
 
     Frame() {
 
@@ -102,36 +98,36 @@ public class Frame extends JFrame implements ActionListener {
         if (e.getSource() == buttonZwolnijAutora) {
             new OdZwalniania();
         }
-            if (e.getSource() == buttonZlecD) {
-                new OdDruku();
-            }
-            if (e.getSource() == buttonPokCoDrukuje) {
-                new WyswietlCoDrukuje();
-            }
-            if (e.getSource() == buttonPokKolejke) {
-                new OdWypisaniaKolejki();
-            }
-            if (e.getSource() == buttonPozGotoweDoOdbioru) {
-                new OdPokazaniaWydrukowanych();
-            }
-            if (e.getSource() == buttonWybDrukarnie) {
-                new OdWybraniaDrukarni(akutualnaDrukarnia);
-            }
-            if (e.getSource() == buttoncofanie) {
-                BazoweUstawieniaDziałow.ustawieniaStronyStartowel(label, buttonDP, buttonDH, buttonDD);
-                label.setIcon(miastoIcon);
-            }
-            if(e.getSource() == buttonSklep) {
-                new OdSkelpu();
-            }
-            if(e.getSource() == buttonMagazyn) {
-                new OdMagazynu();
-            }
-            if(e.getSource() == buttonOdbierzZDrukarni) {
-                new OdOdbierania();
-            }
+        if (e.getSource() == buttonZlecD) {
+            new OdDruku();
+        }
+        if (e.getSource() == buttonPokCoDrukuje) {
+            new WyswietlCoDrukuje();
+        }
+        if (e.getSource() == buttonPokKolejke) {
+            new OdWypisaniaKolejki();
+        }
+        if (e.getSource() == buttonPozGotoweDoOdbioru) {
+            new OdPokazaniaWydrukowanych();
+        }
+        if (e.getSource() == buttonWybDrukarnie) {
+            new OdWybraniaDrukarni(akutualnaDrukarnia);
+        }
+        if (e.getSource() == buttoncofanie) {
+            BazoweUstawieniaDziałow.ustawieniaStronyStartowel(label, buttonDP, buttonDH, buttonDD);
+            label.setIcon(miastoIcon);
+        }
+        if(e.getSource() == buttonSklep) {
+            new OdSkelpu();
+        }
+        if(e.getSource() == buttonMagazyn) {
+            new OdMagazynu();
+        }
+        if(e.getSource() == buttonOdbierzZDrukarni) {
+            new OdOdbierania();
         }
     }
+}
 
 
 
