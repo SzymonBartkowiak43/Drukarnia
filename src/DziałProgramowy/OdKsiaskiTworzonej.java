@@ -88,7 +88,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
         String[] gatunkiPomtabela={"Romanse","Sensacyjne", "Albumy", "Miesięczniki", "Tygodniki"};
         gatunkiPom = new JComboBox(gatunkiPomtabela);
 
-        String[] typTekstuTabela={"Książka", "Album", "Czasopismo"};
+        String[] typTekstuTabela={"Romanse","Sensacyjne", "Albumy", "Miesięczniki", "Tygodniki"};
         typTekstu = new JComboBox<>(typTekstuTabela);
 
 
@@ -162,40 +162,29 @@ public class OdKsiaskiTworzonej implements ActionListener{
             }
             else {
                 Random random = new Random();
+                double cena = random.nextInt(100) + 20;
+                int iloscStron = random.nextInt(423) + 45;
+                int numer = random.nextInt(8) + 1;
+                String tytuł = (String)Tytulyy.getSelectedItem();
+                Autor autor = ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex());
 
-                if(typTekstu.getSelectedItem().equals("Książka"))
-                {
-                    int cena = random.nextInt(100) + 20;
-                    int iloscStron = random.nextInt(423) + 45;
-                    Ksiązka dziełoKsiążka = new Ksiązka(Tytulyy.getSelectedItem().toString(),
-                            ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
-                            cena, iloscStron);
-                    if(gatunkiPom.getSelectedItem().equals("Romanse"))
-                        dziełoKsiążka.ustawGatunek("Romans");
-                    else if(gatunkiPom.getSelectedItem().equals("Sensacyjne"))
-                        dziełoKsiążka.ustawGatunek("Sensacyjne");
+                if(typTekstu.getSelectedItem().equals("Romanse"))  {
+                    Ksiązka dziełoKsiążka = new Romanse(tytuł,autor,cena,iloscStron);
                     ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(dziełoKsiążka);
-                }
-                else if(typTekstu.getSelectedItem().equals("Album"))
-                {
-                    int cena = random.nextInt(100) + 20;
-                    int iloscStron = random.nextInt(423) + 45;
-                    Ksiązka dziełoAlbum = new Ksiązka(Tytulyy.getSelectedItem().toString(),
-                            ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()),
-                            cena, iloscStron);
-                    if(gatunkiPom.getSelectedItem().equals("Albumy"))
-                        dziełoAlbum.ustawGatunek("Album");
-
+                } else if(typTekstu.getSelectedItem().equals("Albumy")) {
+                    Ksiązka dziełoAlbum = new Album(tytuł,autor,cena,iloscStron);
                     ListaDostepnychKsiazekDoDrukowania.dodajAlbum(dziełoAlbum);
-                }
-                else if(typTekstu.getSelectedItem().equals("Czasopismo"))
-                {
-                    double cena = random.nextDouble(10) + 20;
-                    int numer = random.nextInt(8) + 1;
-                    Czasopismo dziełoCzasopismo = new Czasopismo(Tytulyy.getSelectedItem().toString(),
-                            ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex()), numer, cena);
+                } else if(typTekstu.getSelectedItem().equals("Sensacyjne")) {
+                    Ksiązka dziełoKsiążka = new Sensacyjne(tytuł,autor,cena,iloscStron);
+                    ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(dziełoKsiążka);
+                } else if(typTekstu.getSelectedItem().equals("Tygodniki")) {
+                    Czasopismo dziełoCzasopismo = new Tygodnik(tytuł,autor,numer,cena);
+                    ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(dziełoCzasopismo);
+                } else if(typTekstu.getSelectedItem().equals("Miesięczniki")) {
+                    Czasopismo dziełoCzasopismo = new Miesięczniki(tytuł,autor,numer,cena);
                     ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(dziełoCzasopismo);
                 }
+
 
 
 
@@ -297,9 +286,5 @@ public class OdKsiaskiTworzonej implements ActionListener{
                 }
             }
         }
-
-
     }
-
-
 }
