@@ -18,7 +18,7 @@ public class DziałDruku  {
         return aktualnaDrukarnia;
     }
 
-    private String aktualnaDrukarnia = "Zwykła Drukarnia 1";
+    private String aktualnaDrukarnia = "Zwykla Drukarnia 1";
 
     public void wybierzDrukarnie(int wybor) {
         if(wybor == 3) {
@@ -33,8 +33,8 @@ public class DziałDruku  {
             case 3 -> wybranaDrukarnia = lepszaDrukarnia;
         }
         switch (wybor) {
-            case 1 -> aktualnaDrukarnia = "Zwykła Drukarnia 1";
-            case 2 -> aktualnaDrukarnia = "Zwykła Drukarnia 2";
+            case 1 -> aktualnaDrukarnia = "Zwykla Drukarnia 1";
+            case 2 -> aktualnaDrukarnia = "Zwykla Drukarnia 2";
             case 3 -> aktualnaDrukarnia = "Drukarnia Wszystkiego";
         }
     }

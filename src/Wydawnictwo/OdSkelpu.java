@@ -350,12 +350,7 @@ public class OdSkelpu implements ActionListener, ChangeListener {
                }
                }
            }
-
         }
-
-
-
-
     }
 
     @Override
