@@ -1,16 +1,12 @@
 package DziałProgramowy;
 
 import DziałHandlu.*;
-import DziałProgramowy.*;
-
-import javax.lang.model.type.TypeMirror;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -26,7 +22,6 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
     protected JRadioButton umowaODzieło;
     protected JLabel okresNapisania_label;
     protected JComboBox umowapom1;
-
     protected JSlider slider;
     protected JLabel slider_wartosc;
     protected JComboBox okresZatrudnienia;
@@ -43,7 +38,6 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
         tlo.setIcon(icon);
 
         napis.setText("Lista autorów do zatrudnienia:");
-
 
         umowaLabel = new JLabel();
         umowaLabel.setText("Wybierz umowę:");
@@ -139,35 +133,33 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == button) {
-
-            int czas = Integer.parseInt(okresZatrudnienia.getSelectedItem().toString());
-
-
-
-            Random random = new Random();
-            double cena = random.nextDouble(200) + 40;
-            int iloscStron = random.nextInt(300) + 40;
-            int numer = random.nextInt(8) + 1;
-            String tytul = tytułDzieła.getSelectedItem().toString();
-            UmowaODzieło umowa = new UmowaODzieło(slider.getValue(), okresZatrudnienia.getSelectedItem().toString());
-
-            Autor autorpom = TymczasowiAutorzy.getTymczasowiAutorzy().get(autorzy.getSelectedIndex());
-            TymczasowiAutorzy.getTymczasowiAutorzy().remove(autorzy.getSelectedIndex());
-
-            CzasZatrudnienia t = new CzasZatrudnienia(czas);
-            t.setAutorpom(autorpom);
-            t.setPensja(slider.getValue());
-            t.start();
-
             if (TymczasowiAutorzy.getTymczasowiAutorzy().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Nikt nie złożył CV",
                         "ERROR", JOptionPane.INFORMATION_MESSAGE);
-            } else {
+                frame.dispose();
+            }
+            else {
+                int czasZatrudnieniaNapisania = Integer.parseInt(okresZatrudnienia.getSelectedItem().toString());
+                Random random = new Random();
+                double cena = random.nextDouble(200) + 40;
+                int iloscStron = random.nextInt(300) + 40;
+                int numer = random.nextInt(8) + 1;
+                String tytul = tytułDzieła.getSelectedItem().toString();
+                double pensja=slider.getValue();
+
+                UmowaODzieło umowa = new UmowaODzieło(pensja, czasZatrudnieniaNapisania);
+
+                Autor autorpom = TymczasowiAutorzy.getTymczasowiAutorzy().get(autorzy.getSelectedIndex());
+
+                CzasZatrudnienia t = new CzasZatrudnienia(czasZatrudnieniaNapisania);
+                t.setAutorpom(autorpom);
+                t.setPensja(slider.getValue());
+                t.setIndexAutora(autorzy.getSelectedIndex());
 
                 if (umowapom1.getSelectedItem().toString() == "UmowaODzieło") {
-
+                    t.setUmowa("Umowa o dzieło");
+                    t.start();
                     if (gatunekDzieła.getSelectedItem().equals("Albumy")) {
-
                         Ksiązka albumTworzony = new Ksiązka(tytul, autorpom, cena, iloscStron);
                         umowa.setKsiążka(albumTworzony);
                         ListaDostepnychKsiazekDoDrukowania.dodajAlbum(albumTworzony);
@@ -189,14 +181,27 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
                         umowa.setCzasopismo(tygodnikTworzony);
                         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(tygodnikTworzony);
                     }
-
+                    TymczasowiAutorzy.getTymczasowiAutorzy().remove(autorzy.getSelectedIndex());
                     autorpom.wybierzUmowę(umowa);
-                } else if (umowapom1.getSelectedItem().toString() == "UmowaOPracę") {
-                    autorpom.wybierzUmowę(new UmowaOPracę(slider.getValue(), okresZatrudnienia.getSelectedItem().toString()));
-                    System.out.println("umowa o prace");
 
                 }
-                ZatrudnieniAutorzy.dodajAutora(autorpom);
+                else if (umowapom1.getSelectedItem().toString() == "UmowaOPracę") {
+
+                    int ilośćDni=90;
+                    if (czasZatrudnieniaNapisania<ilośćDni)
+                    {
+                        JOptionPane.showMessageDialog(null, "Okres trawania umowy musi być dłuższy niż 90 dni",
+                                "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else {
+                        t.setUmowa("Umowa o pracę");
+                        t.start();
+                        autorpom.wybierzUmowę(new UmowaOPracę(pensja, czasZatrudnieniaNapisania));
+                        ZatrudnieniAutorzy.dodajAutora(autorpom);
+                        System.out.println("umowa o prace");
+                    }
+                }
+
                 frame.dispose();
             }
         }

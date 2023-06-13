@@ -13,7 +13,7 @@ public class ZatrudnieniAutorzy {
     public static void Zatrudnieni()
     {
         Autor autor = new Autor("Katarzyna", "Michalak", 9.9, 3314);
-        autor.wybierzUmowę(new UmowaOPracę(4212, "10.06.2023-10.06.2025"));
+        autor.wybierzUmowę(new UmowaOPracę(4212, 90));
         zatrudnieniAutorzy.add(autor);
     }
 

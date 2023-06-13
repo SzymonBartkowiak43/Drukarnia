@@ -1,9 +1,6 @@
 package DziałProgramowy;
 
 import DziałHandlu.*;
-import DziałProgramowy.*;
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +12,7 @@ import java.util.Random;
 public class OdKsiaskiTworzonej implements ActionListener{
     protected JFrame frame;
     protected JPanel panel;
+
     protected JRadioButton czasopismo;
     protected JRadioButton ksiazka;
     protected JButton button;
@@ -26,7 +24,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
     protected JPanel panelGatunki;
     protected JComboBox Tytulyy;
     protected JComboBox autorComboBox;
-
     protected JComboBox gatunkiPom;
     protected JComboBox typTekstu;
     protected List<String> Romanse;
@@ -211,8 +208,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         if(e.getSource()==romanseButton)
         {
-
-
             Tytulyy.removeAllItems();
             List<String> Romanse = new ArrayList<>();
             gatunkiPom.setSelectedItem("Romanse");
@@ -251,7 +246,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
             typTekstu.setSelectedItem("Album");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
-                if (ksiazkaTworzona.getGatunek() == "Album") {
+                if (ksiazkaTworzona.getGatunek() == "Albumy") {
                     Albumy.add(ksiazkaTworzona.getNazwa());
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }
@@ -266,12 +261,13 @@ public class OdKsiaskiTworzonej implements ActionListener{
             typTekstu.setSelectedItem("Czasopismo");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
-                if (ksiazkaTworzona.getGatunek() == "Miesięcznik") {
+                if (ksiazkaTworzona.getGatunek() == "Miesięczniki") {
                     miesięczniki.add(ksiazkaTworzona.getNazwa());
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }
             }
         }
+
         if(e.getSource()==tygodinkiButton)
         {
             Tytulyy.removeAllItems();
@@ -280,7 +276,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
             typTekstu.setSelectedItem("Czasopismo");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
-                if (ksiazkaTworzona.getGatunek() == "Tygodnik") {
+                if (ksiazkaTworzona.getGatunek() == "Tygodniki") {
                     tygodinkiButton.add(ksiazkaTworzona.getNazwa());
                     Tytulyy.addItem(ksiazkaTworzona.getNazwa());
                 }
