@@ -14,26 +14,30 @@ public class UstawieniaStartowe {
 
         Autor autor1= new Autor("Cezary", "Babik", 6.2, 4572);
 
-        Ksiązka ksiazka1 = new Romanse("Testowy Romans 1", autor1 , 23.4, 123);
-        Ksiązka ksiazka2 = new Romanse("Testowy Romans 2", autor1 , 23.4, 123);
-        Ksiązka ksiazka3 = new Romanse("Testowy Romans 3", autor1 , 23.4, 123);
+        Ksiązka ksiazka1 = new Romanse("Ania zielone gory", autor1 , 23.4, 123);
+        Ksiązka ksiazka2 = new Romanse("Magda w krainie czarow", autor1 , 23.4, 123);
+        Ksiązka ksiazka3 = new Romanse("Dzis i jutro", autor1 , 23.4, 123);
 
-        Ksiązka ksiazka4 = new Sensacyjne("Testowy Sensacyjny", autor1,30.2,134);
+        Ksiązka ksiazka4 = new Sensacyjne("Janek Boberek", autor1,30.2,134);
+        Ksiązka ksiazka7 = new Sensacyjne("Marionetka", autor1,30.2,134);
 
-        Ksiązka ksiazka5 = new Album("Testowy Album1", autor1,100.2,13);
-        Ksiązka ksiazka6 = new Album("Testowy Album 2", autor1,103,122);
+        Ksiązka ksiazka5 = new Album("Zdjecia Mai", autor1,100.2,13);
+        Ksiązka ksiazka6 = new Album("Zdjacia Maryli", autor1,103,122);
 
-        Czasopismo czasopismo1 = new Tygodnik("Testwy tygodnik 1", autor1, 1,10.00);
-        Czasopismo czasopismo2 = new Tygodnik("Testwy tygodnik 2", autor1, 2,10.00);
-        Czasopismo czasopismo3 = new Tygodnik("Testwy tygodnik 3", autor1, 3,10.00);
+        Czasopismo czasopismo1 = new Tygodnik("Chwila dla cb 1", autor1, 1,10.00);
+        Czasopismo czasopismo2 = new Tygodnik("Chwila dla cb 2", autor1, 2,10.00);
+        Czasopismo czasopismo3 = new Tygodnik("Chwila dla cb 3", autor1, 3,10.00);
 
-        Czasopismo czasopismo4 = new Miesięczniki("Testwy MIesiecznik 1 ", autor1, 1,10.00);
-        Czasopismo czasopismo5 = new Kwartalnik("Testowy Kwartalnik 1", autor1, 1,10.00);
+        Czasopismo czasopismo4 = new Miesięczniki("Bravo Sport 1 ", autor1, 1,10.00);
+        Czasopismo czasopismo6 = new Miesięczniki("Bravo Sport 2 ", autor1, 1,10.00);
+        Czasopismo czasopismo5 = new Kwartalnik("Cd Action 1", autor1, 1,10.00);
+        Czasopismo czasopismo7 = new Kwartalnik("Cd Action 2", autor1, 1,10.00);
 
         ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka1);
         ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka2);
         ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka3);
         ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka4);
+        ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(ksiazka7);
 
         ListaDostepnychKsiazekDoDrukowania.dodajAlbum(ksiazka5);
         ListaDostepnychKsiazekDoDrukowania.dodajAlbum(ksiazka6);
@@ -43,6 +47,8 @@ public class UstawieniaStartowe {
         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo3);
         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo4);
         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo5);
+        ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo6);
+        ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo7);
 
 
         MagazynSklepu.dodajPozycje(ksiazka1,200);
@@ -52,6 +58,7 @@ public class UstawieniaStartowe {
         MagazynSklepu.dodajPozycje(ksiazka4,10);
         MagazynSklepu.dodajPozycje(ksiazka5,12);
         MagazynSklepu.dodajPozycje(ksiazka6,90);
+        MagazynSklepu.dodajPozycje(ksiazka7,30);
 
         MagazynSklepu.dodajPozycje(czasopismo1,100);
         MagazynSklepu.dodajPozycje(czasopismo1,300);
@@ -60,6 +67,8 @@ public class UstawieniaStartowe {
         MagazynSklepu.dodajPozycje(czasopismo3,100);
         MagazynSklepu.dodajPozycje(czasopismo4,20);
         MagazynSklepu.dodajPozycje(czasopismo5,40);
+        MagazynSklepu.dodajPozycje(czasopismo6,30);
+        MagazynSklepu.dodajPozycje(czasopismo7,42);
 
         MagazynSklepu.wyswietlZawartoscSklepu();
     }

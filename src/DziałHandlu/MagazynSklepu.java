@@ -42,7 +42,7 @@ public class MagazynSklepu {
         for (HashMap.Entry<Czasopismo, Integer> entry : getWszystkieCzasopisma().entrySet()) {
             Czasopismo czasopismo = entry.getKey();
             int ilosc = entry.getValue();
-            zwracany += czasopismo.getTytul() + " " + czasopismo.getNumer() + " - ilość: " + ilosc + "\n";
+            zwracany += czasopismo.getTytul() + " - ilość: " + ilosc + "\n";
 
         }
 
