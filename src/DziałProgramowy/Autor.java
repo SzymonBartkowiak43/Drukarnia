@@ -24,11 +24,6 @@ public class Autor {
         return ileChceZarabiać;
     }
 
-    public Umowy getUmowa()
-    {
-        return umowa;
-    }
-
     public Autor(String imie, String nazwisko, double ocena, int ileChceZarabiać) {
         this.imie = imie;
         this.nazwisko = nazwisko;
