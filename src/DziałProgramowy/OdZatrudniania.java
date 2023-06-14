@@ -1,3 +1,4 @@
+
 package DziałProgramowy;
 
 import DziałHandlu.*;
@@ -210,39 +211,39 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
         }
 
 
-            if (e.getSource() == umowaODzieło) {
-                slider.setVisible(true);
-                slider_wartosc.setVisible(true);
-                okresZatrudnienia.setVisible(true);
-                okresZatrudnienia_label.setVisible(false);
-                okresNapisania_label.setVisible(true);
-                tytułDzieła.setVisible(true);
-                gatunekDzieła.setVisible(true);
+        if (e.getSource() == umowaODzieło) {
+            slider.setVisible(true);
+            slider_wartosc.setVisible(true);
+            okresZatrudnienia.setVisible(true);
+            okresZatrudnienia_label.setVisible(false);
+            okresNapisania_label.setVisible(true);
+            tytułDzieła.setVisible(true);
+            gatunekDzieła.setVisible(true);
 
-                umowapom1.setSelectedItem("UmowaODzieło");
-            }
-
-            if (e.getSource() == umowaOPracę) {
-                slider.setVisible(true);
-                slider_wartosc.setVisible(true);
-                okresZatrudnienia.setVisible(true);
-                okresZatrudnienia_label.setVisible(true);
-                okresNapisania_label.setVisible(false);
-                tytułDzieła.setVisible(false);
-                gatunekDzieła.setVisible(false);
-
-                umowapom1.setSelectedItem("UmowaOPracę");
-
-            }
+            umowapom1.setSelectedItem("UmowaODzieło");
         }
 
-        @Override
-        public void stateChanged (ChangeEvent e)
-        {
-            if (e.getSource() == slider) {
-                slider_wartosc.setText("Pensja: " + slider.getValue());
-            }
+        if (e.getSource() == umowaOPracę) {
+            slider.setVisible(true);
+            slider_wartosc.setVisible(true);
+            okresZatrudnienia.setVisible(true);
+            okresZatrudnienia_label.setVisible(true);
+            okresNapisania_label.setVisible(false);
+            tytułDzieła.setVisible(false);
+            gatunekDzieła.setVisible(false);
+
+            umowapom1.setSelectedItem("UmowaOPracę");
 
         }
+    }
+
+    @Override
+    public void stateChanged (ChangeEvent e)
+    {
+        if (e.getSource() == slider) {
+            slider_wartosc.setText("Pensja: " + slider.getValue());
+        }
+
+    }
 
 }

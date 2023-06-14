@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Frame extends JFrame implements ActionListener {
-
     protected ImageIcon miastoIcon;
     protected ImageIcon drukIkona;
     protected ImageIcon programowaniaIkona;

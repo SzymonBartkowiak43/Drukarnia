@@ -37,7 +37,6 @@ public class PrzyciskDziałuHandlowego extends Frame {
         buttonOdbierzZDrukarni.addActionListener(this);
         buttonOdbierzZDrukarni.setFont(new Font("MV BOli", Font.PLAIN, 20));
 
-
         label.add(buttonSklep);
         label.add(buttonMagazyn);
         label.add(buttonOdbierzZDrukarni);
