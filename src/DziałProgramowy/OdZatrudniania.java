@@ -52,11 +52,12 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
         group.add(umowaOPracę);
         group.add(umowaODzieło);
 
+        //Tworzymy listę typu String autorów z klasy TymczasowiAutorzy którą wykorzystujemy do stowrzenia
+        //Comboboxa autorów
         List<String> Autorzy_pom = new ArrayList<>();
 
         for (Autor autor : TymczasowiAutorzy.getTymczasowiAutorzy()) {
             Autorzy_pom.add(autor.getImie() + " " + autor.getNazwisko() + " Ocena: " + autor.getOcena() + " IleChceZarabiac " + autor.getIleChceZarabiać());
-            System.out.println(autor.getImie() + " " + autor.getNazwisko() + " Ocena: " + autor.getOcena() + " IleChceZarabiac " + autor.getIleChceZarabiać());
         }
 
         autorzy = new JComboBox<>(Autorzy_pom.toArray());
@@ -93,12 +94,14 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
         okresNapisania_label = new JLabel("Okres na napisanie: ");
         okresNapisania_label.setVisible(false);
 
+        //Podanie nowego Tworzoneo tytuły przez użytkownika
         String[] tytuł = {"Podaj tytuł dzieła"};
         tytułDzieła = new JComboBox(tytuł);
         tytułDzieła.setEditable(true);
         tytułDzieła.setVisible(false);
         tytułDzieła.addActionListener(this);
 
+        //Pomocnicze
         String[] gatunek = {"Romanse", "Sensacyjne", "Albumy", "Miesięczniki", "Tygodniki"};
         gatunekDzieła = new JComboBox(gatunek);
         gatunekDzieła.setVisible(false);
