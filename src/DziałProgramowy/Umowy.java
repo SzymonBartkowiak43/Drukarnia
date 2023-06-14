@@ -5,7 +5,7 @@ private String nazwa;
 
 public Umowy()
 {
-    
+
 }
 
 }

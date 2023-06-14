@@ -26,7 +26,6 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
     protected JRadioButton umowaODzieło;
     protected JLabel okresNapisania_label;
     protected JComboBox umowapom1;
-
     protected JSlider slider;
     protected JLabel slider_wartosc;
     protected JComboBox okresZatrudnienia;
@@ -141,9 +140,6 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
         if (e.getSource() == button) {
 
             int czas = Integer.parseInt(okresZatrudnienia.getSelectedItem().toString());
-
-
-
             Random random = new Random();
             double cena = random.nextDouble(200) + 40;
             int iloscStron = random.nextInt(300) + 40;
@@ -160,14 +156,12 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
             t.start();
 
             if (TymczasowiAutorzy.getTymczasowiAutorzy().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Nikt nie złożył CV",
-                        "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nikt nie złożył CV", "ERROR", JOptionPane.INFORMATION_MESSAGE);
             } else {
 
                 if (umowapom1.getSelectedItem().toString() == "UmowaODzieło") {
 
                     if (gatunekDzieła.getSelectedItem().equals("Albumy")) {
-
                         Ksiązka albumTworzony = new Ksiązka(tytul, autorpom, cena, iloscStron);
                         umowa.setKsiążka(albumTworzony);
                         ListaDostepnychKsiazekDoDrukowania.dodajAlbum(albumTworzony);
@@ -202,39 +196,38 @@ public class OdZatrudniania implements ChangeListener, ActionListener {
         }
 
 
-            if (e.getSource() == umowaODzieło) {
-                slider.setVisible(true);
-                slider_wartosc.setVisible(true);
-                okresZatrudnienia.setVisible(true);
-                okresZatrudnienia_label.setVisible(false);
-                okresNapisania_label.setVisible(true);
-                tytułDzieła.setVisible(true);
-                gatunekDzieła.setVisible(true);
+        if (e.getSource() == umowaODzieło) {
+            slider.setVisible(true);
+            slider_wartosc.setVisible(true);
+            okresZatrudnienia.setVisible(true);
+            okresZatrudnienia_label.setVisible(false);
+            okresNapisania_label.setVisible(true);
+            tytułDzieła.setVisible(true);
+            gatunekDzieła.setVisible(true);
 
-                umowapom1.setSelectedItem("UmowaODzieło");
-            }
-
-            if (e.getSource() == umowaOPracę) {
-                slider.setVisible(true);
-                slider_wartosc.setVisible(true);
-                okresZatrudnienia.setVisible(true);
-                okresZatrudnienia_label.setVisible(true);
-                okresNapisania_label.setVisible(false);
-                tytułDzieła.setVisible(false);
-                gatunekDzieła.setVisible(false);
-
-                umowapom1.setSelectedItem("UmowaOPracę");
-
-            }
+            umowapom1.setSelectedItem("UmowaODzieło");
         }
 
-        @Override
-        public void stateChanged (ChangeEvent e)
-        {
-            if (e.getSource() == slider) {
-                slider_wartosc.setText("Pensja: " + slider.getValue());
-            }
+        if (e.getSource() == umowaOPracę) {
+            slider.setVisible(true);
+            slider_wartosc.setVisible(true);
+            okresZatrudnienia.setVisible(true);
+            okresZatrudnienia_label.setVisible(true);
+            okresNapisania_label.setVisible(false);
+            tytułDzieła.setVisible(false);
+            gatunekDzieła.setVisible(false);
+
+            umowapom1.setSelectedItem("UmowaOPracę");
 
         }
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if (e.getSource() == slider) {
+            slider_wartosc.setText("Pensja: " + slider.getValue());
+        }
+
+    }
 
 }
