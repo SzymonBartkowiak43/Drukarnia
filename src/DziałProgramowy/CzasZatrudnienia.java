@@ -17,8 +17,7 @@ public class CzasZatrudnienia extends Thread {
     {
         for(int i=1 ; i<=ileDni; i++) {
             try{
-
-                if(umowa.equals("Umowa o pracę") && i%13==0)
+                if(umowa.equals("Umowa o pracę") && i%23==0)
                 {
                     if (ZatrudnieniAutorzy.getZatrudnieniAutorzy().indexOf(autorpom)!=-1) {
                         JOptionPane.showMessageDialog(null, "Wypłacono pensje (" + pensja + "zl) autorowi: " +
