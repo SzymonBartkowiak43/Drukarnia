@@ -7,11 +7,11 @@ public class UmowaODzieło extends Umowy{
 
 	private String nazwa;
 	private double wynagrodzenie;
-	private String terminRealizacji;
+	private int terminRealizacji;
 	private Ksiązka książka;
 	private Czasopismo czasopismo;
 
-	public UmowaODzieło(double wynagrodzenie, String terminRealizacji)
+	public UmowaODzieło(double wynagrodzenie, int terminRealizacji)
 	{
 		nazwa="Umowa o dzieło";
 		this.terminRealizacji=terminRealizacji;
@@ -27,16 +27,6 @@ public class UmowaODzieło extends Umowy{
 	public String getNazwa()
 	{
 		return nazwa;
-	}
-
-	public String getTerminRealizacji()
-	{
-		return terminRealizacji;
-	}
-
-	public  double getWynagrodzenie()
-	{
-		return wynagrodzenie;
 	}
 
 }
