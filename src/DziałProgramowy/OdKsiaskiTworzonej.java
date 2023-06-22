@@ -22,10 +22,9 @@ public class OdKsiaskiTworzonej implements ActionListener{
     protected JRadioButton tygodinkiButton;
     protected JRadioButton miesiecznikButton;
     protected JPanel panelGatunki;
-    protected JComboBox Tytulyy;
+    protected JComboBox tytulyComboBox;
     protected JComboBox autorComboBox;
-    protected JComboBox gatunkiPom;
-    protected JComboBox typTekstu;
+    protected JComboBox gatunkiNiewidzialnyBox;
     protected List<String> Romanse;
     public OdKsiaskiTworzonej()
     {
@@ -38,7 +37,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
         czasopismo = new JRadioButton("Czasopismo");
         ksiazka = new JRadioButton("Ksiazka");
         ksiazka.setSelected(true);
-
 
         panel.add(czasopismo);
         panel.add(ksiazka);
@@ -54,7 +52,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
         romanseButton = new JRadioButton("Romanse");
         sensacyjneButton = new JRadioButton("Sensacyjne");
         albumyButton = new JRadioButton("Albumy");
-
 
         tygodinkiButton = new JRadioButton("Tygodniki");
         miesiecznikButton = new JRadioButton("Miesieczniki");
@@ -83,11 +80,7 @@ public class OdKsiaskiTworzonej implements ActionListener{
 
         tygodinkiButton.setVisible(true);
         String[] gatunkiPomtabela={"Romanse","Sensacyjne", "Albumy", "Miesięczniki", "Tygodniki"};
-        gatunkiPom = new JComboBox(gatunkiPomtabela);
-
-        String[] typTekstuTabela={"Romanse","Sensacyjne", "Albumy", "Miesięczniki", "Tygodniki"};
-        typTekstu = new JComboBox<>(typTekstuTabela);
-
+        gatunkiNiewidzialnyBox= new JComboBox(gatunkiPomtabela);
 
         Romanse = new ArrayList<>();
 
@@ -98,9 +91,9 @@ public class OdKsiaskiTworzonej implements ActionListener{
             }
         }
 
-        Tytulyy = new JComboBox<>(Romanse.toArray());
+        tytulyComboBox = new JComboBox<>(Romanse.toArray());
 
-
+        //Lista która jest nam potrzebna aby utworzyc Comboboxa z autorami
         List<String> Autorzy = new ArrayList<>();
         int i=0;
         for (Autor autor : ZatrudnieniAutorzy.getZatrudnieniAutorzy()) {
@@ -110,8 +103,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
         autorComboBox= new JComboBox(Autorzy.toArray());
         autorComboBox.addActionListener(this);
 
-
-
         button = new JButton("Zatwierdź");
         button.addActionListener(this);
         button.setForeground(Color.BLACK);
@@ -120,15 +111,13 @@ public class OdKsiaskiTworzonej implements ActionListener{
         frame.add(panel);
         frame.add(panelGatunki);
         frame.add(autorComboBox);
-        frame.add(Tytulyy);
+        frame.add(tytulyComboBox);
         frame.add(button);
         frame.setIconImage(icon.getImage());
         frame.setBackground(Color.GRAY);
         frame.setVisible(true);
         frame.setSize(500,500);
         frame.setLocationRelativeTo(null);
-
-
     }
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==ksiazka)
@@ -138,7 +127,6 @@ public class OdKsiaskiTworzonej implements ActionListener{
             romanseButton.setVisible(true);
             sensacyjneButton.setVisible(true);
             albumyButton.setVisible(true);
-
         }
 
         if(e.getSource()==czasopismo)
@@ -158,127 +146,122 @@ public class OdKsiaskiTworzonej implements ActionListener{
                         "ERROR", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
+                //Wszystkie zmienne potrzebne do tworzenia książek
                 Random random = new Random();
                 double cena = random.nextInt(100) + 20;
                 int iloscStron = random.nextInt(423) + 45;
-                int numer = random.nextInt(8) + 1;
-                String tytuł = (String)Tytulyy.getSelectedItem();
+                int numerCzasopisma = random.nextInt(8) + 1;
+                String tytuł = (String)tytulyComboBox.getSelectedItem();
                 Autor autor = ZatrudnieniAutorzy.getZatrudnieniAutorzy().get(autorComboBox.getSelectedIndex());
 
-                if(typTekstu.getSelectedItem().equals("Romanse"))  {
+                if(gatunkiNiewidzialnyBox.getSelectedItem().equals("Romanse"))  {
                     Ksiązka dziełoKsiążka = new Romanse(tytuł,autor,cena,iloscStron);
                     ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(dziełoKsiążka);
-                } else if(typTekstu.getSelectedItem().equals("Albumy")) {
+                } else if(gatunkiNiewidzialnyBox.getSelectedItem().equals("Albumy")) {
                     Ksiązka dziełoAlbum = new Album(tytuł,autor,cena,iloscStron);
                     ListaDostepnychKsiazekDoDrukowania.dodajAlbum(dziełoAlbum);
-                } else if(typTekstu.getSelectedItem().equals("Sensacyjne")) {
+                } else if(gatunkiNiewidzialnyBox.getSelectedItem().equals("Sensacyjne")) {
                     Ksiązka dziełoKsiążka = new Sensacyjne(tytuł,autor,cena,iloscStron);
                     ListaDostepnychKsiazekDoDrukowania.dodajKsiazke(dziełoKsiążka);
-                } else if(typTekstu.getSelectedItem().equals("Tygodniki")) {
-                    Czasopismo dziełoCzasopismo = new Tygodnik(tytuł,autor,numer,cena);
+                } else if(gatunkiNiewidzialnyBox.getSelectedItem().equals("Tygodniki")) {
+                    Czasopismo dziełoCzasopismo = new Tygodnik(tytuł,autor,numerCzasopisma,cena);
                     ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(dziełoCzasopismo);
-                } else if(typTekstu.getSelectedItem().equals("Miesięczniki")) {
-                    Czasopismo dziełoCzasopismo = new Miesięczniki(tytuł,autor,numer,cena);
+                } else if(gatunkiNiewidzialnyBox.getSelectedItem().equals("Miesięczniki")) {
+                    Czasopismo dziełoCzasopismo = new Miesięczniki(tytuł,autor,numerCzasopisma,cena);
                     ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(dziełoCzasopismo);
                 }
 
-
-
-
+                //Tworzymy listę z TytulamiDoStworzenia, która pomaga nam w usuwaniu napisanych tytulów
                 List<String>  Wszystkie_ksiazki = new ArrayList<>();
 
                 for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                     Wszystkie_ksiazki.add(ksiazkaTworzona.getNazwa()+" "+ksiazkaTworzona.getGatunek());
                 }
 
-                for(int i=0; i<Wszystkie_ksiazki.size(); i++)
+                for(int index=0; index<Wszystkie_ksiazki.size(); index++)
                 {
-                    if(Wszystkie_ksiazki.get(i).equals(Tytulyy.getSelectedItem().toString()+" "+
-                            gatunkiPom.getSelectedItem().toString()))
+                    if(Wszystkie_ksiazki.get(index).equals(tytulyComboBox.getSelectedItem().toString()+" "+
+                            gatunkiNiewidzialnyBox.getSelectedItem().toString()))
                     {
-                        TytulyDoStworzenia.getTytuly().remove(i);
+                        TytulyDoStworzenia.getTytuly().remove(index);
                     }
-
                 }
-
                 frame.dispose();
             }
 
         }
+        //Następnie mamy 5 przycisków od gatunków które czyszczą ComboBoxa z
+        // tytulami i ponownie uzupełniają wybranymi gatunkiem z JRadioButtonow
 
         if(e.getSource()==romanseButton)
         {
-            Tytulyy.removeAllItems();
-            List<String> Romanse = new ArrayList<>();
-            gatunkiPom.setSelectedItem("Romanse");
-            typTekstu.setSelectedItem("Książka");
+            tytulyComboBox.removeAllItems();
+            gatunkiNiewidzialnyBox.setSelectedItem("Romanse");
 
+            List<String> Romanse = new ArrayList<>();
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Romanse") {
                     Romanse.add(ksiazkaTworzona.getNazwa());
-                    Tytulyy.addItem(ksiazkaTworzona.getNazwa());
+                    tytulyComboBox.addItem(ksiazkaTworzona.getNazwa());
                 }
             }
-
         }
 
         if(e.getSource()==sensacyjneButton)
         {
-            Tytulyy.removeAllItems();
+            tytulyComboBox.removeAllItems();
+            gatunkiNiewidzialnyBox.setSelectedItem("Sensacyjne");
+
             List<String> Sensacyjne = new ArrayList<>();
-            gatunkiPom.setSelectedItem("Sensacyjne");
-            typTekstu.setSelectedItem("Książka");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Sensacyjne") {
                     Sensacyjne.add(ksiazkaTworzona.getNazwa());
-                    Tytulyy.addItem(ksiazkaTworzona.getNazwa());
+                    tytulyComboBox.addItem(ksiazkaTworzona.getNazwa());
                 }
             }
-
         }
 
         if(e.getSource()==albumyButton)
         {
-            Tytulyy.removeAllItems();
+            tytulyComboBox.removeAllItems();
+            gatunkiNiewidzialnyBox.setSelectedItem("Albumy");
+
             List<String> Albumy = new ArrayList<>();
-            gatunkiPom.setSelectedItem("Albumy");
-            typTekstu.setSelectedItem("Album");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Albumy") {
                     Albumy.add(ksiazkaTworzona.getNazwa());
-                    Tytulyy.addItem(ksiazkaTworzona.getNazwa());
+                    tytulyComboBox.addItem(ksiazkaTworzona.getNazwa());
                 }
             }
         }
 
         if(e.getSource()==miesiecznikButton)
         {
-            Tytulyy.removeAllItems();
+            tytulyComboBox.removeAllItems();
+            gatunkiNiewidzialnyBox.setSelectedItem("Miesięczniki");
+
             List<String> miesięczniki = new ArrayList<>();
-            gatunkiPom.setSelectedItem("Miesięczniki");
-            typTekstu.setSelectedItem("Czasopismo");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Miesięczniki") {
                     miesięczniki.add(ksiazkaTworzona.getNazwa());
-                    Tytulyy.addItem(ksiazkaTworzona.getNazwa());
+                    tytulyComboBox.addItem(ksiazkaTworzona.getNazwa());
                 }
             }
         }
 
         if(e.getSource()==tygodinkiButton)
         {
-            Tytulyy.removeAllItems();
+            tytulyComboBox.removeAllItems();
             List<String> tygodinkiButton = new ArrayList<>();
-            gatunkiPom.setSelectedItem("Tygodniki");
-            typTekstu.setSelectedItem("Czasopismo");
+            gatunkiNiewidzialnyBox.setSelectedItem("Tygodniki");
 
             for (KsiazkaTworzona ksiazkaTworzona : TytulyDoStworzenia.getTytuly()) {
                 if (ksiazkaTworzona.getGatunek() == "Tygodniki") {
                     tygodinkiButton.add(ksiazkaTworzona.getNazwa());
-                    Tytulyy.addItem(ksiazkaTworzona.getNazwa());
+                    tytulyComboBox.addItem(ksiazkaTworzona.getNazwa());
                 }
             }
         }

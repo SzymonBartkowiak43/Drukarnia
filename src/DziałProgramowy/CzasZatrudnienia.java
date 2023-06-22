@@ -23,6 +23,7 @@ public class CzasZatrudnienia extends Thread {
                         JOptionPane.showMessageDialog(null, "Wypłacono pensje (" + pensja + "zl) autorowi: " +
                                         autorpom.getImie() + " " + autorpom.getNazwisko(),
                                 "ERROR", JOptionPane.INFORMATION_MESSAGE);
+
                         autorpom.dodajSaldo(pensja);
                     }
                     else {
