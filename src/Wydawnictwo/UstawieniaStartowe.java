@@ -46,21 +46,20 @@ public class UstawieniaStartowe {
         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo2);
         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo3);
         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo4);
-        ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo5);
         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo6);
+        ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo5);
         ListaDostepnychCzasopismDoDrukowania.dodajCzasopismo(czasopismo7);
 
-
-        MagazynSklepu.dodajPozycje(ksiazka1,200);
-        MagazynSklepu.dodajPozycje(ksiazka1,200);
-        MagazynSklepu.dodajPozycje(ksiazka2,100);
+        MagazynSklepu.dodajPozycje(ksiazka1,20);
+        MagazynSklepu.dodajPozycje(ksiazka1,20);
+        MagazynSklepu.dodajPozycje(ksiazka2,10);
         MagazynSklepu.dodajPozycje(ksiazka3,300);
         MagazynSklepu.dodajPozycje(ksiazka4,10);
         MagazynSklepu.dodajPozycje(ksiazka5,12);
         MagazynSklepu.dodajPozycje(ksiazka6,90);
         MagazynSklepu.dodajPozycje(ksiazka7,30);
 
-        MagazynSklepu.dodajPozycje(czasopismo1,100);
+        MagazynSklepu.dodajPozycje(czasopismo1,10);
         MagazynSklepu.dodajPozycje(czasopismo1,300);
         MagazynSklepu.dodajPozycje(czasopismo2,30);
 
@@ -68,7 +67,7 @@ public class UstawieniaStartowe {
         MagazynSklepu.dodajPozycje(czasopismo4,20);
         MagazynSklepu.dodajPozycje(czasopismo5,40);
         MagazynSklepu.dodajPozycje(czasopismo6,30);
-        MagazynSklepu.dodajPozycje(czasopismo7,42);
+        MagazynSklepu.dodajPozycje(czasopismo7,4);
 
         MagazynSklepu.wyswietlZawartoscSklepu();
     }
