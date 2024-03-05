@@ -13,7 +13,7 @@ abstract public class Drukarnie  {
     protected  Czasopismo drukowneCzasopismo;
     protected int ileSztuk;
     protected  boolean czyMonzaRozpacząćProdukcje = true;
-    protected  int mocPrzerobowa; //czas w ms ile potrzebuje do wyprodukowania 1 ksiazki
+    protected  int mocPrzerobowa; //czas w ms ile potrzebuje do wyprodukowania 1 ksiazki,
     protected HashMap<Ksiązka, Integer> kolekaDodrukowaniaKsiazek = new HashMap<Ksiązka, Integer>();
     protected HashMap<Czasopismo, Integer> kolekaDodrukowaniaCzasopsim = new HashMap<Czasopismo, Integer>();
     protected static HashMap<Ksiązka, Integer> wydrukowaneKsiazki = new HashMap<Ksiązka, Integer>();
