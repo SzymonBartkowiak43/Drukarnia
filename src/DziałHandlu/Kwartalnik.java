@@ -7,5 +7,5 @@ public class Kwartalnik extends Czasopismo {
         super(tytul, autor, numer, cena);
         gatunek = "Kwartalnik";
     }
-
+//przeglądałem start kod 
 }
