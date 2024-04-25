@@ -7,6 +7,7 @@ import java.util.List;
 
 public class ListaDostepnychCzasopismDoDrukowania {
 
+
     private static List<Object> katalogCzasopism= new ArrayList<>();
 
     public static void StartoweCzasopisma() {
